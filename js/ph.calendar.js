@@ -14,8 +14,8 @@ var datify = function (prj) {
     prj.to = prj.to ? new Date(prj.to) : new Date();
 };
 
-var ROMAN_MONTHS = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
-var monthToRoman = function(monthIdx) {
+var ROMAN_MONTHS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+var monthToRoman = function (monthIdx) {
     return ROMAN_MONTHS[monthIdx];
 };
 
@@ -28,10 +28,15 @@ function getMonthName(idx) {
 
 function dayIdFromDate(date) {
     return "" +
-        date.getFullYear() + '-' +
-        ((date.getMonth() < 10 ? "0" : "") + date.getMonth()) + '-' +
+        monthIdFromDate(date) + '-' +
         ((date.getDate() < 10 ? "0" : "") + date.getDate());
 
+}
+
+function monthIdFromDate(date) {
+    return "" +
+        date.getFullYear() + '-' +
+        ((date.getMonth() < 10 ? "0" : "") + date.getMonth());
 }
 
 var EXTRA_DAYS_BEFORE = 14, EXTRA_DAYS_AFTER = 14;
@@ -56,6 +61,7 @@ function populateCalendar(prjs) {
         var $daylist = $("<ul/>").addClass("calendar-list");
         var i = -EXTRA_DAYS_BEFORE; // days before the first prj
         PH.total_days = timeSpan + EXTRA_DAYS_BEFORE + EXTRA_DAYS_AFTER;
+        PH.total_months = 0;
         var oldYear = 0;
         var oldMonth = 0;
         while (i < timeSpan + EXTRA_DAYS_AFTER) {
@@ -68,9 +74,11 @@ function populateCalendar(prjs) {
             }
             if (curMonth != oldMonth) {
                 $daylist.append($("<li>").html(getMonthName(curMonth)).addClass("calendar-month-label"));
+
                 // fill months
-                var $month = $("<div>").addClass("month-item").html(monthToRoman(curMonth) + " " + curYear);
+                var $month = $("<div>").addClass("month-item").html(monthToRoman(curMonth) + " " + curYear).attr('id', "mon" + monthIdFromDate(curDate));
                 PH.$monthlist.append($month);
+                PH.total_months++;
             }
             var curDayLabel = (curDay < 10 ? "0" : "") + curDay;
             var dayId = "day" + dayIdFromDate(curDate);
@@ -179,12 +187,12 @@ function attachPrjDesc($elem, prj, position) {
     PH.$prj_desc.append($desc);
 
     //var thisTop = $elem.position().top + PH.$daylist.scrollTop() + $elem.height() / 2;
-    var thisTop = ($(window).height() - PH.$prj_desc.height() - DAY_ITEM_SIZE )/ 2;
+    var thisTop = ($(window).height() - PH.$prj_desc.height() - DAY_ITEM_SIZE ) / 2;
     PH.$prj_desc.css({
         left: '',
         right: '',
-        top : thisTop,
-        maxWidth : PRJ_DESC_WIDTH
+        top: thisTop,
+        maxWidth: PRJ_DESC_WIDTH
     });
 
     if (position == 'left') {
@@ -273,7 +281,7 @@ function addToLeft(prj, prjid, before) {
 function addToRight(prj, prjid, before) {
     // determine position
     var overlappers = rightOverlaps(prj, before); // calc overlappers for this project (look up all the previous && check dates)
-    var l = CALENDAR_WIDTH / 2 + DAY_WIDTH / 2  + ((overlappers + 1) * (PRJ_STRIPE_MARGIN + PRJ_STRIPE_WIDTH));
+    var l = CALENDAR_WIDTH / 2 + DAY_WIDTH / 2 + ((overlappers + 1) * (PRJ_STRIPE_MARGIN + PRJ_STRIPE_WIDTH));
     var w = PRJ_STRIPE_WIDTH;
     var t = $("li#day" + dayIdFromDate(prj.from)).offset().top;
     var h = DAY_ITEM_SIZE / 2;
@@ -304,7 +312,7 @@ function getCentralLabel() {
 }
 
 function getCentralMonthLabel() {
-    return $(document.elementFromPoint($(document).width() - 30, $(document).height() / 2 - DAY_ITEM_SIZE)); // x, y
+    return $(document.elementFromPoint($(document).width() - 30, $(document).height() / 2)); // x, y
 }
 
 function getUpperLabel() {
@@ -328,10 +336,12 @@ function scrollDayList(delta) {
             $li = getCentralLabel();
         }
         $li.addClass('selected');
+        // todo: optimize
+        scrollMonthListTo(dayIdToMonthId($li.attr('id')));
     }
 }
 
-var MONTH_ITEM_SIZE = 29.5;
+var MONTH_ITEM_SIZE = 29;
 
 function scrollMonthList(delta) {
     $('div.month-item', PH.$monthlist).removeClass('selected');
@@ -368,6 +378,10 @@ function emulateScroll() {
     });
 }
 
+function dayIdToMonthId(dayId) {
+    return "mon" + monthIdFromDate(new Date(dayId.substr(3)));
+}
+
 function scrollDayListTo(dayId) {
     PH.$daylist.scrollTop(0);
     var i = 0;
@@ -378,6 +392,20 @@ function scrollDayListTo(dayId) {
     if (i >= PH.total_days) {
         PH.$daylist.scrollTop(0);
         scrollDayList(0);
+    }
+    scrollMonthListTo(dayIdToMonthId(dayId))
+}
+
+function scrollMonthListTo(monthId) {
+    PH.$monthlist.scrollTop(0);
+    var i = 0;
+    while (getCentralMonthLabel().attr('id') != monthId && i < PH.total_months) {
+        i++;
+        scrollMonthList(1);
+    }
+    if (i >= PH.total_months) {
+        PH.$monthlist.scrollTop(0);
+        scrollMonthList(0);
     }
 }
 
