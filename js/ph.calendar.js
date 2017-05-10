@@ -277,6 +277,7 @@ function hideBackground(prj) {
     if (!PH.is_scrolling) {
         $("#bgvid").fadeIn(COMMON_FADE_TIMEOUT);
         $("#prj_bg").fadeOut(COMMON_FADE_TIMEOUT, function () {
+            if ($("#prj_bg iframe").length) $("#prj_bg iframe").attr('src', '');      // not working anyway :-\
             $("#prj_bg").empty();
         });
     }
