@@ -36,7 +36,11 @@ function dayIdFromDate(date) {
 function monthIdFromDate(date) {
     return "" +
         date.getFullYear() + '-' +
-        ((date.getMonth() < 10 ? "0" : "") + date.getMonth());
+        ((date.getMonth() < 10 ? "0" : "") + (date.getMonth() + 1));
+}
+
+function dateFromDayId(dayId) {
+    return new Date(dayId.substr(3));
 }
 
 var EXTRA_DAYS_BEFORE = 14, EXTRA_DAYS_AFTER = 14;
@@ -204,11 +208,8 @@ function attachPrjDesc($elem, prj, position) {
 
 var COMMON_FADE_TIMEOUT = 300;
 
-function onPrjHoverStartEvent($elem, prj) {
-    // blur project stripes
-    $(".project-stripe").not($elem).addClass("blur");
-    //if we need to change bg change it
-    if (prj.background && prj.background.type && (!prj.background.when || prj.background.when == 'hover')) {
+function showBackground(prj) {
+    if (!PH.is_scrolling) {
         if (prj.background.type == 'video') {
             var src = null;
             if (prj.background.from == 'youtube' || !prj.background.from) {
@@ -218,7 +219,7 @@ function onPrjHoverStartEvent($elem, prj) {
                 var vmid = extractVimeoId(prj.background.url);
                 src = "https://player.vimeo.com/video/" + vmid + "?autoplay=1&loop=1&byline=0&title=0";
             }
-            if (src) {
+            if (src && $("#prj_bg iframe").attr('src') != src) {
                 var iframe = $("<iframe src='" + src + "' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen>");
                 $("#prj_bg").empty();
                 $("#prj_bg").append(iframe);
@@ -228,11 +229,31 @@ function onPrjHoverStartEvent($elem, prj) {
         } else if (prj.background.type == 'image') {
             var src = prj.background.url;
             var img = $("<img src='" + src + "'>");
-            $("#prj_bg").empty();
-            $("#prj_bg").append(img);
-            $("#bgvid").fadeOut(COMMON_FADE_TIMEOUT);
-            $("#prj_bg").fadeIn(COMMON_FADE_TIMEOUT);
+            if (src && $("#prj_bg iframe").attr('src') != src) {
+                $("#prj_bg").empty();
+                $("#prj_bg").append(img);
+                $("#bgvid").fadeOut(COMMON_FADE_TIMEOUT);
+                $("#prj_bg").fadeIn(COMMON_FADE_TIMEOUT);
+            }
         }
+    }
+}
+
+function hideBackground(prj) {
+    if (!PH.is_scrolling) {
+        $("#bgvid").fadeIn(COMMON_FADE_TIMEOUT);
+        $("#prj_bg").fadeOut(COMMON_FADE_TIMEOUT, function () {
+            $("#prj_bg").empty();
+        });
+    }
+}
+
+function onPrjHoverStartEvent($elem, prj) {
+    // blur project stripes
+    $(".project-stripe").not($elem).addClass("blur");
+    //if we need to change bg change it
+    if (prj.background && prj.background.type && (!prj.background.when || prj.background.when == 'hover')) {
+        showBackground(prj);
     }
     // position project description
     attachPrjDesc($elem, prj[PH.lang], prj.position);
@@ -241,10 +262,9 @@ function onPrjHoverStartEvent($elem, prj) {
 
 function onPrjHoverEndEvent($elem, prj) {
     $(".project-stripe").removeClass("blur");
-    $("#bgvid").fadeIn(COMMON_FADE_TIMEOUT);
-    $("#prj_bg").fadeOut(COMMON_FADE_TIMEOUT, function () {
-        $("#prj_bg").empty();
-    });
+    var cond = prj.background && prj.background.type && prj.background.when == 'scroll';
+    if (!cond)
+        hideBackground(prj);
     PH.$prj_desc.fadeOut(COMMON_FADE_TIMEOUT);
 }
 
@@ -315,14 +335,14 @@ function getCentralMonthLabel() {
     return $(document.elementFromPoint($(document).width() - 30, $(document).height() / 2)); // x, y
 }
 
-function getUpperLabel() {
-    var i = 2;
-    var $d = $(document.elementFromPoint($(document).width() / 2, DAY_ITEM_SIZE * i));
-    while (!$d.attr('id') || $d.attr('id').substr(0, 3) != 'day') {
-        i++;
-        $d = $(document.elementFromPoint($(document).width() / 2, DAY_ITEM_SIZE * i));
-    }
-    return $d;
+function findProjects(dayId) {
+    //var res = [];
+    var thisDate = dateFromDayId(dayId);
+    var tempPrjs = PH.prjs.filter(function (prj) {
+        return prj.from.getTime() - thisDate.getTime() <= 0 && prj.to.getTime() - thisDate.getTime() >= 0;
+    });
+    //return res;
+    return tempPrjs;
 }
 
 function scrollDayList(delta) {
@@ -337,7 +357,26 @@ function scrollDayList(delta) {
         }
         $li.addClass('selected');
         // todo: optimize
-        scrollMonthListTo(dayIdToMonthId($li.attr('id')));
+        var selectedDayId = $li.attr('id');
+        scrollMonthListTo(dayIdToMonthId(selectedDayId));
+        // show bg
+        var prjsOnThisDay = findProjects(selectedDayId);
+        if (prjsOnThisDay.length) {
+            var prjBgToShow = null;
+            // filter all the projects with onscroll bg
+            prjsOnThisDay = prjsOnThisDay.filter(function (prj) {
+                return prj.background && prj.background.when == 'scroll';
+            });
+            if (prjsOnThisDay.length) {
+                prjsOnThisDay.sort(sortPrjByStart);
+                prjBgToShow = prjsOnThisDay[prjsOnThisDay.length - 1];
+                showBackground(prjBgToShow);
+            }
+            else
+                hideBackground();
+        }
+        else
+            hideBackground();
     }
 }
 
@@ -379,10 +418,12 @@ function emulateScroll() {
 }
 
 function dayIdToMonthId(dayId) {
-    return "mon" + monthIdFromDate(new Date(dayId.substr(3)));
+    return "mon" + monthIdFromDate(dateFromDayId(dayId));
 }
 
 function scrollDayListTo(dayId) {
+    PH.is_scrolling = true;
+    scrollMonthListTo(dayIdToMonthId(dayId));
     PH.$daylist.scrollTop(0);
     var i = 0;
     while (getCentralLabel().attr('id') != dayId && i < PH.total_days) {
@@ -393,7 +434,7 @@ function scrollDayListTo(dayId) {
         PH.$daylist.scrollTop(0);
         scrollDayList(0);
     }
-    scrollMonthListTo(dayIdToMonthId(dayId))
+    PH.is_scrolling = false;
 }
 
 function scrollMonthListTo(monthId) {
@@ -418,7 +459,7 @@ function windowSizeChange() {
     scrollDayList(0);
     if (dayId)
         scrollDayListTo(dayId);
-    scrollMonthList(0);
+    //scrollMonthList(0);
 }
 
 function initWindowSizeChange() {

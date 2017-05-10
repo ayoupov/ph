@@ -2,7 +2,7 @@
  * Created by ayoupov on 02.05.2017.
  */
 
-$(function(){
+$(function () {
     // video fixes
     var vid = $("#bgvid")[0];
 
@@ -19,7 +19,7 @@ $(function(){
 
     var prjs;
     $.ajax('/ph/data/ph.json', {
-        success: function(res) {
+        success: function (res) {
             // init labels
             PH.labels = res.labels;
             changeLang(PH.lang);
@@ -30,15 +30,16 @@ $(function(){
             prjs.sort(sortPrjByStart);
             populateCalendar(prjs);
             emulateScroll();
-            initWindowSizeChange();
+            PH.is_scrolling = false;
             var savedDayId = Cookies.get('date');
             if (savedDayId)
                 scrollDayListTo(savedDayId);
             else {
-                var today = "#day" + dayIdFromDate(new Date());
-                if ($(today).length > 0)
+                var today = "day" + dayIdFromDate(new Date());
+                if ($("#" + today).length > 0)
                     scrollDayListTo(today);
             }
+            initWindowSizeChange(); // also reselects central element and therefore starts bg if needed
         }
     })
 });
