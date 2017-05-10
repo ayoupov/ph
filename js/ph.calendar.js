@@ -95,8 +95,9 @@ function populateCalendar(prjs) {
         });
 
         // preinit prj_desc
-        PH.$prj_desc = $("<div id='prj_desc'/>");
-        PH.$prj_desc.appendTo($daylist);
+        //PH.$prj_desc = $("<div id='prj_desc'/>");
+        PH.$prj_desc = $("#prj_desc");
+        //PH.$prj_desc.appendTo($daylist);
         PH.$prj_desc.hide();
 
     }
@@ -143,7 +144,7 @@ function extractVimeoId(url) {
 }
 
 var PRJ_DESC_WIDTH = 250;
-function attachPrjDesc($elem, prj) {
+function attachPrjDesc($elem, prj, position) {
     PH.$prj_desc.empty();
     var $desc = $("<div class='project-description'/>");
     var $title = $("<div class='title'/>").html(prj.title);
@@ -157,18 +158,19 @@ function attachPrjDesc($elem, prj) {
     $desc.append($content);
     PH.$prj_desc.append($desc);
 
-    var thisTop = $elem.position().top + PH.$daylist.scrollTop() + $elem.height() / 2;
+    //var thisTop = $elem.position().top + PH.$daylist.scrollTop() + $elem.height() / 2;
+    var thisTop = ($(window).height() - PH.$prj_desc.height() - DAY_ITEM_SIZE )/ 2;
     PH.$prj_desc.css({
         left: '',
         right: '',
         top : thisTop,
-        width : PRJ_DESC_WIDTH
+        maxWidth : PRJ_DESC_WIDTH
     });
 
-    if (prj.position == 'left') {
-        PH.$prj_desc.css('left', $elem.position().left - PRJ_DESC_WIDTH - PRJ_STRIPE_MARGIN)
+    if (position == 'left') {
+        PH.$prj_desc.css('left', $elem.offset().left - PH.$prj_desc.width() - PRJ_STRIPE_MARGIN)
     } else {
-        PH.$prj_desc.css('left', $elem.position().left + PRJ_STRIPE_MARGIN)
+        PH.$prj_desc.css('left', $elem.offset().left + PRJ_STRIPE_MARGIN)
     }
 }
 
@@ -205,7 +207,7 @@ function onPrjHoverStartEvent($elem, prj) {
         }
     }
     // position project description
-    attachPrjDesc($elem, prj[PH.lang]);
+    attachPrjDesc($elem, prj[PH.lang], prj.position);
     PH.$prj_desc.fadeIn(COMMON_FADE_TIMEOUT);
 }
 
@@ -215,7 +217,7 @@ function onPrjHoverEndEvent($elem, prj) {
     $("#prj_bg").fadeOut(COMMON_FADE_TIMEOUT, function () {
         $("#prj_bg").empty();
     });
-    //PH.$prj_desc.fadeOut(COMMON_FADE_TIMEOUT);
+    PH.$prj_desc.fadeOut(COMMON_FADE_TIMEOUT);
 }
 
 var DAY_WIDTH = 60;
