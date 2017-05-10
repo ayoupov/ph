@@ -23,6 +23,10 @@ $(function () {
             // init labels
             PH.labels = res.labels;
             PH.$prj_menu = $("#project_menu");
+            PH.$about = $("#about");
+            PH.$contacts = $("#contacts");
+            initAboutMenu();
+            initContacts();
             // init prjs
             prjs = res.projects;
             prjs.forEach(datify);

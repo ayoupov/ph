@@ -47,8 +47,9 @@ video {
     -khtml-user-select: none; /* Konqueror HTML */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                     supported by Chrome and Opera */
 }
 
 /* project description div*/
@@ -119,7 +120,7 @@ video {
     overflow-y: hidden;
     height: 90vh;
     text-align: center;
-    padding:0;
+    padding: 0;
     margin-bottom: 0;
     margin-top: 0;
     position: relative;
@@ -151,10 +152,9 @@ video {
     background-color: snow;
     border: 2px snow solid;
     position: absolute;
-    transition:
-            opacity 0.4s linear,
-            transform 0.4s ease-in-out,
-            box-shadow 0.4s ease-in-out;
+    transition: opacity 0.4s linear,
+    transform 0.4s ease-in-out,
+    box-shadow 0.4s ease-in-out;
 }
 
 .project-stripe.blur {
@@ -197,7 +197,7 @@ video {
     width: 100%;
 }
 
-#months div.month-item.selected{
+#months div.month-item.selected {
     font-weight: 700;
 }
 
@@ -206,29 +206,58 @@ video {
     position: absolute;
     left: 20px;
     bottom: 20px;
+    max-width: 200px;
 }
 
-#lower_right {
-    font-weight: 100;
+#about .about-desc {
+    margin-bottom: 10px;
+    font-family: "Times New Roman", sans-serif;
     font-size: 8pt;
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
 }
 
-#lower_right div {
-    float:left;
-    margin-right: 8px;
+#follow {
+    font-size: 10pt;
+    position: absolute;
+    right: 150px;
+    bottom: 18px;
 }
 
 #lang_select {
+    vertical-align: bottom;
+    font-weight: 700;
     font-size: 10pt;
+    position: absolute;
+    right: 120px;
+    bottom: 18px;
 }
 
-#lang_select a{
+#lang_select a {
     cursor: pointer;
 }
 
 #lang_select a.active {
     font-weight: 700;
+}
+
+#contacts {
+    font-size: 8pt;
+    font-weight: 100;
+    max-width: 100px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+#contacts .contacts-desc {
+    margin-bottom: 10px;
+}
+
+#contacts .contacts-desc a {
+    color: snow;
+    text-decoration: none;
+}
+
+#contacts .contacts-title a {
+    text-decoration: none;
+    color: snow;
 }

@@ -28,7 +28,8 @@ function changeLang(lang) {
     PH.lang = lang;
     //$("#contacts").html(PH.labels[lang].contacts);
     $("#projects_menu .project-menu-title").html(PH.labels[lang].projects);
-    $("#about").html(PH.labels[lang].about);
+    $("#about .about-title").html(PH.labels[lang].about);
+    $("#about .about-desc").html(PH.labels[lang].about_desc);
     $("#contacts_desc").html(PH.labels[lang].contacts_desc);
     $("#projects_desc").html(PH.labels[lang].projects_desc);
     $("#about_desc").html(PH.labels[lang].about_desc);

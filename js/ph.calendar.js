@@ -1,6 +1,3 @@
-// init cache
-var PH = {};
-
 var sortPrjByStart = function (a, b) {
     return a.from.getTime() - b.from.getTime();
 };
@@ -14,12 +11,9 @@ var datify = function (prj) {
     prj.to = prj.to ? new Date(prj.to) : new Date();
 };
 
-var ROMAN_MONTHS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
 var monthToRoman = function (monthIdx) {
     return ROMAN_MONTHS[monthIdx];
 };
-
-var MONTH_NAMES_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function getMonthName(idx) {
     // todo: en/pl
@@ -48,10 +42,6 @@ function dateToPrjListStr(date) {
         monthToRoman(date.getMonth()) + " " +
         date.getFullYear();
 }
-
-var EXTRA_DAYS_BEFORE = 14, EXTRA_DAYS_AFTER = 14;
-var PRJ_STRIPE_MARGIN = 64, PRJ_STRIPE_WIDTH = 6;
-var DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
 
 function populateCalendar(prjs) {
     // init projects
@@ -143,32 +133,6 @@ function populateCalendar(prjs) {
     }
 }
 
-function initProjectMenu() {
-    var $prev = PH.$prj_menu.find(".project-list");
-    if ($prev.length)
-        $prev.remove();
-    var $ul = $("<ul class='project-list'/>");
-    PH.$prj_menu.append($ul);
-    PH.prjs.forEach(function (prj) {
-        var html = prj[PH.lang].title;
-        if (prj.from.getTime() == prj.to.getTime())
-            html += " (" + dateToPrjListStr(prj.from) + ")";
-        var $li = $("<li>").addClass("project-list-item").html(html);
-        $li.on('click', function () {
-            scrollDayListTo("day" + dayIdFromDate(prj.from));
-            scrollDayList(0);
-        });
-        $ul.append($li);
-    });
-    $ul.hide();
-    PH.$prj_menu
-        .on('mouseenter', function () {
-            $ul.fadeIn(COMMON_FADE_TIMEOUT);
-        }).on('mouseleave', function () {
-        $ul.fadeOut(COMMON_FADE_TIMEOUT);
-    });
-}
-
 function takeLeft(prj) {
     return prj.position == 'left';
 }
@@ -209,7 +173,6 @@ function extractVimeoId(url) {
     return split[split.length - 1].split("?")[0];
 }
 
-var PRJ_DESC_WIDTH = 250;
 function attachPrjDesc($elem, prj, position) {
     PH.$prj_desc.empty();
     var $desc = $("<div class='project-description'/>");
@@ -239,8 +202,6 @@ function attachPrjDesc($elem, prj, position) {
         PH.$prj_desc.css('left', $elem.offset().left + PRJ_STRIPE_MARGIN)
     }
 }
-
-var COMMON_FADE_TIMEOUT = 300;
 
 function showBackground(prj) {
     if (!PH.is_scrolling) {
@@ -303,9 +264,6 @@ function onPrjHoverEndEvent($elem, prj) {
     PH.$prj_desc.fadeOut(COMMON_FADE_TIMEOUT);
 }
 
-var DAY_WIDTH = 60;
-var CALENDAR_WIDTH = 800;
-
 function addToLeft(prj, prjid, before) {
     // determine position
     var overlappers = leftOverlaps(prj, before); // calc overlappers for this project (look up all the previous && check dates)
@@ -360,7 +318,6 @@ function addToRight(prj, prjid, before) {
     PH.$daylist.append($stripe);
 }
 
-var DAY_ITEM_SIZE = 32;
 
 function getCentralLabel() {
     return $(document.elementFromPoint($(document).width() / 2, $(document).height() / 2 - DAY_ITEM_SIZE)); // x, y
@@ -414,8 +371,6 @@ function scrollDayList(delta) {
             hideBackground();
     }
 }
-
-var MONTH_ITEM_SIZE = 29;
 
 function scrollMonthList(delta) {
     $('div.month-item', PH.$monthlist).removeClass('selected');
