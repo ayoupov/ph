@@ -14,6 +14,10 @@ var datify = function (prj) {
     prj.to = prj.to ? new Date(prj.to) : new Date();
 };
 
+var ROMAN_MONTHS = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
+var monthToRoman = function(monthIdx) {
+    return ROMAN_MONTHS[monthIdx];
+};
 
 var MONTH_NAMES_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -38,6 +42,9 @@ function populateCalendar(prjs) {
     // init projects
     if (prjs) {
 
+        PH.$months = $("#months");
+        PH.$monthlist = $("<div/>").addClass("month-list");
+
         PH.prjs = prjs;
         // determine the earliest project and timespan
         var firstPrj = prjs[0];
@@ -61,6 +68,9 @@ function populateCalendar(prjs) {
             }
             if (curMonth != oldMonth) {
                 $daylist.append($("<li>").html(getMonthName(curMonth)).addClass("calendar-month-label"));
+                // fill months
+                var $month = $("<div>").addClass("month-item").html(monthToRoman(curMonth) + " " + curYear);
+                PH.$monthlist.append($month);
             }
             var curDayLabel = (curDay < 10 ? "0" : "") + curDay;
             var dayId = "day" + dayIdFromDate(curDate);
@@ -69,8 +79,10 @@ function populateCalendar(prjs) {
             oldYear = curYear;
             oldMonth = curMonth;
         }
+
         var $up = $("<div class='nav-button' id='calendar_up'/>").html('up');
         var $down = $("<div class='nav-button' id='calendar_down'/>").html('down');
+
         var $c = $("#calendar");
         $c.append($up);
         $c.append($daylist);
@@ -78,6 +90,15 @@ function populateCalendar(prjs) {
         PH.$daylist = $daylist;
         PH.$up = $up;
         PH.$down = $down;
+
+        var $m_up = $("<div class='nav-button' id='months_up'/>").html('up');
+        var $m_down = $("<div class='nav-button' id='months_down'/>").html('down');
+        PH.$m_up = $m_up;
+        PH.$m_down = $m_down;
+
+        PH.$months.append($m_up);
+        PH.$months.append(PH.$monthlist)
+        PH.$months.append($m_down);
 
         // add project stripes
 
@@ -95,9 +116,8 @@ function populateCalendar(prjs) {
         });
 
         // preinit prj_desc
-        //PH.$prj_desc = $("<div id='prj_desc'/>");
+
         PH.$prj_desc = $("#prj_desc");
-        //PH.$prj_desc.appendTo($daylist);
         PH.$prj_desc.hide();
 
     }
@@ -283,6 +303,10 @@ function getCentralLabel() {
     return $(document.elementFromPoint($(document).width() / 2, $(document).height() / 2 - DAY_ITEM_SIZE)); // x, y
 }
 
+function getCentralMonthLabel() {
+    return $(document.elementFromPoint($(document).width() - 30, $(document).height() / 2 - DAY_ITEM_SIZE)); // x, y
+}
+
 function getUpperLabel() {
     var i = 2;
     var $d = $(document.elementFromPoint($(document).width() / 2, DAY_ITEM_SIZE * i));
@@ -307,6 +331,17 @@ function scrollDayList(delta) {
     }
 }
 
+var MONTH_ITEM_SIZE = 29.5;
+
+function scrollMonthList(delta) {
+    $('div.month-item', PH.$monthlist).removeClass('selected');
+    PH.$monthlist.scrollTop(PH.$monthlist.scrollTop() + delta * MONTH_ITEM_SIZE);
+    // update central selection
+    var $monthdiv = getCentralMonthLabel();
+    if ($monthdiv)
+        $monthdiv.addClass('selected');
+}
+
 function emulateScroll() {
     PH.$daylist.on('mousewheel DOMMouseScroll', function (event) {
         var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail))) * -1;
@@ -321,14 +356,16 @@ function emulateScroll() {
         scrollDayList(-1);
         Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
     });
-}
-
-function compareDays(id1, id2) {
-    var d = new Date(id1.substr(3)) - new Date(id2.substr(3));
-    if (d != 0)
-        return d / Math.abs(d);
-    else
-        return 1;
+    PH.$monthlist.on('mousewheel DOMMouseScroll', function (event) {
+        var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail))) * -1;
+        scrollMonthList(delta);
+    });
+    PH.$m_down.on('click', function () {
+        scrollMonthList(1);
+    });
+    PH.$m_up.on('click', function () {
+        scrollMonthList(-1);
+    });
 }
 
 function scrollDayListTo(dayId) {
@@ -353,6 +390,7 @@ function windowSizeChange() {
     scrollDayList(0);
     if (dayId)
         scrollDayListTo(dayId);
+    scrollMonthList(0);
 }
 
 function initWindowSizeChange() {

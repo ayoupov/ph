@@ -84,10 +84,13 @@ video {
     position: relative;
 }
 
-#calendar .nav-button {
+.nav-button {
     text-align: center;
-    height: 5vh;
     cursor: pointer;
+}
+
+#calendar .nav-button {
+    height: 5vh;
     margin: 0 auto;
     width: 50px;
 }
@@ -162,12 +165,30 @@ video {
     font-weight: 100;
     font-size: 8pt;
     position: absolute;
-    right: 20px;
+    right: 30px;
     top: 50%;
     transform: translateY(-50%);
+    max-height: 275px;
 }
 
-#months a.selected{
+#months .month-list {
+    max-height: 265px;
+    overflow-y: hidden;
+}
+
+#months div.month-item {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+#months .nav-button {
+    text-align: center;
+    width: 100%;
+}
+
+#months div.month-item.selected{
     font-weight: 700;
 }
 
