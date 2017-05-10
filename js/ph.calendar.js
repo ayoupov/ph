@@ -43,6 +43,12 @@ function dateFromDayId(dayId) {
     return new Date(dayId.substr(3));
 }
 
+function dateToPrjListStr(date) {
+    return "" + date.getDate() + " " +
+        monthToRoman(date.getMonth()) + " " +
+        date.getFullYear();
+}
+
 var EXTRA_DAYS_BEFORE = 14, EXTRA_DAYS_AFTER = 14;
 var PRJ_STRIPE_MARGIN = 64, PRJ_STRIPE_WIDTH = 6;
 var DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
@@ -109,7 +115,7 @@ function populateCalendar(prjs) {
         PH.$m_down = $m_down;
 
         PH.$months.append($m_up);
-        PH.$months.append(PH.$monthlist)
+        PH.$months.append(PH.$monthlist);
         PH.$months.append($m_down);
 
         // add project stripes
@@ -132,7 +138,35 @@ function populateCalendar(prjs) {
         PH.$prj_desc = $("#prj_desc");
         PH.$prj_desc.hide();
 
+        // init project-menu
+        initProjectMenu();
     }
+}
+
+function initProjectMenu() {
+    var $prev = PH.$prj_menu.find(".project-list");
+    if ($prev.length)
+        $prev.remove();
+    var $ul = $("<ul class='project-list'/>");
+    PH.$prj_menu.append($ul);
+    PH.prjs.forEach(function (prj) {
+        var html = prj[PH.lang].title;
+        if (prj.from.getTime() == prj.to.getTime())
+            html += " (" + dateToPrjListStr(prj.from) + ")";
+        var $li = $("<li>").addClass("project-list-item").html(html);
+        $li.on('click', function () {
+            scrollDayListTo("day" + dayIdFromDate(prj.from));
+            scrollDayList(0);
+        });
+        $ul.append($li);
+    });
+    $ul.hide();
+    PH.$prj_menu
+        .on('mouseenter', function () {
+            $ul.fadeIn(COMMON_FADE_TIMEOUT);
+        }).on('mouseleave', function () {
+        $ul.fadeOut(COMMON_FADE_TIMEOUT);
+    });
 }
 
 function takeLeft(prj) {

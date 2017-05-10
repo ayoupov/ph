@@ -22,7 +22,7 @@ $(function () {
         success: function (res) {
             // init labels
             PH.labels = res.labels;
-            changeLang(PH.lang);
+            PH.$prj_menu = $("#project_menu");
             // init prjs
             prjs = res.projects;
             prjs.forEach(datify);
@@ -40,6 +40,8 @@ $(function () {
                     scrollDayListTo(today);
             }
             initWindowSizeChange(); // also reselects central element and therefore starts bg if needed
+            // init langs (have to have prjs inited already)
+            changeLang(PH.lang);
         }
     })
 });

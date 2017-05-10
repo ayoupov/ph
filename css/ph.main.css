@@ -66,6 +66,15 @@ video {
     position: absolute;
     left: 20px;
     top: 20px;
+    cursor: pointer;
+}
+
+.project-list {
+
+}
+
+.project-list-item {
+
 }
 
 #ph_label {

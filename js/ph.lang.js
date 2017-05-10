@@ -25,23 +25,29 @@ function langInit() {
 }
 
 function changeLang(lang) {
+    PH.lang = lang;
     //$("#contacts").html(PH.labels[lang].contacts);
-    $("#projects").html(PH.labels[lang].projects);
+    $("#projects_menu .project-menu-title").html(PH.labels[lang].projects);
     $("#about").html(PH.labels[lang].about);
     $("#contacts_desc").html(PH.labels[lang].contacts_desc);
     $("#projects_desc").html(PH.labels[lang].projects_desc);
     $("#about_desc").html(PH.labels[lang].about_desc);
-    
+
+    initProjectMenu();
+
     // update <a> selection
-    $("#lang_select a").removeClass('active');
-    $("#lang_select a[data-l=" + lang + ']').addClass('active');
+    $("#lang_select a").addClass('active').html(lang.toUpperCase());
+    //$("#lang_select a").removeClass('active');
+    //$("#lang_select a[data-l=" + lang + ']').addClass('active');
     Cookies.set('lang', lang);
 }
 
 function initLangEvents(){
     $("#lang_select a").on('click', function(){
-        if (!$(this).is('.active')){
-            changeLang($(this).data('l'), PH.labels);
-        }
+        var newLang = PH.lang == 'en' ? 'pl' : 'en';
+        changeLang(newLang);
+        //if (!$(this).is('.active')){
+        //    changeLang($(this).data('l'), PH.labels);
+        //}
     })
 }
