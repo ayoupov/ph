@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proste Historie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="shortcut icon" type="image/jpeg" href="@routes.Assets.at("images/favicon.jpg")">-->
+    <!-- we need lato thin, thin italic, regular, regular italic, bold -->
+    <link href='//fonts.googleapis.com/css?family=Lato:100,100i,400,400i,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" media="screen" href="css/ph.main.css">
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="js/vendor/jquery-mousewheel.js" type="text/javascript"></script>
+    <script src="js/vendor/js-cookie.js" type="text/javascript"></script>
+    <script src="js/ph.lang.js" type="text/javascript"></script>
+    <script src="js/ph.calendar.js" type="text/javascript"></script>
+    <script src="js/ph.bs.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="background">
+    <video poster="/ph/assets/bg/tree_placeholder.png" id="bgvid" playsinline autoplay muted loop>
+        <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+        <source src="/ph/assets/bg/tree.webm" type="video/webm">
+        <source src="/ph/assets/bg/tree.mp4" type="video/mp4">
+    </video>
+    <div id="prj_bg"></div>
+</div>
+<div>
+    <!-- PARERGA CREDITS div (left on mobile)-->
+    <div class="mobile only" id="credits"></div>
+
+    <!-- main div -->
+    <div class="noselect" id="container">
+        <div id="project_menu">PROJECTS</div>
+        <div id="ph_label">PROSTE HISTORIE</div>
+        <div id="calendar">
+            <div id="prj_desc"></div>
+        </div>
+        <div id="months"></div>
+        <div id="about">ABOUT</div>
+        <div id="lower_right">
+            <div id="lang_select">
+                <a data-l="pl">PL</a>/<a data-l="en">EN</a>
+            </div>
+            <!--<div id="video_control">||</div>-->
+            <div id="contacts">&copy; 2017 PARERGA</div>
+        </div>
+    </div>
+
+    <!-- PROSTE HISTORIE div (right on mobile) -->
+    <div class="mobile only" id="overall"></div>
+</div>
+</body>
+</html>
