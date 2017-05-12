@@ -34,6 +34,11 @@ function changeLang(lang) {
     $("#projects_desc").html(PH.labels[lang].projects_desc);
     $("#about_desc").html(PH.labels[lang].about_desc);
 
+    $(".calendar-month-label").each(function(){
+        var $m = $(this);
+        $m.html(MONTH_NAMES[lang][$m.data('month-idx')]);
+    });
+
     initProjectMenu();
 
     // update <a> selection

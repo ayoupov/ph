@@ -16,8 +16,10 @@ var monthToRoman = function (monthIdx) {
 };
 
 function getMonthName(idx) {
-    // todo: en/pl
-    return MONTH_NAMES_EN[idx];
+    var lang = PH.lang
+    if (!lang)
+        lang = 'en';
+    return MONTH_NAMES[lang][idx];
 }
 
 function dayIdFromDate(date) {
@@ -73,7 +75,7 @@ function populateCalendar(prjs) {
                 $daylist.append($("<li>").html(curYear).addClass("calendar-year-label"));
             }
             if (curMonth != oldMonth) {
-                $daylist.append($("<li>").html(getMonthName(curMonth)).addClass("calendar-month-label"));
+                $daylist.append($("<li>").html(getMonthName(curMonth)).addClass("calendar-month-label").data('month-idx', curMonth));
 
                 // fill months
                 var $month = $("<div>").addClass("month-item").html(monthToRoman(curMonth) + " " + curYear).attr('id', "mon" + monthIdFromDate(curDate));
