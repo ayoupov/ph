@@ -90,8 +90,8 @@ function populateCalendar(prjs) {
             oldMonth = curMonth;
         }
 
-        var $up = $("<div class='nav-button' id='calendar_up'/>").html('up');
-        var $down = $("<div class='nav-button' id='calendar_down'/>").html('down');
+        var $up = $("<div class='nav-button button-up' id='calendar_up'/>"); // .html('up');
+        var $down = $("<div class='nav-button button-down' id='calendar_down'/>"); //.html('down');
 
         var $c = $("#calendar");
         $c.append($up);
@@ -101,8 +101,8 @@ function populateCalendar(prjs) {
         PH.$up = $up;
         PH.$down = $down;
 
-        var $m_up = $("<div class='nav-button' id='months_up'/>").html('up');
-        var $m_down = $("<div class='nav-button' id='months_down'/>").html('down');
+        var $m_up = $("<div class='nav-button button-up' id='months_up'/>"); //.html('up');
+        var $m_down = $("<div class='nav-button button-down' id='months_down'/>"); //.html('down');
         PH.$m_up = $m_up;
         PH.$m_down = $m_down;
 
@@ -326,7 +326,7 @@ function getCentralLabel() {
 }
 
 function getCentralMonthLabel() {
-    return $(document.elementFromPoint($(document).width() - 30, $(document).height() / 2)); // x, y
+    return $(document.elementFromPoint($(document).width() - 30, $(document).height() / 2 + MONTH_ITEM_SIZE)); // x, y
 }
 
 function findProjects(dayId) {

@@ -99,8 +99,18 @@ video {
     cursor: pointer;
 }
 
+.nav-button.button-up{
+    background: url("/ph/assets/arrow_up.png") center center no-repeat;
+    background-size: 20px;
+}
+
+.nav-button.button-down{
+    background: url("/ph/assets/arrow_down.png")  center center no-repeat;
+    background-size: 20px;
+}
+
 #calendar .nav-button {
-    height: 5vh;
+    height: 30px;
     margin: 0 auto;
     width: 50px;
 }
@@ -191,12 +201,14 @@ video {
     padding-top: 8px;
     padding-bottom: 8px;
     text-align: center;
+    cursor: pointer;
     width: 100%;
 }
 
 #months .nav-button {
     text-align: center;
     width: 100%;
+    height: 30px;
 }
 
 #months div.month-item.selected {
