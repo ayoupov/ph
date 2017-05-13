@@ -11,6 +11,13 @@ $(function () {
         vid.pause();
     }
 
+    // first ui init
+    PH.$prj_menu = $("#project_menu");
+    PH.$about = $("#about");
+    PH.$contacts = $("#contacts");
+    initAboutMenu();
+    initContacts();
+
     // init lang settings
     langInit();
     initLangEvents();
@@ -22,11 +29,6 @@ $(function () {
         success: function (res) {
             // init labels
             PH.labels = res.labels;
-            PH.$prj_menu = $("#project_menu");
-            PH.$about = $("#about");
-            PH.$contacts = $("#contacts");
-            initAboutMenu();
-            initContacts();
             // init prjs
             prjs = res.projects;
             prjs.forEach(datify);
