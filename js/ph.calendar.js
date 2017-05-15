@@ -417,7 +417,9 @@ function dayIdToMonthId(dayId) {
 function scrollDayListTo(dayId) {
     PH.is_scrolling = true;
     scrollMonthListTo(dayIdToMonthId(dayId));
-    PH.$daylist.scrollTop(0);
+    //PH.$daylist.scrollTop(0);
+    var quickFindTop = $("#"+dayId)[0].offsetTop - $(window).height()/2 - $(".nav-button", PH.$daylist).height()/2;
+    PH.$daylist.scrollTop(quickFindTop);
     var i = 0;
     while (getCentralLabel().attr('id') != dayId && i < PH.total_days) {
         i++;
