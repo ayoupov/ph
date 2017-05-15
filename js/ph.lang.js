@@ -1,7 +1,7 @@
 function firstSupportedLang(langarr) {
     var fsl = null;
     langarr.forEach(function (l) {
-        if ((l.toLowerCase() == 'en' || l.toLowerCase() == 'pl') && !fsl)
+        if ((l.toLowerCase() == 'pl' || l.toLowerCase() == 'en') && !fsl)
             fsl = l.toLowerCase();
     });
     return fsl;

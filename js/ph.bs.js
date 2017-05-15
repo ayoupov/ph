@@ -17,6 +17,7 @@ $(function () {
     PH.$contacts = $("#contacts");
     initAboutMenu();
     initContacts();
+    $('.animate-div').hide();
 
     // init lang settings
     langInit();
@@ -39,13 +40,14 @@ $(function () {
             PH.is_scrolling = false;
             var savedDayId = Cookies.get('date');
             if (savedDayId)
-                scrollDayListTo(savedDayId);
+                scrollDayListTo(savedDayId, true);
             else {
                 var today = "day" + dayIdFromDate(new Date());
                 if ($("#" + today).length > 0)
-                    scrollDayListTo(today);
+                    scrollDayListTo(today, true);
             }
-            initWindowSizeChange(); // also reselects central element and therefore starts bg if needed
+            // initWindowSizeChange goes to animation
+            //initWindowSizeChange(); // also reselects central element and therefore starts bg if needed
             // init langs (have to have prjs inited already)
             changeLang(PH.lang);
         }

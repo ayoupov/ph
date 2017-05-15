@@ -17,10 +17,12 @@ function initContacts() {
     PH.$contacts
         .on('mouseenter', function () {
             $desc.fadeIn(COMMON_FADE_TIMEOUT);
-            $title.html("<a href='http://parerga.site'>&copy; 2017 PARERGA</a>");
+            //$title.html("<a href='http://parerga.site'>&copy; 2017 PARERGA</a>");
+            $title.html("<a href='http://parerga.site'>&copy; PARERGA</a>");
         }).on('mouseleave', function () {
         $desc.fadeOut(COMMON_FADE_TIMEOUT);
-        $title.html("&copy; 2017 PARERGA");
+        //$title.html("&copy; 2017 PARERGA");
+        $title.html("&copy; PARERGA");
     });
 
 }

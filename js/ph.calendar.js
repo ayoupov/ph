@@ -101,6 +101,8 @@ function populateCalendar(prjs) {
         PH.$up = $up;
         PH.$down = $down;
 
+        PH.$daylist.css('height', $(window).height() - 2 * $(".nav-button").height());
+
         var $m_up = $("<div class='nav-button button-up' id='months_up'/>"); //.html('up');
         var $m_down = $("<div class='nav-button button-down' id='months_down'/>"); //.html('down');
         PH.$m_up = $m_up;
@@ -414,11 +416,11 @@ function dayIdToMonthId(dayId) {
     return "mon" + monthIdFromDate(dateFromDayId(dayId));
 }
 
-function scrollDayListTo(dayId) {
+function scrollDayListTo(dayId, firstTimeAnimation) {
     PH.is_scrolling = true;
     scrollMonthListTo(dayIdToMonthId(dayId));
     //PH.$daylist.scrollTop(0);
-    var quickFindTop = $("#"+dayId)[0].offsetTop - $(window).height()/2 - $(".nav-button", PH.$daylist).height()/2;
+    var quickFindTop = $("#" + dayId)[0].offsetTop - $(window).height() / 2 - $(".nav-button", PH.$daylist).height() / 2;
     PH.$daylist.scrollTop(quickFindTop);
     var i = 0;
     while (getCentralLabel().attr('id') != dayId && i < PH.total_days) {
@@ -430,6 +432,9 @@ function scrollDayListTo(dayId) {
         scrollDayList(0);
     }
     PH.is_scrolling = false;
+    if (firstTimeAnimation) {
+        animatePH();
+    }
 }
 
 function scrollMonthListTo(monthId) {
@@ -447,6 +452,7 @@ function scrollMonthListTo(monthId) {
 
 function windowSizeChange() {
     var $selectedDay = $('li.selected', PH.$daylist);
+    PH.$daylist.css('height', $(window).height() - 2 * $(".nav-button").height());
     var dayId = null;
     if ($selectedDay.length > 0) {
         dayId = $selectedDay.attr('id');
@@ -460,4 +466,60 @@ function windowSizeChange() {
 function initWindowSizeChange() {
     $(window).on('resize', windowSizeChange);
     windowSizeChange();
+}
+
+var $animDayLabel = null;
+function animatePH() {
+    var $animDiv = $("#animatePHDiv_" + PH.lang);
+    //animRepos($animDiv);
+    $animDiv.removeClass('hidden');
+    $animDiv.fadeIn(100, function () {
+        fadeOutMax($animDiv);
+    });
+    $animDayLabel = getCentralLabel();
+    $animDayLabel.css({opacity: 0});
+}
+
+var LETTER_FADE_SPEED = 400, FINAL_PH_FADEOUT = 1000;
+
+var genmax = 0, once = false;
+
+function fadeOutMax($cont) {
+    var max = 0;
+    $(".anim-letter:visible", $cont).each(function () {
+        var locmax = $(this).data('fade');
+        if (locmax && locmax > max) {
+            max = locmax;
+        }
+    });
+    if (max) {
+        $(".anim-letter[data-fade=" + max + "]", $cont).fadeOut(LETTER_FADE_SPEED, function () {
+            fadeOutMax($cont);
+        });
+        if (genmax == 0) {
+            genmax = max;
+            $cont.css({
+                'left': ($(window).width() - $cont.width()) / 2,
+                'top': ($(window).height()) / 2  - $(".nav-button").height() - $cont.height() / 2 - 7
+            });
+            animRepos($cont);
+        }
+    } else {
+        $cont.fadeOut(FINAL_PH_FADEOUT, function(){
+            if ($animDayLabel) {
+                $animDayLabel.animate({opacity: 1}, FINAL_PH_FADEOUT, function(){
+                    if (!once) {
+                        initWindowSizeChange();
+                        once = true;
+                    }
+                });
+            }
+        });
+    }
+}
+
+function animRepos($cont) {
+    $cont.animate({
+        'left': $(window).width() / 2 - $('.anim-letter', $cont).width()
+    }, LETTER_FADE_SPEED * genmax);
 }

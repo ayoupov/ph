@@ -110,7 +110,7 @@ video {
 }
 
 #calendar .nav-button {
-    height: 30px;
+    height: 20px;
     margin: 0 auto;
     width: 50px;
 }
@@ -128,7 +128,7 @@ video {
 .calendar-list {
     /*overflow-y: scroll;*/
     overflow-y: hidden;
-    height: 90vh;
+    /*height: 90vh;*/
     text-align: center;
     padding: 0;
     margin-bottom: 0;
@@ -143,12 +143,14 @@ video {
     height: 32px;
     cursor: default;
     vertical-align: middle;
-    text-shadow: 0 0 2px black, 0 0 0.5em snow;
+    /*text-shadow: 0 0 2px black, 0 0 0.5em black;*/
+    text-shadow: 0 0 1px black, 0 0 8px #dbdbdb;
+
 }
 
 .calendar-list li.selected {
     font-size: 42pt;
-    margin-bottom: 30pt;
+    margin-bottom: 40px;
 }
 
 .calendar-year-label {
@@ -167,7 +169,8 @@ video {
     transform 0.4s ease-in-out,
     box-shadow 0.4s ease-in-out;
     /*box-shadow: 1px 0 1px black;*/
-    box-shadow: 0 0 2px black, 0 0 0.5em snow;
+    box-shadow: 0 0 8px #dbdbdb;
+    z-index: 500;
 }
 
 .project-stripe.blur {
@@ -181,6 +184,7 @@ video {
 
 .project-desc {
     font-family: "Times New Roman", sans-serif;
+    text-shadow: 0 0 8px #dbdbdb;
 }
 
 #months {
@@ -257,9 +261,10 @@ video {
 }
 
 #contacts {
-    font-size: 8pt;
-    font-weight: 100;
-    max-width: 100px;
+    /*font-size: 8pt;*/
+    font-size: 10pt;
+    /*font-weight: 100;*/
+    max-width: 150px;
     position: absolute;
     right: 20px;
     bottom: 20px;
@@ -267,6 +272,8 @@ video {
 
 #contacts .contacts-desc {
     margin-bottom: 10px;
+    font-weight: 100;
+    text-align: right;
 }
 
 #contacts .contacts-desc a {
@@ -277,4 +284,24 @@ video {
 #contacts .contacts-title a {
     text-decoration: none;
     color: snow;
+}
+
+.animate-div {
+    position: absolute;
+    z-index: 1000;
+}
+
+.animate-div .anim-letter {
+    float: left;
+    font-size:42pt;
+    font-weight: 400;
+    text-shadow: 0 0 0.5em black;
+}
+
+.anim-letter.bold {
+    font-weight: 700;
+}
+
+.hidden {
+    display: none;
 }
