@@ -250,7 +250,8 @@ function onPrjHoverStartEvent($elem, prj) {
     // blur project stripes
     $(".project-stripe").not($elem).addClass("blur");
     //if we need to change bg change it
-    if (prj.background && prj.background.type && (!prj.background.when || prj.background.when == 'hover')) {
+    //if (prj.background && prj.background.type && (!prj.background.when || prj.background.when == 'hover')) {
+    if (prj.background && prj.background.type) {
         showBackground(prj);
     }
     // position project description
