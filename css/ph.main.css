@@ -16,14 +16,14 @@ video {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: -100;
-    background: url('../assets/bg/tree_placeholder.png') no-repeat;
+    background: url('/ph/assets/bg/tree_placeholder.png') no-repeat;
     background-size: cover;
     transition: 1s opacity;
 }
 
-@media screen and (max-device-width: 800px) {
+@media screen and (max-device-width: 767px) {
     html {
-        background: url(../assets/bg/tree_placeholder.png) #000 no-repeat center center fixed;
+        background: url(/ph/assets/bg/tree_placeholder.png) #000 no-repeat center center fixed;
     }
 
     #bgvid {
@@ -86,14 +86,6 @@ video {
     top: 20px;
 }
 
-#calendar {
-    margin: 0 auto;
-    /*max-width: 500px;*/
-    max-width: 800px;
-    height: 100vh;
-    position: relative;
-}
-
 .nav-button {
     text-align: center;
     cursor: pointer;
@@ -108,6 +100,15 @@ video {
     background: url("/ph/assets/arrow_down.png")  center center no-repeat;
     background-size: 20px;
 }
+
+#calendar {
+    margin: 0 auto;
+    /*max-width: 500px;*/
+    /*max-width: 800px;*/
+    height: 100vh;
+    position: relative;
+}
+
 
 #calendar .nav-button {
     height: 20px;
@@ -304,4 +305,44 @@ video {
 
 .hidden {
     display: none;
+}
+
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+    .desktop.only {
+        display: none;
+    }
+
+    body {
+        font-size: 8pt;
+    }
+
+
+    #calendar {
+        margin: 0 auto;
+        /*max-width: 500px;*/
+        max-width: 700px;
+        height: 100vh;
+        position: relative;
+    }
+
+}
+
+/* Not mobile */
+@media only screen and (min-width: 768px) {
+
+    #calendar {
+        max-width: 768px;
+    }
+
+    .mobile.only {
+        display: none;
+    }
+}
+
+.overall-container, .credits-container {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 30px;
+    /*float: left;*/
 }

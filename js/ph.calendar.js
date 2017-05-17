@@ -271,6 +271,21 @@ function onPrjHoverEndEvent($elem, prj) {
 
 var TOP_MAGIC = 7;
 
+function addStripe(posObj)
+{
+    var $stripe = $("<div class='project-stripe'>");
+    $stripe.css(posObj);
+    // append events and data
+    $stripe.data('prjid', prjid);  // to extract the project
+    $stripe.on('mouseenter', function () {
+        onPrjHoverStartEvent($stripe, prj);
+    });
+    $stripe.on('mouseleave', function () {
+        onPrjHoverEndEvent($stripe, prj);
+    });
+    PH.$daylist.append($stripe);
+}
+
 function addToLeft(prj, prjid, before) {
     // determine position
     var overlappers = leftOverlaps(prj, before); // calc overlappers for this project (look up all the previous && check dates)
@@ -285,22 +300,12 @@ function addToLeft(prj, prjid, before) {
         t += TOP_MAGIC;
     else
         t+= TOP_MAGIC * 2;
-    var $stripe = $("<div class='project-stripe'>");
-    $stripe.css({
+    addStripe({
         left: l,
         width: w,
         top: t,
         height: h
     });
-    // append events and data
-    $stripe.data('prjid', prjid);  // to extract the project
-    $stripe.on('mouseenter', function () {
-        onPrjHoverStartEvent($stripe, prj);
-    });
-    $stripe.on('mouseleave', function () {
-        onPrjHoverEndEvent($stripe, prj);
-    });
-    PH.$daylist.append($stripe);
 }
 
 function addToRight(prj, prjid, before) {
@@ -317,22 +322,12 @@ function addToRight(prj, prjid, before) {
         t += TOP_MAGIC;
     else
         t+= TOP_MAGIC * 2;
-    var $stripe = $("<div class='project-stripe'>");
-    $stripe.css({
+    addStripe({
         left: l,
         width: w,
         top: t,
         height: h
     });
-    // append events and data
-    $stripe.data('prjid', prjid);  // to extract the project, candidate for removal
-    $stripe.on('mouseenter', function () {
-        onPrjHoverStartEvent($stripe, prj);
-    });
-    $stripe.on('mouseleave', function () {
-        onPrjHoverEndEvent($stripe, prj);
-    });
-    PH.$daylist.append($stripe);
 }
 
 
