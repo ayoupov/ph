@@ -269,6 +269,8 @@ function onPrjHoverEndEvent($elem, prj) {
     PH.$prj_desc.fadeOut(COMMON_FADE_TIMEOUT);
 }
 
+var TOP_MAGIC = 7;
+
 function addToLeft(prj, prjid, before) {
     // determine position
     var overlappers = leftOverlaps(prj, before); // calc overlappers for this project (look up all the previous && check dates)
@@ -276,8 +278,13 @@ function addToLeft(prj, prjid, before) {
     var w = PRJ_STRIPE_WIDTH;
     var t = $("li#day" + dayIdFromDate(prj.from)).offset().top;
     var h = DAY_ITEM_SIZE / 2;
-    if (prj.from.getTime() != prj.to.getTime())
+    var isEvent = prj.from.getTime() == prj.to.getTime();
+    if (!isEvent)
         h = $("li#day" + dayIdFromDate(prj.to)).offset().top - t;
+    if (isEvent)
+        t += TOP_MAGIC;
+    else
+        t+= TOP_MAGIC * 2;
     var $stripe = $("<div class='project-stripe'>");
     $stripe.css({
         left: l,
@@ -301,10 +308,15 @@ function addToRight(prj, prjid, before) {
     var overlappers = rightOverlaps(prj, before); // calc overlappers for this project (look up all the previous && check dates)
     var l = CALENDAR_WIDTH / 2 + DAY_WIDTH / 2 + ((overlappers + 1) * (PRJ_STRIPE_MARGIN + PRJ_STRIPE_WIDTH));
     var w = PRJ_STRIPE_WIDTH;
-    var t = $("li#day" + dayIdFromDate(prj.from)).offset().top;
+    var t = $("li#day" + dayIdFromDate(prj.from)).offset().top + TOP_MAGIC;
     var h = DAY_ITEM_SIZE / 2;
-    if (prj.from.getTime() != prj.to.getTime())
+    var isEvent = prj.from.getTime() == prj.to.getTime();
+    if (!isEvent)
         h = $("li#day" + dayIdFromDate(prj.to)).offset().top - t;
+    if (isEvent)
+        t += TOP_MAGIC;
+    else
+        t+= TOP_MAGIC * 2;
     var $stripe = $("<div class='project-stripe'>");
     $stripe.css({
         left: l,
@@ -500,14 +512,14 @@ function fadeOutMax($cont) {
             genmax = max;
             $cont.css({
                 'left': ($(window).width() - $cont.width()) / 2,
-                'top': ($(window).height()) / 2  - $(".nav-button").height() - $cont.height() / 2 - 7
+                'top': ($(window).height()) / 2 - $(".nav-button").height() - $cont.height() / 2 - TOP_MAGIC
             });
             animRepos($cont);
         }
     } else {
-        $cont.fadeOut(FINAL_PH_FADEOUT, function(){
+        $cont.fadeOut(FINAL_PH_FADEOUT, function () {
             if ($animDayLabel) {
-                $animDayLabel.animate({opacity: 1}, FINAL_PH_FADEOUT, function(){
+                $animDayLabel.animate({opacity: 1}, FINAL_PH_FADEOUT, function () {
                     if (!once) {
                         initWindowSizeChange();
                         once = true;
