@@ -271,7 +271,7 @@ function onPrjHoverEndEvent($elem, prj) {
 
 var TOP_MAGIC = 7;
 
-function addStripe(posObj)
+function addStripe(prj, prjid, posObj)
 {
     var $stripe = $("<div class='project-stripe'>");
     $stripe.css(posObj);
@@ -300,7 +300,7 @@ function addToLeft(prj, prjid, before) {
         t += TOP_MAGIC;
     else
         t+= TOP_MAGIC * 2;
-    addStripe({
+    addStripe(prj, prjid, {
         left: l,
         width: w,
         top: t,
@@ -322,7 +322,7 @@ function addToRight(prj, prjid, before) {
         t += TOP_MAGIC;
     else
         t+= TOP_MAGIC * 2;
-    addStripe({
+    addStripe(prj, prjid, {
         left: l,
         width: w,
         top: t,
