@@ -26,13 +26,10 @@ function langInit() {
 
 function changeLang(lang) {
     PH.lang = lang;
-    //$("#contacts").html(PH.labels[lang].contacts);
-    //$("#contacts_desc").html(PH.labels[lang].contacts_desc);
     $("#projects_menu .project-menu-title").html(PH.labels[lang].projects);
     $("#about .about-title").html(PH.labels[lang].about);
     $("#about .about-desc").html(PH.labels[lang].about_desc);
     $("#projects_desc").html(PH.labels[lang].projects_desc);
-    $("#about_desc").html(PH.labels[lang].about_desc);
 
     $(".calendar-month-label").each(function(){
         var $m = $(this);
@@ -42,9 +39,7 @@ function changeLang(lang) {
     initProjectMenu();
 
     // update <a> selection
-    $("#lang_select a").addClass('active').html(lang.toUpperCase());
-    //$("#lang_select a").removeClass('active');
-    //$("#lang_select a[data-l=" + lang + ']').addClass('active');
+    $("#lang_select a").html(lang == 'en' ? 'PL' : 'EN');
     Cookies.set('lang', lang);
 }
 
