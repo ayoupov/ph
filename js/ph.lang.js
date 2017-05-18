@@ -47,8 +47,5 @@ function initLangEvents(){
     $("#lang_select a").on('click', function(){
         var newLang = PH.lang == 'en' ? 'pl' : 'en';
         changeLang(newLang);
-        //if (!$(this).is('.active')){
-        //    changeLang($(this).data('l'), PH.labels);
-        //}
     })
 }
