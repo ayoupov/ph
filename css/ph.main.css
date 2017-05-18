@@ -166,15 +166,22 @@ video {
 
 .calendar-list li.selected {
     font-size: 42pt;
-    margin-bottom: 40px;
+    margin-bottom: 68px;
+    /*margin-top: -20px;*/
 }
 
 .calendar-year-label {
-    font-size: 18pt;
+    /*font-size: 18pt;*/
+    font-size: 10pt;
+    opacity: 0.75;
 }
 
 .calendar-month-label {
-    font-size: 16pt;
+    /*font-size: 16pt;*/
+    font-size: 10pt;
+    opacity: 0.75;
+    margin-top: -10px;
+    margin-bottom: -20px;
 }
 
 .project-stripe {
@@ -285,6 +292,11 @@ video {
 #contacts .contacts-desc {
     margin-bottom: 10px;
     font-weight: 100;
+    text-align: right;
+    margin-right: 20px;
+}
+
+#contacts .contacts-title {
     text-align: right;
 }
 

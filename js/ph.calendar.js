@@ -60,25 +60,13 @@ function populateCalendar(prjs) {
         var $daylist = $("<ul/>").addClass("calendar-list");
         var i = -EXTRA_DAYS_BEFORE; // days before the first prj
         PH.total_days = timeSpan + EXTRA_DAYS_BEFORE + EXTRA_DAYS_AFTER;
-        var oldYear = 0;
-        var oldMonth = 0;
         while (i < timeSpan + EXTRA_DAYS_AFTER) {
             var curDate = new Date(firstPrj.from.getTime() + i * DAY_IN_MILLIS);
-            var curYear = curDate.getFullYear();
-            var curMonth = curDate.getMonth();
             var curDay = curDate.getUTCDate();
-            if (curYear != oldYear) {
-                $daylist.append($("<li>").html(curYear).addClass("calendar-year-label"));
-            }
-            if (curMonth != oldMonth) {
-                $daylist.append($("<li>").html(getMonthName(curMonth)).addClass("calendar-month-label").data('month-idx', curMonth));
-            }
             var curDayLabel = (curDay < 10 ? "0" : "") + curDay;
             var dayId = "day" + dayIdFromDate(curDate);
             $daylist.append($("<li>").html(curDayLabel).addClass("calendar-day-label").attr("id", dayId));
             i++;
-            oldYear = curYear;
-            oldMonth = curMonth;
         }
 
         var $up = $("<div class='nav-button button-up' id='calendar_up'/>"); // .html('up');
@@ -318,9 +306,8 @@ function getCentralLabel() {
 }
 
 
-function findProjects(dayId) {
+function findProjects(thisDate) {
     //var res = [];
-    var thisDate = dateFromDayId(dayId);
     var tempPrjs = PH.prjs.filter(function (prj) {
         return prj.from.getTime() - thisDate.getTime() <= 0 && prj.to.getTime() - thisDate.getTime() >= 0;
     });
@@ -328,8 +315,22 @@ function findProjects(dayId) {
     return tempPrjs;
 }
 
-function scrollDayList(delta) {
+function clearCentral(){
+    $(".calendar-month-label,.calendar-year-label").remove();
     $('li', PH.$daylist).removeClass('selected');
+}
+
+function addCentral($li, date){
+    $li.addClass('selected');
+    var $month = $('<li>').addClass('calendar-month-label').html(getMonthName(date.getUTCMonth()));
+    $li.prepend($month);
+    var $year = $('<li>').addClass('calendar-year-label').html(date.getUTCFullYear());
+    $li.append($year);
+}
+
+function scrollDayList(delta) {
+    //clear central
+    clearCentral();
     PH.$daylist.scrollTop(PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE);
     // update central selection
     var $li = getCentralLabel();
@@ -338,11 +339,11 @@ function scrollDayList(delta) {
             PH.$daylist.scrollTop(PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE);
             $li = getCentralLabel();
         }
-        $li.addClass('selected');
-        // todo: optimize
         var selectedDayId = $li.attr('id');
+        var thisDate = dateFromDayId(selectedDayId);
+        addCentral($li, thisDate);
         // show bg
-        var prjsOnThisDay = findProjects(selectedDayId);
+        var prjsOnThisDay = findProjects(thisDate);
         if (prjsOnThisDay.length) {
             var prjBgToShow = null;
             // filter all the projects with onscroll bg
