@@ -1,3 +1,9 @@
+function initUI() {
+    initAboutMenu();
+    initContacts();
+    $('.animate-div').hide();
+}
+
 function initAboutMenu() {
     var $desc = PH.$about.find(".about-desc");
     $desc.hide();
@@ -10,6 +16,7 @@ function initAboutMenu() {
 
 }
 
+
 function initContacts() {
     var $desc = PH.$contacts.find(".contacts-desc");
     var $title = PH.$contacts.find('.contacts-title');
@@ -17,7 +24,6 @@ function initContacts() {
     PH.$contacts
         .on('mouseenter', function () {
             $desc.fadeIn(COMMON_FADE_TIMEOUT);
-            //$title.html("<a href='http://parerga.site'>&copy; 2017 PARERGA</a>");
             $title.html("<a href='http://parerga.site'>&copy; PARERGA</a>");
         }).on('mouseleave', function () {
         $desc.fadeOut(COMMON_FADE_TIMEOUT);

@@ -3,6 +3,7 @@ body {
     background: #000;
     font-family: 'Lato', sans-serif;
     color: snow;
+    overflow-y: hidden;
 }
 
 /* video settings */
@@ -59,10 +60,28 @@ video {
     /*display: none;*/
     max-width: 250px;
     text-align: left;
+    text-shadow: 0 0 1px black, 0 0 8px #dbdbdb;
 }
 
 /* main container */
 #project_menu {
+    font-size: 10pt;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    text-align: right;
+}
+
+.project-list {
+    text-align: left;
+}
+
+.project-list-item {
+    font-family: "Times New Roman", sans-serif;
+}
+
+#about {
     font-size: 10pt;
     position: absolute;
     left: 20px;
@@ -70,20 +89,15 @@ video {
     cursor: pointer;
 }
 
-.project-list {
-
-}
-
-.project-list-item {
-    font-family: "Times New Roman", sans-serif;
-}
-
-#ph_label {
+#about .about-title {
     font-style: italic;
-    font-size: 10pt;
-    position: absolute;
-    right: 20px;
-    top: 20px;
+}
+
+#about .about-desc {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-family: "Times New Roman", sans-serif;
+    max-width: 250px;
 }
 
 .nav-button {
@@ -221,20 +235,15 @@ video {
     font-weight: 700;
 }
 
-#about {
-    font-size: 10pt;
-    position: absolute;
-    left: 20px;
-    bottom: 20px;
-    max-width: 200px;
-    cursor: pointer;
-}
+/*#about {*/
+    /*font-size: 10pt;*/
+    /*position: absolute;*/
+    /*left: 20px;*/
+    /*bottom: 20px;*/
+    /*max-width: 200px;*/
+    /*cursor: pointer;*/
+/*}*/
 
-#about .about-desc {
-    margin-bottom: 10px;
-    font-family: "Times New Roman", sans-serif;
-    font-size: 10pt;
-}
 
 #follow {
     font-size: 10pt;
@@ -297,6 +306,7 @@ video {
     font-size:42pt;
     font-weight: 400;
     text-shadow: 0 0 0.5em black;
+    font-style: italic;
 }
 
 .anim-letter.bold {

@@ -3,14 +3,14 @@
     "en": {
       "projects": "PROJECTS",
       "contacts": "contact PARERGA",
-      "about" : "ABOUT",
+      "about" : "<i>Simple Stories</i>",
       "about_desc" : "<p>Style never met and those among great. At noor september sportsmen he perfectly happiness attending. Depending listening deliveredoff new she procuring satisfied sex existence.Person plenty answer to exeter it if. Law useassistance especially resolution cultivated didout sentiments unsatiable. Way necessary had      intention happiness but september delighted      his curiosity. </p><p>Furniture furnished or on strangers      neglected remainder engrossed.</p>"
     },
     "pl": {
       "projects": "PROJECTS in PL",
       "contacts": "contact PARERGA in PL",
-      "about" : "ABOUT in PL",
-      "about_desc" : "polish desc"
+      "about" : "<i>Proste Historie</i>",
+      "about_desc" : "<p>polish desc</p>And then some more text"
     }
   },
   "projects": [

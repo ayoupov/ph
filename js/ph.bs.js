@@ -17,9 +17,7 @@ $(function () {
     PH.$prj_menu = $("#project_menu");
     PH.$about = $("#about");
     PH.$contacts = $("#contacts");
-    initAboutMenu();
-    initContacts();
-    $('.animate-div').hide();
+    initUI();
 
     // init lang settings
     langInit();
