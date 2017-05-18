@@ -1,16 +1,36 @@
 function initUI() {
-    initAboutMenu();
+    initAbout();
     initContacts();
+    initSubscribe();
+    $('.hidden-first').removeClass('hidden-first');
     $('.animate-div').hide();
 }
 
-function initAboutMenu() {
+function initAbout() {
     var $desc = PH.$about.find(".about-desc");
     $desc.hide();
     PH.$about
         .on('mouseenter', function () {
             $desc.fadeIn(COMMON_FADE_TIMEOUT);
         }).on('mouseleave', function () {
+        $desc.fadeOut(COMMON_FADE_TIMEOUT);
+    });
+
+}
+function initSubscribe() {
+    var $desc = PH.$subscribe.find(".subscribe-desc");
+    $desc.hide();
+    PH.$subscribe
+        .on('mouseenter', function () {
+            $desc.fadeIn(COMMON_FADE_TIMEOUT);
+        }).on('mouseleave', function () {
+        var $descinput = $desc.find('input');
+        if ($descinput.is(':focus'))
+        {
+            $descinput.one('blur', function(){
+                $desc.fadeOut(COMMON_FADE_TIMEOUT);
+            });
+        } else
         $desc.fadeOut(COMMON_FADE_TIMEOUT);
     });
 

@@ -378,9 +378,9 @@ function emulateScroll() {
     });
 }
 
-function dayIdToMonthId(dayId) {
-    return "mon" + monthIdFromDate(dateFromDayId(dayId));
-}
+//function dayIdToMonthId(dayId) {
+//    return "mon" + monthIdFromDate(dateFromDayId(dayId));
+//}
 
 function scrollDayListTo(dayId, firstTimeAnimation) {
     PH.is_scrolling = true;

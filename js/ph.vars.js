@@ -18,5 +18,4 @@ var DAY_WIDTH = 60;
 var CALENDAR_WIDTH = 800;
 
 var DAY_ITEM_SIZE = 32;
-var MONTH_ITEM_SIZE = 29;
 

@@ -17,6 +17,7 @@ $(function () {
     PH.$prj_menu = $("#project_menu");
     PH.$about = $("#about");
     PH.$contacts = $("#contacts");
+    PH.$subscribe = $("#subscribe");
     initUI();
 
     // init lang settings

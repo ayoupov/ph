@@ -202,64 +202,56 @@ video {
     text-shadow: 0 0 8px #dbdbdb;
 }
 
-#months {
-    font-weight: 100;
-    font-size: 8pt;
-    position: absolute;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    max-height: 287px;
-}
-
-#months .month-list {
-    max-height: 261px;
-    overflow-y: hidden;
-}
-
-#months div.month-item {
-    padding-top: 8px;
-    padding-bottom: 8px;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-}
-
-#months .nav-button {
-    text-align: center;
-    width: 100%;
-    height: 30px;
-}
-
-#months div.month-item.selected {
-    font-weight: 700;
-}
-
-/*#about {*/
-    /*font-size: 10pt;*/
-    /*position: absolute;*/
-    /*left: 20px;*/
-    /*bottom: 20px;*/
-    /*max-width: 200px;*/
-    /*cursor: pointer;*/
-/*}*/
-
-
-#follow {
+#subscribe_container {
     font-size: 10pt;
     position: absolute;
-    right: 150px;
-    bottom: 18px;
+    /*left: 20px;*/
+    left: 0;
+    /*bottom: 20px;*/
+    bottom: 0;
     cursor: pointer;
+    width: 160px;
+    float: left;
+}
+
+#subscribe_container .subscribe-title {
+    /*font-style: italic;*/
+    float: left;
+    padding: 20px;
+}
+
+#subscribe_container .subscribe-desc {
+    /*margin-bottom: 20px;*/
+    margin-left: 20px;
+    font-family: "Times New Roman", sans-serif;
+    max-width: 160px;
+}
+
+#subscribe_container .subscribe-desc input {
+    background: transparent;
+    border: none;
+    color: snow;
+    margin-left: 20px;
+    width: 120px;
+}
+#subscribe_container .subscribe-desc input::placeholder {
+    color: snow;
+    font-style: italic;
 }
 
 #lang_select {
-    vertical-align: bottom;
-    font-weight: 700;
-    font-size: 10pt;
+    /*vertical-align: bottom;*/
+    /*font-weight: 700;*/
+    /*font-size: 10pt;*/
+    /*position: absolute;*/
+    /*right: 120px;*/
+    /*bottom: 18px;*/
+    /*float: left;*/
+    /*margin-left:40px;*/
     position: absolute;
-    right: 120px;
-    bottom: 18px;
+    right: 0;
+    bottom:0;
+    margin-bottom: 20px;
 }
 
 #lang_select a {
@@ -269,6 +261,15 @@ video {
 #lang_select a.active {
     font-weight: 700;
 }
+
+#follow {
+    font-size: 10pt;
+    position: absolute;
+    right: 150px;
+    bottom: 18px;
+    cursor: pointer;
+}
+
 
 #contacts {
     /*font-size: 8pt;*/
@@ -317,6 +318,9 @@ video {
     display: none;
 }
 
+.hidden-first {
+    display: none;
+}
 
 /* Mobile */
 @media only screen and (max-width: 767px) {
