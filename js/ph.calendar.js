@@ -322,7 +322,8 @@ function clearCentral(){
 
 function addCentral($li, date){
     $li.addClass('selected');
-    var $month = $('<li>').addClass('calendar-month-label').html(getMonthName(date.getUTCMonth()));
+    var utcMonth = date.getUTCMonth();
+    var $month = $('<li>').addClass('calendar-month-label').html(getMonthName(utcMonth)).data('month-idx', utcMonth);
     $li.prepend($month);
     var $year = $('<li>').addClass('calendar-year-label').html(date.getUTCFullYear());
     $li.append($year);

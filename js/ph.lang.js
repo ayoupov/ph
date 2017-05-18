@@ -33,7 +33,7 @@ function changeLang(lang) {
 
     $(".calendar-month-label").each(function(){
         var $m = $(this);
-        $m.html(MONTH_NAMES[lang][$m.data('month-idx')]);
+        $m.html(getMonthName([$m.data('month-idx')]));
     });
 
     initProjectMenu();
