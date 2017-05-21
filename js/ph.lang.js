@@ -39,12 +39,12 @@ function changeLang(lang) {
     initProjectMenu();
 
     // update <a> selection
-    $("#lang_select a").html(lang == 'en' ? 'PL' : 'EN');
+    $(".lang-select a").html(lang == 'en' ? 'PL' : 'EN');
     Cookies.set('lang', lang);
 }
 
 function initLangEvents(){
-    $("#lang_select a").on('click', function(){
+    $(".lang-select a").on('click', function(){
         var newLang = PH.lang == 'en' ? 'pl' : 'en';
         changeLang(newLang);
     })

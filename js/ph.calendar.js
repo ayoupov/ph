@@ -260,8 +260,10 @@ function addStripe(prj, prjid, posObj) {
 function addToLeft(prj, prjid, before) {
     // determine position
     var overlappers = leftOverlaps(prj, before); // calc overlappers for this project (look up all the previous && check dates)
-    var l = CALENDAR_WIDTH / 2 - DAY_WIDTH / 2 - ((overlappers + 1) * (PRJ_STRIPE_MARGIN + PRJ_STRIPE_WIDTH));
-    var w = PRJ_STRIPE_WIDTH;
+    var overlap_shift = PH.isMobile ? (MOBILE_PRJ_STRIPE_MARGIN + MOBILE_PRJ_STRIPE_WIDTH) : (PRJ_STRIPE_MARGIN + PRJ_STRIPE_WIDTH);
+    //var l = CALENDAR_WIDTH / 2 - DAY_WIDTH / 2 - ((overlappers + 1) * overlap_shift);
+    var l = $("#calendar").width() / 2 - DAY_WIDTH / 2 - ((overlappers + 1) * overlap_shift);
+    var w = PH.isMobile ? MOBILE_PRJ_STRIPE_WIDTH : PRJ_STRIPE_WIDTH;
     var t = $("li#day" + dayIdFromDate(prj.from)).offset().top;
     var h = DAY_ITEM_SIZE / 2;
     var isEvent = prj.from.getTime() == prj.to.getTime();
@@ -282,8 +284,10 @@ function addToLeft(prj, prjid, before) {
 function addToRight(prj, prjid, before) {
     // determine position
     var overlappers = rightOverlaps(prj, before); // calc overlappers for this project (look up all the previous && check dates)
-    var l = CALENDAR_WIDTH / 2 + DAY_WIDTH / 2 + ((overlappers + 1) * (PRJ_STRIPE_MARGIN + PRJ_STRIPE_WIDTH));
-    var w = PRJ_STRIPE_WIDTH;
+    var overlap_shift = PH.isMobile ? (MOBILE_PRJ_STRIPE_MARGIN + MOBILE_PRJ_STRIPE_WIDTH) : (PRJ_STRIPE_MARGIN + PRJ_STRIPE_WIDTH);
+    //var l = CALENDAR_WIDTH / 2 + DAY_WIDTH / 2 + ((overlappers + 1) * overlap_shift);
+    var l = $("#calendar").width() / 2 + DAY_WIDTH / 2 + ((overlappers + 1) * overlap_shift);
+    var w = PH.isMobile ? MOBILE_PRJ_STRIPE_WIDTH : PRJ_STRIPE_WIDTH;
     var t = $("li#day" + dayIdFromDate(prj.from)).offset().top + TOP_MAGIC;
     var h = DAY_ITEM_SIZE / 2;
     var isEvent = prj.from.getTime() == prj.to.getTime();
@@ -303,6 +307,7 @@ function addToRight(prj, prjid, before) {
 
 
 function getCentralLabel() {
+    // todo: change to scrolltop selection
     return $(document.elementFromPoint($(document).width() / 2, $(document).height() / 2 - DAY_ITEM_SIZE)); // x, y
 }
 
@@ -334,6 +339,7 @@ function scrollDayList(delta) {
     //clear central
     clearCentral();
     PH.$daylist.scrollTop(PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE);
+    //PH.$daylist.animate({scrollTop: PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE}, 100, function(){});
     // update central selection
     var $preli = getCentralLabel(), $li;
     if ($preli) {
@@ -342,31 +348,41 @@ function scrollDayList(delta) {
             $li = getCentralLabel();
         }
         $li = $li || $preli;
-        var selectedDayId = $li.attr('id');
-        var thisDate = dateFromDayId(selectedDayId);
-        addCentral($li, thisDate);
-        // show bg
-        if (!PH.isMobile) {
-            var prjsOnThisDay = findProjects(thisDate);
-            if (prjsOnThisDay.length) {
-                var prjBgToShow = null;
-                // filter all the projects with onscroll bg
-                prjsOnThisDay = prjsOnThisDay.filter(function (prj) {
-                    return prj.background && prj.background.when == 'scroll';
-                });
+        if ($li) {
+            var selectedDayId = $li.attr('id');
+            var thisDate = dateFromDayId(selectedDayId);
+            addCentral($li, thisDate);
+            // show bg
+            if (!PH.isMobile) {
+                var prjsOnThisDay = findProjects(thisDate);
                 if (prjsOnThisDay.length) {
-                    prjsOnThisDay.sort(sortPrjByStart);
-                    prjBgToShow = prjsOnThisDay[prjsOnThisDay.length - 1];
-                    showBackground(prjBgToShow);
+                    var prjBgToShow = null;
+                    // filter all the projects with onscroll bg
+                    prjsOnThisDay = prjsOnThisDay.filter(function (prj) {
+                        return prj.background && prj.background.when == 'scroll';
+                    });
+                    if (prjsOnThisDay.length) {
+                        prjsOnThisDay.sort(sortPrjByStart);
+                        prjBgToShow = prjsOnThisDay[prjsOnThisDay.length - 1];
+                        showBackground(prjBgToShow);
+                    }
+                    else
+                        hideBackground();
                 }
                 else
                     hideBackground();
             }
-            else
-                hideBackground();
         }
     }
 }
+
+var swipeHandler = function (event, phase, direction, distance, duration, fingerCount, fingerData, currentDirection) {
+    //console.log(event);
+    var delta = phase == 'up' ? 1 : -1;
+    delta *= Math.floor(distance / (DAY_ITEM_SIZE + 20)) - 1;
+    scrollDayList(delta);
+    Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
+};
 
 function emulateScroll() {
     PH.$daylist.on('mousewheel DOMMouseScroll', function (event) {
@@ -374,6 +390,16 @@ function emulateScroll() {
         scrollDayList(delta);
         Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
     });
+    PH.$daylist.swipe({
+        swipeUp: swipeHandler,
+        swipeDown: swipeHandler
+    });
+    //PH.$daylist.on('swipeUp swipeDown', function (event) {
+    //    console.log(event);
+    //    var delta = event.type == 'swipeup' ? 1 : -1;
+    //    scrollDayList(delta);
+    //    Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
+    //});
     PH.$down.on('click', function () {
         scrollDayList(1);
         Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
