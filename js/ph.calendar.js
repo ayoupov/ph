@@ -241,8 +241,7 @@ function onPrjHoverEndEvent($elem, prj) {
 
 var TOP_MAGIC = 7;
 
-function addStripe(prj, prjid, posObj)
-{
+function addStripe(prj, prjid, posObj) {
     var $stripe = $("<div class='project-stripe'>");
     $stripe.css(posObj);
     // append events and data
@@ -269,7 +268,7 @@ function addToLeft(prj, prjid, before) {
     if (isEvent)
         t += TOP_MAGIC;
     else
-        t+= TOP_MAGIC * 2;
+        t += TOP_MAGIC * 2;
     addStripe(prj, prjid, {
         left: l,
         width: w,
@@ -291,7 +290,7 @@ function addToRight(prj, prjid, before) {
     if (isEvent)
         t += TOP_MAGIC;
     else
-        t+= TOP_MAGIC * 2;
+        t += TOP_MAGIC * 2;
     addStripe(prj, prjid, {
         left: l,
         width: w,
@@ -315,12 +314,12 @@ function findProjects(thisDate) {
     return tempPrjs;
 }
 
-function clearCentral(){
+function clearCentral() {
     $(".calendar-month-label,.calendar-year-label").remove();
     $('li', PH.$daylist).removeClass('selected');
 }
 
-function addCentral($li, date){
+function addCentral($li, date) {
     $li.addClass('selected');
     var utcMonth = date.getUTCMonth();
     var $month = $('<li>').addClass('calendar-month-label').html(getMonthName(utcMonth)).data('month-idx', utcMonth);
@@ -334,12 +333,13 @@ function scrollDayList(delta) {
     clearCentral();
     PH.$daylist.scrollTop(PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE);
     // update central selection
-    var $li = getCentralLabel();
-    if ($li) {
-        while ($li.hasClass('calendar-year-label') || $li.hasClass('calendar-month-label')) {
+    var $preli = getCentralLabel(), $li;
+    if ($preli) {
+        while ($preli.hasClass('calendar-year-label') || $preli.hasClass('calendar-month-label')) {
             PH.$daylist.scrollTop(PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE);
             $li = getCentralLabel();
         }
+        $li = $li || $preli;
         var selectedDayId = $li.attr('id');
         var thisDate = dateFromDayId(selectedDayId);
         addCentral($li, thisDate);
@@ -435,7 +435,7 @@ function animatePH() {
 
 // first animation block
 
-var LETTER_FADE_SPEED = 400, FINAL_PH_FADEOUT = 1000;
+var LETTER_FADE_SPEED = 2000 / 8, FINAL_PH_FADEOUT = 2000;
 
 var genmax = 0, once = false;
 
@@ -448,8 +448,21 @@ function fadeOutMax($cont) {
         }
     });
     if (max) {
-        $(".anim-letter[data-fade=" + max + "]", $cont).fadeOut(LETTER_FADE_SPEED, function () {
-            fadeOutMax($cont);
+        //$(".anim-letter[data-fade=" + max + "]", $cont).fadeOut(LETTER_FADE_SPEED, function () {
+        //    fadeOutMax($cont);
+        //});
+        var $thisLetters = $(".anim-letter[data-fade=" + max + "]", $cont);
+        $thisLetters.animate({
+            width: 0,
+            opacity: 0
+        }, {
+            //duration: $t.width() * 40,
+            duration: LETTER_FADE_SPEED,
+            easing: 'linear',
+            complete: function () {
+                $thisLetters.data('fade', -1);
+                fadeOutMax($cont);
+            }
         });
         if (genmax == 0) {
             genmax = max;
@@ -460,14 +473,26 @@ function fadeOutMax($cont) {
             animRepos($cont);
         }
     } else {
-        $cont.fadeOut(FINAL_PH_FADEOUT, function () {
-            if ($animDayLabel) {
-                $animDayLabel.animate({opacity: 1}, FINAL_PH_FADEOUT, function () {
-                    if (!once) {
-                        initWindowSizeChange();
-                        once = true;
+        if ($animDayLabel) {
+            $animDayLabel.animate(
+                {
+                    opacity: 1
+                }, {
+                    duration: FINAL_PH_FADEOUT,
+                    complete: function () {
+                        if (!once) {
+                            $('.animate-div').hide();
+                            initWindowSizeChange();
+                            once = true;
+                        }
                     }
                 });
+        }
+
+        $cont.fadeOut({
+            duration: FINAL_PH_FADEOUT,
+            easing: 'linear',
+            complete: function () {
             }
         });
     }
@@ -476,5 +501,9 @@ function fadeOutMax($cont) {
 function animRepos($cont) {
     $cont.animate({
         'left': $(window).width() / 2 - $('.anim-letter', $cont).width()
-    }, LETTER_FADE_SPEED * genmax);
+    }, {
+        duration: FINAL_PH_FADEOUT,
+        //duration: LETTER_FADE_SPEED * genmax,
+        easing: 'linear'
+    });
 }

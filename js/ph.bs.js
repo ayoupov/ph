@@ -40,7 +40,7 @@ $(function () {
             emulateScroll();
             PH.is_scrolling = false;
             var savedDayId = Cookies.get('date');
-            if (savedDayId)
+            if (savedDayId && savedDayId != 'undefined')
                 scrollDayListTo(savedDayId, true);
             else {
                 var today = "day" + dayIdFromDate(new Date());
