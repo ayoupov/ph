@@ -87,6 +87,7 @@ function populateCalendar(prjs) {
         var l = 0, r = 0;
 
         prjs.forEach(function (prj, idx) {
+            prj.id = idx;
             if (prj.position == 'left') {
                 addToLeft(prj, idx, l);
                 l++;
@@ -239,6 +240,37 @@ function onPrjHoverEndEvent($elem, prj) {
     PH.$prj_desc.fadeOut(COMMON_FADE_TIMEOUT);
 }
 
+function repositionMobilePrjDescs(){
+    var $central = getCentralLabel();
+    //console.log($central);
+    $(".mobile-prj-desc:visible").each(function(){
+        var h = $(this).width(); // rotated
+        $(this).css('top', $central[0].offsetTop + DAY_ITEM_SIZE );
+        //$(this).css('top', $central.offset().top + DAY_ITEM_SIZE / 2);
+    })
+}
+
+function attachMobilePrj($stripe, prj, prjid){
+    var $mobilePrjDesc = $("<div data-prjid='" + prjid + "'>")
+        .html(prj[PH.lang].title + " / " + prj[PH.lang].location)
+        .addClass("mobile-prj-desc")
+        .addClass((prj.position == 'right') ? 'rotated-cw' : 'rotated-ccw');
+
+    PH.$daylist.append($mobilePrjDesc);
+
+    var thisLeft = parseFloat($stripe.css('left'));
+    if (prj.position == 'left')
+        thisLeft -= $mobilePrjDesc.width() / 2 + MOBILE_PRJ_STRIPE_WIDTH + 4;
+    else
+        thisLeft -= $mobilePrjDesc.width() / 2 - $mobilePrjDesc.height() - MOBILE_PRJ_STRIPE_WIDTH - 4;
+
+    //var thisLeft = parseFloat($stripe.css('left')) +
+    //    ((prj.position == 'right') ? (1) : (-1)) * (MOBILE_PRJ_STRIPE_MARGIN + MOBILE_PRJ_STRIPE_WIDTH);
+    $mobilePrjDesc.css({
+        left: thisLeft
+    });
+}
+
 var TOP_MAGIC = 7;
 
 function addStripe(prj, prjid, posObj) {
@@ -253,6 +285,9 @@ function addStripe(prj, prjid, posObj) {
         $stripe.on('mouseleave', function () {
             onPrjHoverEndEvent($stripe, prj);
         });
+    } else {
+        attachMobilePrj($stripe, prj, prjid);
+        repositionMobilePrjDescs();
     }
     PH.$daylist.append($stripe);
 }
@@ -352,9 +387,9 @@ function scrollDayList(delta) {
             var selectedDayId = $li.attr('id');
             var thisDate = dateFromDayId(selectedDayId);
             addCentral($li, thisDate);
+            var prjsOnThisDay = findProjects(thisDate);
             // show bg
             if (!PH.isMobile) {
-                var prjsOnThisDay = findProjects(thisDate);
                 if (prjsOnThisDay.length) {
                     var prjBgToShow = null;
                     // filter all the projects with onscroll bg
@@ -371,6 +406,14 @@ function scrollDayList(delta) {
                 }
                 else
                     hideBackground();
+            } else {
+                $(".mobile-prj-desc").hide();
+                // mobile show projects
+                $(prjsOnThisDay).each(function(){
+                    $(".mobile-prj-desc[data-prjid=" + this.id + "]").show();
+                });
+                if (prjsOnThisDay.length)
+                    repositionMobilePrjDescs();
             }
         }
     }

@@ -466,3 +466,22 @@ video {
 .credits-container .parerga-link, .credits-container .subscribe-link{
     font-family: 'Lato', sans-serif;
 }
+
+
+.mobile-prj-desc {
+    position: absolute;
+    /*max-width: 200px;*/
+    white-space: nowrap;
+}
+
+.rotated-cw {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.rotated-ccw {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
