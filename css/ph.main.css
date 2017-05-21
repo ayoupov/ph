@@ -227,6 +227,14 @@ video {
     text-shadow: 0 0 8px #dbdbdb;
 }
 
+.project-description {
+    font-size: 10pt;
+}
+
+.project-description .title {
+    font-weight: 700;
+}
+
 #subscribe_container {
     font-size: 10pt;
     position: absolute;
