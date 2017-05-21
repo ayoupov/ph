@@ -11,7 +11,7 @@ $(function () {
         vid.pause();
     }
 
-    PH.isMobile = (window.matchMedia && window.matchMedia('only screen and (max-width: 760px)').matches);
+    PH.isMobile = (window.matchMedia && window.matchMedia('only screen and (max-width: 767px)').matches);
 
     // first ui init
     PH.$prj_menu = $("#project_menu");

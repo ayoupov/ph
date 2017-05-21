@@ -246,12 +246,14 @@ function addStripe(prj, prjid, posObj) {
     $stripe.css(posObj);
     // append events and data
     $stripe.data('prjid', prjid);  // to extract the project
-    $stripe.on('mouseenter', function () {
-        onPrjHoverStartEvent($stripe, prj);
-    });
-    $stripe.on('mouseleave', function () {
-        onPrjHoverEndEvent($stripe, prj);
-    });
+    if (!PH.isMobile) {
+        $stripe.on('mouseenter', function () {
+            onPrjHoverStartEvent($stripe, prj);
+        });
+        $stripe.on('mouseleave', function () {
+            onPrjHoverEndEvent($stripe, prj);
+        });
+    }
     PH.$daylist.append($stripe);
 }
 
@@ -344,23 +346,25 @@ function scrollDayList(delta) {
         var thisDate = dateFromDayId(selectedDayId);
         addCentral($li, thisDate);
         // show bg
-        var prjsOnThisDay = findProjects(thisDate);
-        if (prjsOnThisDay.length) {
-            var prjBgToShow = null;
-            // filter all the projects with onscroll bg
-            prjsOnThisDay = prjsOnThisDay.filter(function (prj) {
-                return prj.background && prj.background.when == 'scroll';
-            });
+        if (!PH.isMobile) {
+            var prjsOnThisDay = findProjects(thisDate);
             if (prjsOnThisDay.length) {
-                prjsOnThisDay.sort(sortPrjByStart);
-                prjBgToShow = prjsOnThisDay[prjsOnThisDay.length - 1];
-                showBackground(prjBgToShow);
+                var prjBgToShow = null;
+                // filter all the projects with onscroll bg
+                prjsOnThisDay = prjsOnThisDay.filter(function (prj) {
+                    return prj.background && prj.background.when == 'scroll';
+                });
+                if (prjsOnThisDay.length) {
+                    prjsOnThisDay.sort(sortPrjByStart);
+                    prjBgToShow = prjsOnThisDay[prjsOnThisDay.length - 1];
+                    showBackground(prjBgToShow);
+                }
+                else
+                    hideBackground();
             }
             else
                 hideBackground();
         }
-        else
-            hideBackground();
     }
 }
 

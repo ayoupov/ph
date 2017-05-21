@@ -6,30 +6,6 @@ body {
     overflow-y: hidden;
 }
 
-/* video settings */
-video {
-    position: fixed;
-    min-width: 100vw;
-    min-height: 100vh;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -100;
-    background: url('/ph/assets/bg/tree_placeholder.png') no-repeat;
-    background-size: cover;
-    transition: 1s opacity;
-}
-
-@media screen and (max-device-width: 767px) {
-    html {
-        background: url(/ph/assets/bg/tree_placeholder.png) #000 no-repeat center center fixed;
-    }
-
-    #bgvid {
-        display: none;
-    }
-}
-
 #prj_bg iframe, #prj_bg img {
     position: absolute;
     top: 0;

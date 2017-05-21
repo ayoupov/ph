@@ -2,8 +2,23 @@ function initUI() {
     initAbout();
     initContacts();
     initSubscribe();
+    if (PH.isMobile)
+        initSlick();
     $('.hidden-first').removeClass('hidden-first');
     $('.animate-div').hide();
+}
+
+function initSlick(){
+    $('.viewport').slick({
+        arrows: false,
+        dots: false,
+        speed: 0,
+        infinite: false,
+        slide: '.slide',
+        slidesToShow: 1,
+        slidesToScroll: 1
+    });
+    $('.viewport').slick('slickGoTo', 1, true);
 }
 
 function initAbout() {
