@@ -435,6 +435,8 @@ function scrollDayListTo(dayId, firstTimeAnimation) {
 
 
 function windowSizeChange() {
+    if (PH.isMobile)
+        document.body.height = window.innerHeight;
     var $selectedDay = $('li.selected', PH.$daylist);
     PH.$daylist.css('height', $(window).height() - 2 * $(".nav-button").height());
     var dayId = null;

@@ -1,4 +1,5 @@
 function initUI() {
+    window.scrollTo(0,1);
     initAbout();
     initContacts();
     initSubscribe();
