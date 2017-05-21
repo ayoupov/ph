@@ -222,13 +222,13 @@ video {
     /*border: 2px snow solid;*/
 }
 
-.project-desc {
-    font-family: "Times New Roman", sans-serif;
-    text-shadow: 0 0 8px #dbdbdb;
-}
+/*.project-desc {*/
+/*}*/
 
 .project-description {
     font-size: 10pt;
+    font-family: "Times New Roman", sans-serif;
+    text-shadow: 0 0 8px #dbdbdb;
 }
 
 .project-description .title {

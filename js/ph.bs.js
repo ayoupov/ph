@@ -50,7 +50,7 @@ $(function () {
             // initWindowSizeChange goes to animation
             //initWindowSizeChange(); // also reselects central element and therefore starts bg if needed
             // init langs (have to have prjs inited already)
-            changeLang(PH.lang);
+            changeLang(PH.lang, true);
         }
     })
 });

@@ -24,17 +24,31 @@ function langInit() {
         Cookies.set('lang', lang);
 }
 
-function changeLang(lang) {
+function changeLang(lang, firstTime) {
     PH.lang = lang;
     $("#projects_menu .project-menu-title").html(PH.labels[lang].projects);
     $("#about .about-title").html(PH.labels[lang].about);
     $("#about .about-desc").html(PH.labels[lang].about_desc);
     $("#projects_desc").html(PH.labels[lang].projects_desc);
 
-    $(".calendar-month-label").each(function(){
+    $(".calendar-month-label").each(function () {
         var $m = $(this);
         $m.html(getMonthName([$m.data('month-idx')]));
     });
+
+    if (PH.isMobile && !firstTime) {
+        $(".mobile-prj-desc").remove();
+        $(PH.prjs).each(function () {
+            var prj = this;
+            var prjid = prj.id;
+            var $stripe = $(".project-stripe[data-prjid='" + prjid + "']");
+            attachMobilePrj($stripe, prj, prjid);
+            //$(".mobile-prj-desc[data-prjid='" + prjid + "']").html(prj[PH.lang].title + " / " + prj[PH.lang].location)
+        });
+        //$(".mobile-prj-desc").removeClass('hidden-first');
+        //repositionMobilePrjDescs();
+        scrollDayList(0);
+    }
 
     initProjectMenu();
 
@@ -43,8 +57,8 @@ function changeLang(lang) {
     Cookies.set('lang', lang);
 }
 
-function initLangEvents(){
-    $(".lang-select a").on('click', function(){
+function initLangEvents() {
+    $(".lang-select a").on('click', function () {
         var newLang = PH.lang == 'en' ? 'pl' : 'en';
         changeLang(newLang);
     })

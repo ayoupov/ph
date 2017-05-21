@@ -251,10 +251,12 @@ function repositionMobilePrjDescs(){
 }
 
 function attachMobilePrj($stripe, prj, prjid){
+    //$(".mobile-prj-desc").hide();
     var $mobilePrjDesc = $("<div data-prjid='" + prjid + "'>")
         .html(prj[PH.lang].title + " / " + prj[PH.lang].location)
         .addClass("mobile-prj-desc")
-        .addClass((prj.position == 'right') ? 'rotated-cw' : 'rotated-ccw');
+        .addClass((prj.position == 'right') ? 'rotated-cw' : 'rotated-ccw')
+        .addClass("hidden-first");
 
     PH.$daylist.append($mobilePrjDesc);
 
@@ -274,7 +276,7 @@ function attachMobilePrj($stripe, prj, prjid){
 var TOP_MAGIC = 7;
 
 function addStripe(prj, prjid, posObj) {
-    var $stripe = $("<div class='project-stripe'>");
+    var $stripe = $("<div class='project-stripe' data-prjid='" + prjid + "'>");
     $stripe.css(posObj);
     // append events and data
     $stripe.data('prjid', prjid);  // to extract the project
@@ -412,8 +414,9 @@ function scrollDayList(delta) {
                 $(prjsOnThisDay).each(function(){
                     $(".mobile-prj-desc[data-prjid=" + this.id + "]").show();
                 });
-                if (prjsOnThisDay.length)
+                if (prjsOnThisDay.length) {
                     repositionMobilePrjDescs();
+                }
             }
         }
     }
