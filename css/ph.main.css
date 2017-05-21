@@ -90,8 +90,9 @@ video {
 }
 
 .project-list {
-    text-align: left;
+    text-align: right;
     margin-right: 20px;
+    list-style: none;
 }
 
 .project-list-item {
@@ -214,7 +215,7 @@ video {
 }
 
 .project-stripe.blur {
-    opacity: 0.5;
+    opacity: 0.1;
 }
 
 .project-stripe:hover {
@@ -233,6 +234,7 @@ video {
 
 .project-description .title {
     font-weight: 700;
+    font-family: 'Lato', sans-serif;
 }
 
 #subscribe_container {
@@ -267,6 +269,7 @@ video {
     margin-left: 20px;
     width: 120px;
 }
+
 #subscribe_container .subscribe-desc input::placeholder {
     color: snow;
     font-style: italic;
@@ -315,9 +318,11 @@ video {
 
 #contacts .contacts-desc {
     margin-bottom: 10px;
-    font-weight: 100;
+    /*font-weight: 100;*/
     text-align: right;
     margin-right: 20px;
+    font-family: "Times New Roman", sans-serif;
+    text-shadow: 0 0 1px black, 0 0 8px #dbdbdb;
 }
 
 #contacts .contacts-title {
@@ -425,8 +430,8 @@ video {
 
 .overall-container, .credits-container {
     font-family: "Times New Roman", sans-serif;
-    font-size: 30px;
-    /*font-size: 8pt;*/
+    /*font-size: 30px;*/
+    font-size: 10pt;
     float: left;
 }
 
