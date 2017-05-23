@@ -426,37 +426,39 @@ function scrollDayList(delta) {
     //}
 }
 
-var swipeHandler = function (event, phase, direction, distance, duration, fingerCount, fingerData, currentDirection) {
+//var swipeHandler = function (event, phase, direction, distance, duration, fingerCount, fingerData, currentDirection) {
+//    //console.log(event);
+//    var delta = phase == 'up' ? 1 : -1;
+//    delta *= Math.floor(distance / (DAY_ITEM_SIZE + 20)) - 1;
+//    scrollDayList(delta);
+//};
+
+var hammerPanHandler = function (event) {
     //console.log(event);
-    var delta = phase == 'up' ? 1 : -1;
-    delta *= Math.floor(distance / (DAY_ITEM_SIZE + 20)) - 1;
-    scrollDayList(delta);
-    //Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
+    if (event.type == "pan" && (event.additionalEvent == 'panup' || event.additionalEvent == 'pandown' )) {
+        var deltaY = event.deltaY;
+        var delta = (deltaY) ? ( Math.abs(deltaY) / deltaY ) : 0;
+        //delta *= Math.floor(distance / (DAY_ITEM_SIZE + 20)) - 1;
+        scrollDayList(delta);
+    }
 };
 
 function emulateScroll() {
     PH.$daylist.on('mousewheel DOMMouseScroll', function (event) {
         var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail))) * -1;
         scrollDayList(delta);
-        //Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
     });
-    PH.$daylist.swipe({
-        swipeUp: swipeHandler,
-        swipeDown: swipeHandler
-    });
-    //PH.$daylist.on('swipeUp swipeDown', function (event) {
-    //    console.log(event);
-    //    var delta = event.type == 'swipeup' ? 1 : -1;
-    //    scrollDayList(delta);
-    //    Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
-    //});
+    if (PH.isMobile) {
+        var hm = new Hammer(PH.$daylist[0]);
+        hm.get('pan').set({direction: Hammer.DIRECTION_VERTICAL});
+        hm.on('pan', hammerPanHandler);
+    }
+
     PH.$down.on('click', function () {
         scrollDayList(1);
-        //Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
     });
     PH.$up.on('click', function () {
         scrollDayList(-1);
-        //Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
     });
 }
 
@@ -482,7 +484,7 @@ function scrollDayListTo(dayId, firstTimeAnimation) {
     }
     PH.is_scrolling = false;
     if (firstTimeAnimation) {
-        animatePH();
+        animatePH2();
     }
 }
 
@@ -498,10 +500,11 @@ function windowSizeChange() {
     if ($selectedDay.length > 0) {
         dayId = $selectedDay.attr('id');
     }
+    // fixme: or not
     //if (dayId)
     //    scrollDayListTo(dayId);
     //else
-     scrollDayList(0);
+    scrollDayList(0);
 
 }
 
@@ -511,6 +514,21 @@ function initWindowSizeChange() {
 }
 
 var $animDayLabel = null;
+function animatePH2() {
+    var $animDiv = $("#animatePH2Div_" + PH.lang);
+    //animRepos($animDiv);
+    $animDiv.removeClass('hidden');
+    $animDiv.css({
+        'left': ($(window).width() - $animDiv.width()) / 2,
+        'top': ($(window).height()) / 2 - $(".nav-button").height() - $animDiv.height() / 2 - TOP_MAGIC
+    });
+    $animDayLabel = getCentralLabel();
+    $animDayLabel.css({opacity: 0});
+    $animDiv.fadeIn(100, function () {
+        fadeOutMax2($animDiv);
+    });
+}
+
 function animatePH() {
     var $animDiv = $("#animatePHDiv_" + PH.lang);
     //animRepos($animDiv);
@@ -524,7 +542,7 @@ function animatePH() {
 
 // first animation block
 
-var LETTER_FADE_SPEED = 2000 / 8, FINAL_PH_FADEOUT = 2000;
+var LETTER_FADE_SPEED = 2000 / 8, FINAL_PH_FADEOUT = 2000, STARTING_DELAY = 1000;
 
 var genmax = 0, once = false;
 
@@ -587,12 +605,53 @@ function fadeOutMax($cont) {
     }
 }
 
+function fadeOutMax2($cont) {
+    //$cont.css({
+    //    'left': ($(window).width() - $cont.width()) / 2,
+    //    'top': ($(window).height()) / 2 - $(".nav-button").height() - $cont.height() / 2 - TOP_MAGIC
+    //});
+
+    animRepos($cont);
+    var $thisLetters = $(".anim-letter.fade", $cont);
+    $thisLetters.delay(STARTING_DELAY).animate({
+        width: 0,
+        opacity: 0
+    }, {
+        duration: FINAL_PH_FADEOUT,
+        easing: 'linear',
+        complete: function () {
+            if ($animDayLabel) {
+                $animDayLabel.animate(
+                    {
+                        opacity: 1
+                    }, {
+                        duration: FINAL_PH_FADEOUT,
+                        complete: function () {
+                            if (!once) {
+                                $('.animate-div').hide();
+                                initWindowSizeChange();
+                                once = true;
+                            }
+                        }
+                    });
+            }
+
+            $cont.fadeOut({
+                duration: FINAL_PH_FADEOUT,
+                easing: 'linear',
+                complete: function () {
+                }
+            });
+
+        }
+    });
+}
+
 function animRepos($cont) {
-    $cont.animate({
+    $cont.delay(STARTING_DELAY).animate({
         'left': $(window).width() / 2 - $('.anim-letter', $cont).width()
     }, {
         duration: FINAL_PH_FADEOUT,
-        //duration: LETTER_FADE_SPEED * genmax,
         easing: 'linear'
     });
 }
