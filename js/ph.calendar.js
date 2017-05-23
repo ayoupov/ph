@@ -240,17 +240,17 @@ function onPrjHoverEndEvent($elem, prj) {
     PH.$prj_desc.fadeOut(COMMON_FADE_TIMEOUT);
 }
 
-function repositionMobilePrjDescs(){
+function repositionMobilePrjDescs() {
     var $central = getCentralLabel();
     //console.log($central);
-    $(".mobile-prj-desc:visible").each(function(){
+    $(".mobile-prj-desc:visible").each(function () {
         var h = $(this).width(); // rotated
-        $(this).css('top', $central[0].offsetTop + DAY_ITEM_SIZE );
+        $(this).css('top', $central[0].offsetTop + DAY_ITEM_SIZE);
         //$(this).css('top', $central.offset().top + DAY_ITEM_SIZE / 2);
     })
 }
 
-function attachMobilePrj($stripe, prj, prjid){
+function attachMobilePrj($stripe, prj, prjid) {
     //$(".mobile-prj-desc").hide();
     var $mobilePrjDesc = $("<div data-prjid='" + prjid + "'>")
         .html(prj[PH.lang].title + " / " + prj[PH.lang].location)
@@ -345,7 +345,9 @@ function addToRight(prj, prjid, before) {
 
 function getCentralLabel() {
     // todo: change to scrolltop selection
-    return $(document.elementFromPoint($(document).width() / 2, $(document).height() / 2 - DAY_ITEM_SIZE)); // x, y
+    //return $(document.elementFromPoint($(document).width() / 2, $(document).height() / 2 - DAY_ITEM_SIZE)); // x, y
+    var $current = $("li.calendar-day-label", PH.$daylist).filter(":within-viewport");
+    return $($current.get(Math.floor(($current.length - 1) / 2)));
 }
 
 
@@ -359,11 +361,11 @@ function findProjects(thisDate) {
 }
 
 function clearCentral() {
-    $(".calendar-month-label,.calendar-year-label").remove();
-    $('li', PH.$daylist).removeClass('selected');
 }
 
 function addCentral($li, date) {
+    $('li', PH.$daylist).removeClass('selected');
+    $(".calendar-month-label,.calendar-year-label").remove();
     $li.addClass('selected');
     var utcMonth = date.getUTCMonth();
     var $month = $('<li>').addClass('calendar-month-label').html(getMonthName(utcMonth)).data('month-idx', utcMonth);
@@ -374,52 +376,54 @@ function addCentral($li, date) {
 
 function scrollDayList(delta) {
     //clear central
-    clearCentral();
     PH.$daylist.scrollTop(PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE);
     //PH.$daylist.animate({scrollTop: PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE}, 100, function(){});
     // update central selection
-    var $preli = getCentralLabel(), $li;
-    if ($preli) {
-        while ($preli.hasClass('calendar-year-label') || $preli.hasClass('calendar-month-label')) {
-            PH.$daylist.scrollTop(PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE);
-            $li = getCentralLabel();
-        }
-        $li = $li || $preli;
-        if ($li) {
-            var selectedDayId = $li.attr('id');
-            var thisDate = dateFromDayId(selectedDayId);
-            addCentral($li, thisDate);
-            var prjsOnThisDay = findProjects(thisDate);
-            // show bg
-            if (!PH.isMobile) {
+    //var $preli = getCentralLabel(), $li;
+    //if ($preli) {
+    //    while ($preli.hasClass('calendar-year-label') || $preli.hasClass('calendar-month-label')) {
+    //        PH.$daylist.scrollTop(PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE);
+    //        $li = getCentralLabel();
+    //    }
+    //    $li = $li || $preli;
+    var $li = getCentralLabel();
+    if ($li) {
+        var selectedDayId = $li.attr('id');
+        var thisDate = dateFromDayId(selectedDayId);
+        addCentral($li, thisDate);
+        var prjsOnThisDay = findProjects(thisDate);
+        // show bg
+        if (!PH.isMobile) {
+            if (prjsOnThisDay.length) {
+                var prjBgToShow = null;
+                // filter all the projects with onscroll bg
+                prjsOnThisDay = prjsOnThisDay.filter(function (prj) {
+                    return prj.background && prj.background.when == 'scroll';
+                });
                 if (prjsOnThisDay.length) {
-                    var prjBgToShow = null;
-                    // filter all the projects with onscroll bg
-                    prjsOnThisDay = prjsOnThisDay.filter(function (prj) {
-                        return prj.background && prj.background.when == 'scroll';
-                    });
-                    if (prjsOnThisDay.length) {
-                        prjsOnThisDay.sort(sortPrjByStart);
-                        prjBgToShow = prjsOnThisDay[prjsOnThisDay.length - 1];
-                        showBackground(prjBgToShow);
-                    }
-                    else
-                        hideBackground();
+                    prjsOnThisDay.sort(sortPrjByStart);
+                    prjBgToShow = prjsOnThisDay[prjsOnThisDay.length - 1];
+                    showBackground(prjBgToShow);
                 }
                 else
                     hideBackground();
-            } else {
-                $(".mobile-prj-desc").hide();
-                // mobile show projects
-                $(prjsOnThisDay).each(function(){
-                    $(".mobile-prj-desc[data-prjid=" + this.id + "]").show();
-                });
-                if (prjsOnThisDay.length) {
-                    repositionMobilePrjDescs();
-                }
+            }
+            else
+                hideBackground();
+        } else {
+            $(".mobile-prj-desc").hide();
+            // mobile show projects
+            $(prjsOnThisDay).each(function () {
+                $(".mobile-prj-desc[data-prjid=" + this.id + "]").show();
+            });
+            if (prjsOnThisDay.length) {
+                repositionMobilePrjDescs();
             }
         }
+
+        Cookies.set('date', selectedDayId);
     }
+    //}
 }
 
 var swipeHandler = function (event, phase, direction, distance, duration, fingerCount, fingerData, currentDirection) {
@@ -427,14 +431,14 @@ var swipeHandler = function (event, phase, direction, distance, duration, finger
     var delta = phase == 'up' ? 1 : -1;
     delta *= Math.floor(distance / (DAY_ITEM_SIZE + 20)) - 1;
     scrollDayList(delta);
-    Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
+    //Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
 };
 
 function emulateScroll() {
     PH.$daylist.on('mousewheel DOMMouseScroll', function (event) {
         var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail))) * -1;
         scrollDayList(delta);
-        Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
+        //Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
     });
     PH.$daylist.swipe({
         swipeUp: swipeHandler,
@@ -448,11 +452,11 @@ function emulateScroll() {
     //});
     PH.$down.on('click', function () {
         scrollDayList(1);
-        Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
+        //Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
     });
     PH.$up.on('click', function () {
         scrollDayList(-1);
-        Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
+        //Cookies.set('date', $('.calendar-day-label.selected').attr('id'))
     });
 }
 
@@ -462,8 +466,11 @@ function emulateScroll() {
 
 function scrollDayListTo(dayId, firstTimeAnimation) {
     PH.is_scrolling = true;
-    var quickFindTop = $("#" + dayId)[0].offsetTop - $(window).height() / 2 - $(".nav-button", PH.$daylist).height() / 2;
-    PH.$daylist.scrollTop(quickFindTop);
+    var quickFindTop = $("#" + dayId)[0].offsetTop - $(window).height() / 2 - $('.nav-button').height() / 2;
+    if (quickFindTop)
+        PH.$daylist.scrollTop(quickFindTop);
+    else
+        PH.$daylist.scrollTop(0);
     var i = 0;
     while (getCentralLabel().attr('id') != dayId && i < PH.total_days) {
         i++;
@@ -481,7 +488,7 @@ function scrollDayListTo(dayId, firstTimeAnimation) {
 
 
 function windowSizeChange() {
-    if (PH.isMobile){
+    if (PH.isMobile) {
         document.body.height = window.innerHeight;
         $(".mobile-ui-fix").css('height', window.innerHeight);
     }
@@ -491,9 +498,11 @@ function windowSizeChange() {
     if ($selectedDay.length > 0) {
         dayId = $selectedDay.attr('id');
     }
-    scrollDayList(0);
-    if (dayId)
-        scrollDayListTo(dayId);
+    //if (dayId)
+    //    scrollDayListTo(dayId);
+    //else
+     scrollDayList(0);
+
 }
 
 function initWindowSizeChange() {
