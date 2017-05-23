@@ -81,8 +81,8 @@ function initProjectMenu() {
             html += " (" + dateToPrjListStr(prj.from) + ")";
         var $li = $("<li>").addClass("project-list-item").html(html);
         $li.on('click', function () {
-            scrollDayListTo("day" + dayIdFromDate(prj.from));
-            scrollDayList(0);
+            scrollDayListTo("day" + dayIdFromDate(prj.from), false, true);
+            //scrollDayList(0);
         });
         $ul.append($li);
     });

@@ -466,13 +466,9 @@ function emulateScroll() {
 //    return "mon" + monthIdFromDate(dateFromDayId(dayId));
 //}
 
-function scrollDayListTo(dayId, firstTimeAnimation) {
-    PH.is_scrolling = true;
-    var quickFindTop = $("#" + dayId)[0].offsetTop - $(window).height() / 2 - $('.nav-button').height() / 2;
-    if (quickFindTop)
-        PH.$daylist.scrollTop(quickFindTop);
-    else
-        PH.$daylist.scrollTop(0);
+var SCROLL_DAYLIST_TO_ANIM = 600;
+
+function approachGoalDay(dayId, firstTimeAnimation){
     var i = 0;
     while (getCentralLabel().attr('id') != dayId && i < PH.total_days) {
         i++;
@@ -485,6 +481,26 @@ function scrollDayListTo(dayId, firstTimeAnimation) {
     PH.is_scrolling = false;
     if (firstTimeAnimation) {
         animatePH2();
+    }
+}
+
+function scrollDayListTo(dayId, firstTimeAnimation, tryToAnimate) {
+    PH.is_scrolling = true;
+    var quickFindTop = $("#" + dayId)[0].offsetTop - $(window).height() / 2 - $('.nav-button').height() / 2;
+    if (quickFindTop) {
+        var speed = (!tryToAnimate) ? 0 : SCROLL_DAYLIST_TO_ANIM;
+        //    PH.$daylist.scrollTop(quickFindTop);
+        //else
+            PH.$daylist.animate({scrollTop: quickFindTop}, speed, function(){
+                // approach
+                approachGoalDay(dayId, firstTimeAnimation);
+                if (!firstTimeAnimation)
+                    scrollDayList(0); // start bg
+            });
+    }
+    else {
+        PH.$daylist.scrollTop(0);
+        approachGoalDay(dayId, firstTimeAnimation);
     }
 }
 
