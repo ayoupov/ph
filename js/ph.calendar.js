@@ -437,7 +437,7 @@ var hammerPanHandler = function (event) {
     //console.log(event);
     if (event.type == "pan" && (event.additionalEvent == 'panup' || event.additionalEvent == 'pandown' )) {
         var deltaY = event.deltaY;
-        var delta = (deltaY) ? ( Math.abs(deltaY) / deltaY ) : 0;
+        var delta = (deltaY) ? ( Math.abs(deltaY) / -deltaY ) : 0;
         //delta *= Math.floor(distance / (DAY_ITEM_SIZE + 20)) - 1;
         scrollDayList(delta);
     }

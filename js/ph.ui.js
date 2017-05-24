@@ -10,16 +10,25 @@ function initUI() {
 }
 
 function initSlick(){
-    $('.viewport').slick({
+    var $viewport = $('.viewport');
+    $viewport.slick({
         arrows: false,
         dots: false,
-        speed: 0,
+        speed: 500,
         infinite: false,
         slide: '.slide',
         slidesToShow: 1,
         slidesToScroll: 1
     });
-    $('.viewport').slick('slickGoTo', 1, true);
+    $viewport.slick('slickGoTo', 1, true);
+    $(".overall-title.swiper").on('click tap', function(){
+        //$viewport.slick('slickGoTo', 2, false);
+        $viewport.slick('slickNext');
+    });
+    $(".credits-footer.swiper").on('click tap', function(){
+        //$viewport.slick('slickGoTo', 0, false);
+        $viewport.slick('slickPrev');
+    });
 }
 
 function initAbout() {
