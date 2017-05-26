@@ -40,13 +40,13 @@ $(function () {
             emulateScroll();
             PH.is_scrolling = false;
             var savedDayId = Cookies.get('date');
-            if (savedDayId && savedDayId != 'undefined')
-                scrollDayListTo(savedDayId, true);
-            else {
+            //if (savedDayId && savedDayId != 'undefined')
+            //    scrollDayListTo(savedDayId, true);
+            //else {
                 var today = "day" + dayIdFromDate(new Date());
                 if ($("#" + today).length > 0)
                     scrollDayListTo(today, true);
-            }
+            //}
             // initWindowSizeChange goes to animation
             //initWindowSizeChange(); // also reselects central element and therefore starts bg if needed
             // init langs (have to have prjs inited already)
