@@ -2,13 +2,13 @@
   "labels": {
     "en": {
       "projects": "PROJECTS",
-      "about" : "<i>Simple Stories</i>",
-      "about_desc" : "'<i>Simple Stories</i>’ is a research project about sociological and spatial aspects of allotments’ gardens in Poland from 19th to 21st century. The conclusions of the study were presented in the form of an exhibition under the Polish section of the first Biennale Urbana in Venice in 2016.<br><br>Current contributors to Simple Stories project are:<br><br>PAUL CETNARSKI<br>DOMINIKA DYMEK<br>MIRABELA JURCZENKO<br>WOJCIECH MAZAN<br>RAFAŁ ŚLIWA<br><br>Notable contributors to the project:<br>Maciej Frąckowiak, Marta Kowalczyk, Anna Molenda i Roman Rutkowski."
+      "about": "<i>Simple Stories</i>",
+      "about_desc": "'<i>Simple Stories</i>' is a research project about sociological and spatial aspects of allotments’ gardens in Poland from 19th to 21st century. The conclusions of the study were presented in the form of an exhibition under the Polish section of the first Biennale Urbana in Venice in 2016.<br><br>Current contributors to Simple Stories project are:<br><br>PAUL CETNARSKI<br>DOMINIKA DYMEK<br>MIRABELA JURCZENKO<br>WOJCIECH MAZAN<br>RAFAŁ ŚLIWA<br><br>Notable contributors to the project:<br>Maciej Frąckowiak, Marta Kowalczyk, Anna Molenda i Roman Rutkowski."
     },
     "pl": {
       "projects": "PROJECTS",
-      "about" : "<i>Proste Historie</i>",
-      "about_desc" : "„<i>Proste Historie</i>” to projekt badający społeczne i przestrzenne aspekty ogrodów działkowych w Polsce w okresie od XIX do XXI wieku. Wnioski z badania zostały pokazane w formie wystawy w ramach polskiej sekcji pierwszego Biennale Urbana w Wenecji w 2016 roku.<br><br>W ramach projektu Proste Historie obecnie pracują:<br><br>PAUL CETNARSKI<br>DOMINIKA DYMEK<br>MIRABELA JURCZENKO<br>WOJCIECH MAZAN<br>RAFAŁ ŚLIWA<br><br>W projekcie Proste Historie do tej pory uczestniczyli:<br>Maciej Frąckowiak, Marta Kowalczyk, Anna Molenda i Roman Rutkowski."
+      "about": "<i>Proste Historie</i>",
+      "about_desc": "„<i>Proste Historie</i>” to projekt badający społeczne i przestrzenne aspekty ogrodów działkowych w Polsce w okresie od XIX do XXI wieku. Wnioski z badania zostały pokazane w formie wystawy w ramach polskiej sekcji pierwszego Biennale Urbana w Wenecji w 2016 roku.<br><br>W ramach projektu Proste Historie obecnie pracują:<br><br>PAUL CETNARSKI<br>DOMINIKA DYMEK<br>MIRABELA JURCZENKO<br>WOJCIECH MAZAN<br>RAFAŁ ŚLIWA<br><br>W projekcie Proste Historie do tej pory uczestniczyli:<br>Maciej Frąckowiak, Marta Kowalczyk, Anna Molenda i Roman Rutkowski."
     }
   },
   "projects": [
@@ -17,12 +17,12 @@
       "to": "2015-11-01",
       "en": {
         "title": "Concept",
-        "location" : "Venice",
+        "location": "Venice",
         "description": "'<i>Simple Stories</i>' project got awarded with 2nd prize in competition for a proposal for an exhibition in Pavillon Polonia during 15th Internationa Architecture Exhibition – La Biennale di Venezia in 2016."
       },
       "pl": {
         "title": "Koncepcja",
-        "location" : "Wenecja",
+        "location": "Wenecja",
         "description": "Projekt „<i>Proste Historie</i>” otrzymał drugą nagrodę w konkursie na propozycję kuratorską w Pawilonie Polskim na 15. Międzynarodowej Wystawie Architektury – La Biennale di Venezia w 2016."
       },
       "position": "left"
@@ -32,27 +32,31 @@
       "to": "2016-05-29",
       "en": {
         "title": "Biennale Urbana",
-        "location" : "NOTES.NA.6.TYGODNI ",
+        "location": "NOTES.NA.6.TYGODNI ",
         "description": "Announcement of the exhibition which is a continuation of the curatorial proposal at the Polonia Pavilion at the La Biennale di Venezia appears in the magazine Notes na 6 Tygodni. "
       },
       "pl": {
         "title": "Biennale Urbana",
-        "location" : "NOTES.NA.6.TYGODNI ",
+        "location": "NOTES.NA.6.TYGODNI ",
         "description": "Zapowiedź wystawy będącej kontynuacją propozycji kuratorskiej w Pawilonie Polskim na 15. Międzynarodowej Wystawie Architektury - La Biennale di Venezia pojawiła się w Notesie na 6 Tygodni."
       },
-      "position": "right"
+      "position": "right",
+      "background" : {
+        "type" : "image",
+        "url" : "/ph/assets/bg/04/Ivan_Erofeev-2365.jpg"
+      }
     },
     {
       "from": "2016-05-29",
       "to": "2016-10-30",
       "en": {
         "title": "Biennale Urbana",
-        "location" : "Venice",
+        "location": "Venice",
         "description": "Within the Polish section at Biennale Urbana we presented the project '<i>Simple Stories</i>'. We have talked about the gardens in five chapters, covering: the stories of people who live in allotment gardens, allotments’ architecture, garden planning, relationships to the surrounding, and the city's relationship to the gardens. The conclusion is that the gardens are autonomous spaces in the city that we should protect and try to transform so that they would remain in cities"
       },
       "pl": {
         "title": "Biennale Urbana",
-        "location" : "Wenecja",
+        "location": "Wenecja",
         "description": "W ramach polskiej sekcji Biennale Urbana zaprezentowaliśmy rozwinięcie projektu „<i>Proste Historie</i>”. Opowiedzieliśmy o ogrodach w pięciu rozdziałach, mówiąc o: historiach ludzi, które dzieją się na działkach, architekturze altan, zagospodarowaniu działek, relacji ogrodu do otaczającego kontekstu oraz o relacji miasta do ogrodów. Doszliśmy do wniosku, że ogrody są przestrzeniami autonomicznymi, które powinniśmy chronić i starać się przekształcać tak, aby mogły nadal funkcjonować w miastach."
       },
       "position": "right"
@@ -62,12 +66,12 @@
       "to": "2016-10-30",
       "en": {
         "title": "Panta Rhei",
-        "location" : "Venice",
-        "description": "Panta Rhei' it is a tale about two cities and an island. Speculative projects summing-up the '<i>Simple Stories</i>' exhibition on Biennale Urbana exhibition."
+        "location": "Venice",
+        "description": "'Panta Rhei' it is a tale about two cities and an island. Speculative projects summing-up the '<i>Simple Stories</i>' exhibition on Biennale Urbana exhibition."
       },
       "pl": {
         "title": "Panta Rhei",
-        "location" : "Wenecja",
+        "location": "Wenecja",
         "description": "„Panta Rhei” to opowieść o Szczecinie, Wenecji i wyspie z ogrodami, która posłużyła jako podsumowanie wystawy „<i>Proste Historie</i>” w ramach Biennale Urbana w Wenecji."
       },
       "position": "left"
@@ -77,12 +81,12 @@
       "to": "2016-05-23",
       "en": {
         "title": "Nowe pola sztuki",
-        "location" : "KUKBUK",
+        "location": "KUKBUK",
         "description": "<i>\"The bazaars and allotments' gardens are what attracts me the most these days, and I'm not the only one who thinks that way.</i>\" - in online edition of KUKBUK Agnieszka Kowalska writes about the returning vibe for gardening."
       },
       "pl": {
         "title": "Nowe pola sztuki",
-        "location" : "KUKBUK",
+        "location": "KUKBUK",
         "description": "„<i>Bazary i działki to jest to, co ostatnio najbardziej mnie zajmuje. I widzę, że nie jestem w tym odosobniona.</i>” - w internetowym wydaniu KUKBUK-a Agnieszka Kowalska pisze o powracającym ruchu działkowym."
       },
       "position": "right"
@@ -92,12 +96,12 @@
       "to": "2016-05-25",
       "en": {
         "title": "7 Polish Attractions",
-        "location" : "CULTURE.PL",
+        "location": "CULTURE.PL",
         "description": "\"Poland is strongly represented at the 15th International Architecture Exhibition in Venice. Polish architects are displaying their works not only in the national pavilion but also, for the first time, at the main exhibition in the Arsenale and at the various events which accompany or take place alongside the prestigious Biennale. The debate over the future of architecture as a field with great potential to change the quality of people's lives is the leitmotif of the 2016 Biennale, which is held under the title Reporting from the Front.\" - '<i>Simple Stories</i>' as a part of Biennale Urbana was one of 7 Polish representatives during the events in Venice."
       },
       "pl": {
         "title": "Siedem polskich akcentów",
-        "location" : "CULTURE.PL",
+        "location": "CULTURE.PL",
         "description": "„Na 15. Międzynarodowej Wystawie Architektury w Wenecji Polska ma silną reprezentację nie tylko w pawilonie narodowym, ale także – po raz pierwszy w historii – na wystawie głównej w Arsenale, jak również w ramach licznych wydarzeń towarzyszących i takich, które organizowane są równolegle do tej prestiżowej imprezy. Tematem przewodnim Biennale w 2016 roku, zatytułowanego „Raport z frontu”, jest debata nad przyszłością architektury jako dziedziny mającej ogromny wpływ na jakość życia ludzi.” - Agnieszka Sural z culture.pl pisze o „<i>Prostych Historiach</i>” jako o jeden z siedmiu akcentów podczas wydarzeń weneckich."
       },
       "position": "left"
@@ -107,12 +111,12 @@
       "to": "2016-10-03",
       "en": {
         "title": "Yes, we can",
-        "location" : "Warsaw",
+        "location": "Warsaw",
         "description": "Architectural creativity in the gardens - A lecture '<i>Simple Stories</i>' in a series of open meetings \"Biofilia. In search of nature\" organized by Pracownia Dóbr Wspólnych (Common Good Workshop)."
       },
       "pl": {
         "title": "Damy radę",
-        "location" : "Warszawa",
+        "location": "Warszawa",
         "description": "Twórczość architektoniczna działkowców - Wykład „<i>Proste Historie</i>” w ramach cyklu spotkań otwartych 'Biofilia. W poszukiwaniu natury' organizowanych przez Pracownia Dóbr Wspólnych."
       },
       "position": "right"
@@ -122,12 +126,12 @@
       "to": "2016-11-12",
       "en": {
         "title": "A story of Kazimierz Domański",
-        "location" : "WeekendGazeta.pl",
+        "location": "WeekendGazeta.pl",
         "description": "Kazimierz Domański’s ‘<i>Simple Story</i>’ clearly shows the autonomy of gardens and that within them almost everything is possible. Text written as part of Architecture VII (link), republished by WeekendGazeta.pl"
       },
       "pl": {
         "title": "Historia Kazimierza Domańskiego",
-        "location" : "WeekendGazeta.pl",
+        "location": "WeekendGazeta.pl",
         "description": "„<i>Prosta Historia</i>” Kazimierza Domańskiego z Oławy dobrze ilustruje autonomię ogrodów działkowych i to, że w ich przestrzeni może wydarzyć się wszystko. Tekst powstał pierwotnie w ramach Architektury 7 Dnia (link), opublikowany po raz drugi na portalu WeekendGazeta.pl"
       },
       "position": "left"
@@ -137,12 +141,12 @@
       "to": "2016-07-11",
       "en": {
         "title": "In the caress of the foam. Reiter new in allotments",
-        "location" : "wyborcza.pl Holiday magazine",
+        "location": "wyborcza.pl Holiday magazine",
         "description": "Polish allotments conquer Venice. The Parerga Group just now is presenting at the Biennale Urbana (an international exhibition of urban design projects as an alternative to the Venice Architecture Biennale) ‘Simple Stories’ - an exhibition presenting the social potential of allotment gardens in Poland."
       },
       "pl": {
         "title": "W pieszczocie pian. Reiter nowa na działkach",
-        "location" : "wyborcza.pl Magazyn świąteczny",
+        "location": "wyborcza.pl Magazyn świąteczny",
         "description": "„Polskie działki podbijają Wenecję. Grupa PARERGA prezentuje na Biennale Urbana (międzynarodowej wystawie projektów urbanistycznych będącej alternatywnym uzupełnieniem Biennale Architektury w Wenecji) [„Proste Historie”] - wystawę przedstawiającą społeczny potencjał ogrodów działkowych w Polsce.” tak dla wyborcza.pl pisze Paulina Reiter."
       },
       "position": "right"
@@ -152,26 +156,30 @@
       "to": "2016-09-21",
       "en": {
         "title": "Cover",
-        "location" : "DESIGN ALIVE",
+        "location": "DESIGN ALIVE",
         "description": "Illustration from the project 'Phanta Rhei' on the cover of summer edition of DesignAlive magazine."
       },
       "pl": {
         "title": "Okładka",
-        "location" : "DESIGN ALIVE",
+        "location": "DESIGN ALIVE",
         "description": "Illustracja z projektu „Panta Rhei” na okładce letniego wydania magazynu DesignAlive."
       },
-      "position": "left"
+      "position": "left",
+      "background" : {
+        "type" : "image",
+        "url" : "/ph/assets/bg/11/02_IMG_2730.jpg"
+      }
     },
     {
-      "from": "2017-11-17",
+      "from": "2017-11-18",
       "pl": {
         "title": "Atlas Altan",
-        "location" : "Instagram",
+        "location": "Instagram",
         "description": "Atlas Altan jest narzędziem, przy pomocy którego staramy się zrozumieć architekturę altan. Wyobraźnia działkowców, ogrom i różnorodność analizowanego materiału oraz autonomiczny charakter ogrodów działkowych tego nie ułatwiają. W świecie altan działkowych może wydarzyć się prawie wszystko, a altan do sfotografowania jest prawie milion."
       },
       "en": {
         "title": "Atlas Altan",
-        "location" : "Instagram",
+        "location": "Instagram",
         "description": "Atlas Altan is a tool by which we are trying to understand allotments’ architecture. Imagination of the gardeners, the vast material which needs to be analyzed, and gardens’ autonomy are not helpful. In the scope of this architecture everything can happen. And still one million of allotments has to be photographed."
       },
       "position": "right"
@@ -181,12 +189,12 @@
       "to": "2017-02-01",
       "pl": {
         "title": "„Proste Historie”",
-        "location" : "Synchronizacja",
+        "location": "Synchronizacja",
         "description": "„Ten niezależny twór miejski jest odporny na upływ czasu, zmiany społeczne, gospodarcze, polityczne i ekonomiczne. O jego wyjątkowości świadczy prawie dwustuletnia historia oraz fakt, że praktycznie w niezmienionej formie przetrwał dwie wojny światowe, odzyskanie niepodległości, i kilka ustrojów politycznych, ale co najważniejsze: ogrody są niemym świadkiem życia co najmniej pięciu generacji Polaków i wszystko wskazuje na to, że doczekają się jeszcze kilku.\" - Synchronizacja: Architektura Niezrównoważona publikuje artykuł grupy PARERGA „Proste Historie. 200 lat ogrodów działkowych w polskich miastach\""
       },
       "en": {
-        "title": "\'Simple Stories\'",
-        "location" : "Synchronizacja",
+        "title": "'Simple Stories'",
+        "location": "Synchronizacja",
         "description": "“This autonomous urban form resists time, social, economical and political changes. Its uniqueness manifests in almost 200-year long history and the fact that in a practically unchanged form it withstood two world wars, the retrieving of independence, and a few political systems but most of all: gardens are silent witness of life of at least 5 generations of Poles and so far it turns out these will experience even more.” - Synchronizacja: Architektura Niezrównoważona [Synchronization: Unsustainable architecture] publishes article “Simple Stories. 200 years of garden allotments in Polish cities” by PARERGA."
       },
       "position": "left"
@@ -196,27 +204,31 @@
       "to": "2017-02-21",
       "pl": {
         "title": "Pocztówki ogrodów działkowych Wrocławia",
-        "location" : "Wrocław",
+        "location": "Wrocław",
         "description": "Pocztówki przedstawiają dziewięć sytuacji, które mogą wydarzyć się we wrocławskich ogrodach działkowych, w różnych porach roku i w każdej części miasta. Obwoluta to najważniejsze informacje o ogrodach, mapa Polski i Wrocławia z zaznaczonymi wszystkimi istniejącymi ogrodami działkowymi."
       },
       "en": {
         "title": "Postcards of Wrocław’s allotments’ gardens",
-        "location" : "Wrocław",
+        "location": "Wrocław",
         "description": "Postcards showing 9 situations that might occur within Wroclaw’s allotment gardens - in different seasons, and in a different districts. Cover contains essential information about the allotment movement in the country and detailed map of Poland and Wroclaw with all existing allotment gardens specified."
       },
-      "position": "right"
+      "position": "right",
+      "background" : {
+        "type" : "image",
+        "url" : "/ph/assets/bg/14/DSC_1067.JPG"
+      }
     },
     {
       "from": "2017-04-26",
       "to": "2017-05-26",
       "pl": {
         "title": "Atlas Altan",
-        "location" : "Aktivist",
+        "location": "Aktivist",
         "description": "Płaskorzeźba wykonana z samochodowych kołpaków, daszek z blachy falistej, żółta framuga i turkusowy front, do tego lekko chybotliwe schodki na poddasze i okienko z obowiązkową firaneczką. W najnowszym numerze Aktivist Sylwia Kawalerowicz pisze o tym jak i dlaczego Wojciech Mazan prowadzi Atlas Altan."
       },
       "en": {
         "title": "Atlas Altan",
-        "location" : "Aktivist",
+        "location": "Aktivist",
         "description": "Bas-relief made of automotive caps, corrugated sheet metal roof, yellow window’s frames and turquoise front, slightly wobbly stairs to the attic and a window with an obligatory curtain. In the latest issue of Aktivist Sylwia Kawalerowicz writes about how and why Wojciech Mazan runs Atlas Altan Polskich."
       },
       "position": "left"
@@ -226,12 +238,12 @@
       "to": "2017-06-02",
       "pl": {
         "title": "Atlas Altan",
-        "location" : "Zwykłe Życie",
+        "location": "Zwykłe Życie",
         "description": "„Ping pong do 6”, czyli sześć pytań Mateusza Bzówki ze Zwykłego Życia do Wojciecha Mazana o tym po co i dlaczego powstaje Atlas Altan."
       },
       "en": {
         "title": "Atlas Altan",
-        "location" : "Zwykłe Życie",
+        "location": "Zwykłe Życie",
         "description": "“Ping pong to 6”, six questions from Mateusz Bzówka from Zwykłe Życie to Wojciech Mazan concerning why and what for Atlas Altan is being created."
       },
       "position": "right"
@@ -241,12 +253,12 @@
       "to": "2017-08-30",
       "pl": {
         "title": "„Proste Historie”. Ogrody i Miasta.",
-        "location" : "Magazyn Miasta",
+        "location": "Magazyn Miasta",
         "description": "Współczesna dyskusja o działkach skupia się głównie wokół problemów wywłaszczeń, likwidacji i złej lokalizacji ogrodów w polskich miastach. Artykuł na łamach Magazynu Miasta próbuje udowodnić, że nadchodzącym trendem w dyskursie będzie powrót do rozmów o ideowych podłożach funkcjonowania ogrodów w polskich miastach jak za czasów architekta krajobrazu Leberechta Migge."
       },
       "en": {
         "title": "'Simple Stories'. Gardens and Cities.",
-        "location" : "Magazyn Miasta",
+        "location": "Magazyn Miasta",
         "description": "Contemporary discussion about allotment gardening in Polish cities is mainly focused on expropriation, liquidation or not optimal localisation. The article in Magazyn Miasta (City's Magazine) is trying to proof that forthcoming trend in the debate will focus again on conceptual ideology of allotment gardening functioning as it used to be in the times of landscape architect — Leberecht Migge."
       },
       "position": "left"
@@ -256,12 +268,12 @@
       "to": "2017-05-26",
       "pl": {
         "title": "Między kulturą a naturą",
-        "location" : "Rzut + 13 EKOLOGIA",
+        "location": "Rzut + 13 EKOLOGIA",
         "description": "The naive architecture of the allotments’ gardens in opposition to modern ecological degradation - High technology, advanced system solutions, certifications telling us what is more and what is less \"ecological\" overwhelm, degrade ecology and cause the loss of what really matters - the simplicity of nature. Meanwhile, in almost each city there are spaces, which are of the last few that respect nature and allow for an in-depth experience of the eternal rhythm of following seasons, which take on the real meaning - allotment gardens."
       },
       "en": {
         "title": "Between culture and nature",
-        "location" : "Rzut + 13 EKOLOGIA",
+        "location": "Rzut + 13 EKOLOGIA",
         "description": "Naiwistyczna architektura ogrodów działkowych w opozycji do współczesnego wynaturzenia ekologicznego - Skomplikowane technologie, zaawansowane rozwiązania systemowe, certyfikaty mające podpowiedzieć nam co jest bardziej, a co mniej „ekologiczne” przytłaczają, wynurzają ekologię i powodują zanik tego, co naprawdę ważne – prostoty natury. Tymczasem prawie w każdym mieście znajdują się przestrzenie, które jako jedne z nielicznych szanują przyrodę i pozwalają na dogłębne przeżywanie odwiecznego rytmu następujących po sobie pór roku nacierających w nich realnego znaczenia – ogrody działkowe."
       },
       "position": "right"
@@ -271,12 +283,12 @@
       "to": "2017-06-21",
       "pl": {
         "title": "Allotments for everyone",
-        "location" : "Magazyn Miasta, wydanie anglojęzyczne",
+        "location": "Magazyn Miasta, wydanie anglojęzyczne",
         "description": "Każdy ogród działkowy, działka i altana reprezentują osobiste bądź wspólnotowe potrzeby. Porównanie postkomunistycznych krajów jak Polska, Czechy czy Słowacja z krajami jak Niemcy i Francja dowodzi, że pomimo różnych przyczyn założycielskich, ogrody działkowe stały się spójnym językiem urbanistycznym dla całej Europy. Artykuł analizuje współczesne i możliwe przyszłe trendy w ogrodnictwie działkowym w Europie."
       },
       "en": {
         "title": "Allotments for everyone",
-        "location" : "Magazyn Miasta, English-language edition",
+        "location": "Magazyn Miasta, English-language edition",
         "description": "Each allotment garden colony, each garden and each shed is a personal or communal self-expression. Comparison of post-socialist Europe like Poland, Czech Republic or Slovakia with the countries like Germany or France only proves that despite any original differences, gardens became a common urban language for the whole of Europe. An article that investigates current and possible forthcoming trends in allotment gardening in Europe."
       },
       "position": "left"
@@ -286,12 +298,12 @@
       "to": "2017-05-26",
       "pl": {
         "title": "Atlas Altan – Wystawa",
-        "location" : "Warszawa",
+        "location": "Warszawa",
         "description": "Na potrzeby wystawy w Realnym Obszarze Działań zastosowaliśmy prosty podział ze względu na to, co najmocniej charakteryzuje formę altany czyli dach. Wyróżniono cztery rodzaje dachów: płaski, pulpitowy, dwuspadowy oraz inny, o nietypowej formie, organizują 16 monochromatycznych modeli altan, po 4 w każdej z grup, ustawione zawsze od najmniejszego do największego. Ta systematyka jest pierwszą próbą stworzenia typologii altan oraz sposobem na pokazanie ich bogatej różnorodności."
       },
       "en": {
         "title": "Atlas Altan – Exhibition",
-        "location" : "Warsaw",
+        "location": "Warsaw",
         "description": "For an exhibition in Realny Obszar Działań we divided the allotments into 4 groups, as a factor we have chosen a roof, the element that is mostly defining the sheds’ form. 4 groups of roofs: flat, lean-on, gable roof, and others; are organizing 16 monochromatic models, 4 of each placed from the smallest to the biggest in each group. This selection is first attempt to create sheds’ typologie and a way to show how vast the spectrum is of hut forms."
       },
       "position": "right"
@@ -301,27 +313,27 @@
       "to": "2017-05-26",
       "pl": {
         "title": "„Proste Historie”  – strona www",
-        "location" : "Warszawa",
+        "location": "Warszawa",
         "description": "Projekt „Proste Historie” i wszystkie poboczne przedsięwzięcia z nim związane zebrane na osi czasu."
       },
       "en": {
-        "title": "Simple Stories\' website",
-        "location" : "Warsaw",
+        "title": "Simple Stories' website",
+        "location": "Warsaw",
         "description": "<i>Simple Stories'</i> and all the side projects associated with it gathered on the timeline."
       },
-      "position": "right"
+      "position": "left"
     },
     {
       "from": "2017-10-01",
       "to": "2017-10-01",
       "pl": {
         "title": "Działka Dla Każdego",
-        "location" : "Wroclaw",
+        "location": "Wroclaw",
         "description": "wystawa Działka dla Każdego w Muzeum Architektury we Wrocławiu."
       },
       "en": {
         "title": "Allotments for everyone",
-        "location" : "Wroclaw",
+        "location": "Wroclaw",
         "description": "Exhibition Działka dla Każdego in Museum of Architecture in Wrocław."
       },
       "position": "left"
@@ -331,12 +343,12 @@
       "to": "2014-10-04",
       "pl": {
         "title": "Ogrody działkowe w świetle nowej ustawy",
-        "location" : "Konferencja Zieleń miejska - naturalne bogactwo miasta, Toruń",
+        "location": "Konferencja Zieleń miejska - naturalne bogactwo miasta, Toruń",
         "description": "W lipcu 2012 r. Trybunał Konstytucyjny orzekł o niekonstytucyjności obowiązującej wówczas ustawy o rodzinnych ogrodach działkowych. Zaistniała sytuacja wymagała opracowania nowego aktu prawnego. Obowiązująca od 19 stycznia 2014 r. nowa ustawa doceniając rolę ogrodów działkowych w miastach uchroniła je przed likwidacją. Jednak analiza poszczególnych artykułów nowej ustawy dowodzi wielu luk i niejasności, które mogą mieć negatywne konsekwencje dla przyszłości ogrodów działkowych w miastach."
       },
       "en": {
         "title": "Gardens in the light of the new law",
-        "location" : "Conference Urban greenery - the natural wealth of the city, Toruń",
+        "location": "Conference Urban greenery - the natural wealth of the city, Toruń",
         "description": "In July 2012, the Constitutional Tribunal ruled on the unconstitutionality of the then in-force Act on family allotment gardens. The situation required the development of a new legal act. The new law, in force since January 2014, appreciated the role of allotment gardens in cities and preventing them from liquidations. However, the analysis of the individual articles of the new law proves many gaps and uncertainties that may have negative consequences for the future of urban allotment gardens."
       },
       "position": "right"
@@ -346,12 +358,12 @@
       "to": "2014-10-12",
       "pl": {
         "title": "Ogrody społeczne a jakość życia w mieśćie",
-        "location" : "Konferencja HABITATY 2014, Reaktywacja małych społeczności lokalnych, Wrocław",
+        "location": "Konferencja HABITATY 2014, Reaktywacja małych społeczności lokalnych, Wrocław",
         "description": "Boom na miejskie ogrodnictwo trwa. Co chwilę słyszy się o kolejnym nowym ogrodzie społecznym. Niestety nie można tego samego powiedzieć o ogrodach działkowych, których historia sięga I połowy XIX w. Dostępność jedynie wąskiemu gronu użytkowników oraz dyskusyjna estetyka często prowadzi do ich likwidacji. Kontrast pomiędzy tymi dwoma formami miejskiego ogrodnictwa dowodzi, że prężnie rozwijające się otwarte ogrody społeczne stanowią właściwy kierunek rozwoju miejskich ogrodów działkowych."
       },
       "en": {
         "title": "Social gardens versus quality of life in the city",
-        "location" : "Conference HABITAT 2014, Reactivation of small local communities, Wrocław",
+        "location": "Conference HABITAT 2014, Reactivation of small local communities, Wrocław",
         "description": "Boom for urban gardening continues. More and more ofen we hear about the new social garden. Unfortunately, the same can not be said about allotment gardens whose tradition goes back the first half of the nineteenth century. The accessibility for only a narrow group of users and their controwersial aesthetics often lead to their liquidation. The contrast between these two forms of urban gardening proves that the dynamically developing open social gardens are the right direction for the development of urban allotment gardens."
       },
       "position": "left"
@@ -361,12 +373,12 @@
       "to": "2015-10-02",
       "pl": {
         "title": "Ogrodnictwo działkowe a jakość życia w mieście",
-        "location" : "Konferencja Biocity, Warszawa",
+        "location": "Konferencja Biocity, Warszawa",
         "description": "Nikt już nie podważa zbawiennego wpływu zieleni miejskiej na jakość życia mieszkańców miast. Jednak mało kto mówiąc o niej ma na myśli ogrody działkowe. Niegdyś zapomniane powoli wracają do łask, głównie dzięki swojej specyfice i silnej autonomii. "
       },
       "en": {
         "title": "Gardening versus quality of life in the city",
-        "location" : "Conference Biocity, Warsaw",
+        "location": "Conference Biocity, Warsaw",
         "description": "Nobody undermines the salutary impact of urban green on the quality of life of city dwellers. However, hardly anyone who speaks about it, has in mind the allotment gardens, mainly due to its specificity and strong autonomy."
       },
       "position": "right"
@@ -376,12 +388,12 @@
       "to": "2015-10-08",
       "pl": {
         "title": "Znaczenie ogrodów działkowych a rewitalizacji miast",
-        "location" : "Konferencja Zieleń miejska - naturalne bogactwo miasta, Toruń",
+        "location": "Konferencja Zieleń miejska - naturalne bogactwo miasta, Toruń",
         "description": "Obecnie mamy do czynienia z nadmiernym przywiązaniem do modernizacyjnego charakteru rewitalizacji, które skutkuje zapominaniem o jej społecznym wymiarze. Ogrody działkowe zakładano w mało atrakcyjnych, peryferyjnych strefach miast, które z czasem stawały się zielonymi oazami tętniącymi życiem, dzięki czemu stanowią one skuteczne narzędzie rewitalizacyjne. Analiza programów i projektów rewitalizacji ponad trzydziestu polskich miast wykazała, że jedynie dwa z nich doceniają rolę miejskich ogrodów działkowych. Prowadzi to do masowych likwidacji ogrodów działkowych, które wbrew powszechnej opinii nie są reliktami przeszłości."
       },
       "en": {
         "title": "Importance of allotments in regeneration processes of cities",
-        "location" : "Conference Urban greenery - the natural wealth of the city, Toruń",
+        "location": "Conference Urban greenery - the natural wealth of the city, Toruń",
         "description": "At present, we are dealing with excessive attachment to the modernization nature of revitalization, which results in forgetting its social dimension. Allotment gardens were established in the unattractive, peripheral zones of cities, which over time became full of life - green oases, thus making them an effective revitalization tool. An analysis of the revitalization programs and projects of more than thirty Polish cities showed that only two of them appreciated the role of urban allotment gardens. This leads to massive liquidations of allotment gardens, which, contrary to popular opinion, are not relics of the past."
       },
       "position": "left"
@@ -391,12 +403,12 @@
       "to": "2015-10-04",
       "pl": {
         "title": "ROD im. Obrońców Pokoju w Warszawie",
-        "location" : "Seminarium: Przyszłość ogrodów działkowych w miastach",
+        "location": "Seminarium: Przyszłość ogrodów działkowych w miastach",
         "description": "ROD im. Obrońców Pokoju to najstarszy, warszawski ogród działkowy. Pomimo burzliwej historii i licznych prób likwidacji w 2012 r. obchodzony był Jubileusz 110-lecia jego istnienia. Główną ideą nowej koncepcji programowo-przestrzennej było stworzenie atrakcyjnej przestrzeni z bogatą ofertą edukacyjną, artystyczną i rekreacyjną, która zaktywizuje lokalną społeczność. Stworzenie miejsca przyjaznego nie tylko wąskiej grupie działkowców, ale także mieszkańcom Mokotowa, a nawet całej Warszawy."
       },
       "en": {
         "title": "The allotments’ garden of the Defender of Peace in Warsaw",
-        "location" : "Seminar: The future of urban allotment garden",
+        "location": "Seminar: The future of urban allotment garden",
         "description": "Defenders of Peace ROD is the oldest Warsaw allotment garden. Despite the turbulent history and numerous attempts to liquidate it, in 2012 the 110th anniversary of its existence was celebrated. The main idea behind the new program / spatial concept was to create an attractive space with a rich educational, artistic and recreational offering that activates the local community. Creating a friendly place not only for a narrow group of allotment users but also for residents of Mokotów and even all Warsaw."
       },
       "position": "right"
@@ -406,12 +418,12 @@
       "to": "2015-10-15",
       "pl": {
         "title": "Ogrody działkowe - między kulturą a naturą",
-        "location" : "International Biennale of Architecture Kraków 2015",
+        "location": "International Biennale of Architecture Kraków 2015",
         "description": "Ludzki Wymiar Przestrzeni Miejskich to hasło promujące Międzynarodowe Biennale Architektury Kraków 2015. Niestety mówiąc o ogrodach działkowych często zapomina się właśnie o ich ludzkim wymiarze. Dostrzega się jedynie kiepską estetykę, ograniczoną dostępność lub jej brak oraz wysoką wartość gruntów, które zajmują. Następnie służą one jako argumenty w walce o ich likwidację. W ten sposób miasta tracą bardzo cenne tereny zieleni, które wymagają jedynie modernizacji i powrotu do dawnych założeń funkcjonalno-organizacyjnych."
       },
       "en": {
         "title": "Allotments’ gardens - between culture and nature",
-        "location" : "International Biennale of Architecture Kraków 2015",
+        "location": "International Biennale of Architecture Kraków 2015",
         "description": "The Human Dimension of Urban Space it is a promoting slogan of The International Biennale of Architecture Krakow 2015. Unfortunately, speaking of allotment gardens, it is often forgotten about their human dimension. Only it is perceived the lousy aesthetics, limited availability or a lack of it, and the high value of the land, which they are occupied. Then they are used as arguments in the fight for their liquidation. In this way, cities lose valuable green areas, that only need modernization and restoration to the former functional and organizational assumptions."
       },
       "position": "left"
@@ -421,12 +433,12 @@
       "to": "2015-12-12",
       "pl": {
         "title": "Fenomen \"sztucznie\" użytkowanych działek",
-        "location" : "Prace Komisji Krajobrazu Kulturowego Polskiego Towarzystwa Geograficznego",
+        "location": "Prace Komisji Krajobrazu Kulturowego Polskiego Towarzystwa Geograficznego",
         "description": "Po wyroku Trybunału Konstytucyjnego obawiano się, że prace nad nową ustawą zakończą się całkowitą likwidacją ogrodnictwa działkowego w Polsce. Strach ten negatywnie wpłynął na kondycję i estetykę ogrodów działkowych. Ograniczono do minimum nakłady finansowe przeznaczane na użytkowanie działek. Wizja wysokich odszkodowań spowodowała \"sztuczne\" przetrzymywanie działek oraz ich nabywanie przez osoby niezainteresowane ich użytkowaniem, a jedynie liczące na wysokie odszkodowania polikwidacyjne."
       },
       "en": {
         "title": "Phenomenon of \"artificially\" used gardens",
-        "location" : "Arrangements of the Committee of Cultural Landscape of the Polish Geographical Society",
+        "location": "Arrangements of the Committee of Cultural Landscape of the Polish Geographical Society",
         "description": "After the judgement of the Constitutional Court, it was feared that the work on the new law will end with the complete liquidation of allotment gardens in Poland. This fear negatively affected the condition and aesthetics of the plots. The financial resources allocated to maintenance of them, were limited to minimum. The vision of high compensations caused the \"artificial\" keeping of plots and their acquisition by people not interested in using them, but only count on high compensation after liquidation."
       },
       "position": "right"
@@ -436,12 +448,12 @@
       "to": "2016-02-26",
       "pl": {
         "title": "Ogrody działkowe ̶ nadzieja czy koszmar współczesnych miast?",
-        "location" : "Seminarium Miejska Sztuka Ogrodowa w ramach Targów Gardenia w Poznaniu",
+        "location": "Seminarium Miejska Sztuka Ogrodowa w ramach Targów Gardenia w Poznaniu",
         "description": "Ogrody działkowe budzą bardzo skrajne uczucia. Ci, którzy oglądają je wyłącznie z zewnątrz, widzą w nich jedynie duże, niezagospodarowane tereny inwestycyjne. Z kolei Ci, którzy znają je od wewnątrz dostrzegają nie tylko znajdującą się w nich zieleń, ale przede wszystkim ludzi, którzy ją pielęgnują. Ogród działkowy bardzo trafnie określony został przez Rocha Sulimę jako przestrzeń między rajem a śmietnikiem. Wszystko wskazuje na to, że coraz częściej jest to raj, niż śmietnik."
       },
       "en": {
         "title": "Allotments’ gardens - hope or a nightmare of modern cities?",
-        "location" : "Urban Garden Art Seminar at the Gardenia Fair in Poznań",
+        "location": "Urban Garden Art Seminar at the Gardenia Fair in Poznań",
         "description": "Allotment gardens elicit extremely different feelings. Those who know them exclusively from the outside, see only large, undeveloped investment areas. In turn, those who know them from the inside see not only the green areas inside them, but above all the people who take care for them. Allotment garden was defined very well by Rocha Sulima as a space between paradise and refuse dump. All indications are that more often it is paradise, not refuse dump."
       },
       "position": "left"
@@ -451,12 +463,12 @@
       "to": "2016-12-03",
       "pl": {
         "title": "Ceramiczne zdobnictwo architektoniczne",
-        "location" : "Prace Komisji Krajobrazu Kulturowego Polskiego Towarzystwa Geograficznego",
+        "location": "Prace Komisji Krajobrazu Kulturowego Polskiego Towarzystwa Geograficznego",
         "description": "Architektura ogrodów działkowych jest bardzo specyficzna. Wielokrotnie nie mieści się ona w żadnych standardach czy normach architektoniczno-budowlanych. Mozaiki ze stłuczki ceramicznej utożsamiane są głównie z czasami PRL-u. Ich obecność w chodzieskich ROD jest czymś więcej niż tylko pozostałością po minionej modzie. Stanowią one wyróżnik krajobrazu będący manifestacją tożsamości jej twórców - robotników chodzieskich fabryk porcelany."
       },
       "en": {
         "title": "Ceramic architectural ornamentation",
-        "location" : "Arrangements of the Committee of Cultural Landscape of the Polish Geographical Society",
+        "location": "Arrangements of the Committee of Cultural Landscape of the Polish Geographical Society",
         "description": "The architecture of allotment gardens is very specific. Repeatedly it goes beyond any standards or architectural-building norms. Mosaics of ceramic cullet are identified mostly with time of PRL. Their presence in the allotment gardens in Chodzież is more than just the residue after a past fashion. They are a distinguishing feature of the landscape, which is a manifestation of the identity of their creators - the laborers of the porcelain factories."
       },
       "position": "right"
@@ -466,16 +478,15 @@
       "to": "2017-06-30",
       "pl": {
         "title": "ROD im. Józefa Chociszewskiego w Poznaniu",
-        "location" : "Studia Miejskie",
+        "location": "Studia Miejskie",
         "description": "Współcześnie obserwuje się wyraźny zanik tradycyjnej funkcji uprawowej ogrodów działkowych. Wzrost znaczenia rekreacyjnego miejskich ogrodów działkowych ma związek z wciąż niedostateczną ilością terenów zieleni urządzonej oraz pogarszającymi się warunkami życia w mieście. Dzięki znajdującej się w nich zieleni, ale także kwitnącemu życiu sąsiedzkiemu, ogrody działkowe pełnią rolę swoistych zielonych enklaw pośród „miejskiej dżungli”."
       },
       "en": {
         "title": "The allotments’ gardens of Józef Chociszewski in Poznan",
-        "location" : "Urban studies",
+        "location": "Urban studies",
         "description": "Nowadays, there is the distinct disappearance of the traditional cultivation function of allotment gardens. The increasing importance of recreation in urban allotment gardens is related to the still insufficient number of green areas and deteriorating living conditions in the city. Thanks to their greenery, but also the blossoming of neighborhood life, the allotment gardens are a kind of green enclave set in the \"urban jungle\"."
       },
       "position": "left"
     }
-
   ]
 }

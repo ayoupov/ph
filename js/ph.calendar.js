@@ -3,12 +3,15 @@ var sortPrjByStart = function (a, b) {
 };
 
 var sortPrjByEnd = function (a, b) {
+    if (!a.to || !b.to)
+        return 0;
     return a.to.getTime() - b.to.getTime();
 };
 
 var datify = function (prj) {
     prj.from = new Date(prj.from);
-    prj.to = prj.to ? new Date(prj.to) : new Date();
+    prj.to = prj.to ? new Date(prj.to) :
+        (prj.from.getTime() - new Date().getTime() >= 0) ? prj.from : new Date();
 };
 
 var monthToRoman = function (monthIdx) {
@@ -48,7 +51,7 @@ function dateToPrjListStr(date) {
 function populateCalendar(prjs) {
     // init projects
     if (prjs) {
-
+        //prjs.each(fixEndDates);
         PH.prjs = prjs;
         // determine the earliest project and timespan
         var firstPrj = prjs[0];

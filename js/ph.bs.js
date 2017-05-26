@@ -28,12 +28,18 @@ $(function () {
 
     var prjs;
     $.ajax('/ph/data/ph.json', {
+        error: function(xhr, status, error) {
+            //var err = eval("(" + xhr.responseText + ")");
+            //console.log(err.Message);
+            console.log(error);
+        },
         success: function (res) {
             // init labels
             PH.labels = res.labels;
             // init prjs
             prjs = res.projects;
             prjs.forEach(datify);
+
             // sort by beginning
             prjs.sort(sortPrjByStart);
             populateCalendar(prjs);
