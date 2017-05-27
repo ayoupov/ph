@@ -36,6 +36,13 @@ function changeLang(lang, firstTime) {
         $m.html(getMonthName([$m.data('month-idx')]));
     });
 
+    initProjectMenu();
+
+    // update <a> selection
+    $(".lang-select a").html(lang == 'en' ? 'PL' : 'EN');
+    Cookies.set('lang', lang);
+
+    // fixme: if other than central slide
     if (PH.isMobile && !firstTime) {
         $(".mobile-prj-desc").remove();
         $(PH.prjs).each(function () {
@@ -45,16 +52,10 @@ function changeLang(lang, firstTime) {
             attachMobilePrj($stripe, prj, prjid);
             //$(".mobile-prj-desc[data-prjid='" + prjid + "']").html(prj[PH.lang].title + " / " + prj[PH.lang].location)
         });
-        //$(".mobile-prj-desc").removeClass('hidden-first');
-        //repositionMobilePrjDescs();
-        scrollDayList(0);
+        if ($(".calendar-list li:within-viewport").length > 0)
+            scrollDayList(0);
     }
 
-    initProjectMenu();
-
-    // update <a> selection
-    $(".lang-select a").html(lang == 'en' ? 'PL' : 'EN');
-    Cookies.set('lang', lang);
 }
 
 function initLangEvents() {

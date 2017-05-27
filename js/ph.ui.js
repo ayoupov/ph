@@ -29,6 +29,10 @@ function initSlick(){
         //$viewport.slick('slickGoTo', 0, false);
         $viewport.slick('slickPrev');
     });
+    $viewport.on('afterChange', function(slick, currentSlide){
+        if (currentSlide.currentSlide == 1)
+            scrollDayList(0);
+    });
 }
 
 function initAbout() {

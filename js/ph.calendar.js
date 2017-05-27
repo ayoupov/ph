@@ -402,7 +402,7 @@ function scrollDayList(delta) {
     //    }
     //    $li = $li || $preli;
     var $li = getCentralLabel();
-    if ($li) {
+    if ($li && $li.length) {
         var selectedDayId = $li.attr('id');
         var thisDate = dateFromDayId(selectedDayId);
         addCentral($li, thisDate);
