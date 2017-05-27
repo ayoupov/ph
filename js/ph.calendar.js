@@ -35,7 +35,7 @@ function dayIdFromDate(date) {
 function monthIdFromDate(date) {
     return "" +
         date.getFullYear() + '-' +
-        ((date.getMonth() < 10 ? "0" : "") + (date.getMonth() + 1));
+        ((date.getMonth() < 9 ? "0" : "") + (date.getMonth() + 1));
 }
 
 function dateFromDayId(dayId) {
@@ -151,14 +151,26 @@ function extractVimeoId(url) {
     return split[split.length - 1].split("?")[0];
 }
 
-function attachPrjDesc($elem, prj, position) {
+function attachPrjDesc($elem, prj, position, team) {
     PH.$prj_desc.empty();
     var $desc = $("<div class='project-description'/>");
     var $title = $("<div class='title'/>").html(prj.title);
     var $location = null;
     if (prj.location)
         $location = $("<div class='location'/>").html(prj.location);
-    var $content = $("<div class='description' />").html(prj.description);
+    var desc = "";
+    if (prj.description)
+        desc += prj.description;
+    if (team)
+    {
+        var label;
+        if (team.split(',').length > 1)
+            label = PH.labels[PH.lang].team;
+        else
+            label = PH.labels[PH.lang].author;
+        desc += "<br><br>" + label + team;
+    }
+    var $content = $("<div class='description' />").html(desc);
     $desc.append($title);
     if ($location)
         $desc.append($location);
@@ -231,7 +243,7 @@ function onPrjHoverStartEvent($elem, prj) {
         showBackground(prj);
     }
     // position project description
-    attachPrjDesc($elem, prj[PH.lang], prj.position);
+    attachPrjDesc($elem, prj[PH.lang], prj.position, prj.team);
     PH.$prj_desc.fadeIn(COMMON_FADE_TIMEOUT);
 }
 
@@ -465,10 +477,6 @@ function emulateScroll() {
     });
 }
 
-//function dayIdToMonthId(dayId) {
-//    return "mon" + monthIdFromDate(dateFromDayId(dayId));
-//}
-
 var SCROLL_DAYLIST_TO_ANIM = 600;
 
 function approachGoalDay(dayId, firstTimeAnimation){
@@ -548,88 +556,13 @@ function animatePH2() {
     });
 }
 
-function animatePH() {
-    var $animDiv = $("#animatePHDiv_" + PH.lang);
-    //animRepos($animDiv);
-    $animDiv.removeClass('hidden');
-    $animDiv.fadeIn(100, function () {
-        fadeOutMax($animDiv);
-    });
-    $animDayLabel = getCentralLabel();
-    $animDayLabel.css({opacity: 0});
-}
-
 // first animation block
 
-var LETTER_FADE_SPEED = 2000 / 8, FINAL_PH_FADEOUT = 2000, STARTING_DELAY = 1000;
+var FINAL_PH_FADEOUT = 2000, STARTING_DELAY = 1000;
 
-var genmax = 0, once = false;
-
-function fadeOutMax($cont) {
-    var max = 0;
-    $(".anim-letter:visible", $cont).each(function () {
-        var locmax = $(this).data('fade');
-        if (locmax && locmax > max) {
-            max = locmax;
-        }
-    });
-    if (max) {
-        //$(".anim-letter[data-fade=" + max + "]", $cont).fadeOut(LETTER_FADE_SPEED, function () {
-        //    fadeOutMax($cont);
-        //});
-        var $thisLetters = $(".anim-letter[data-fade=" + max + "]", $cont);
-        $thisLetters.animate({
-            width: 0,
-            opacity: 0
-        }, {
-            //duration: $t.width() * 40,
-            duration: LETTER_FADE_SPEED,
-            easing: 'linear',
-            complete: function () {
-                $thisLetters.data('fade', -1);
-                fadeOutMax($cont);
-            }
-        });
-        if (genmax == 0) {
-            genmax = max;
-            $cont.css({
-                'left': ($(window).width() - $cont.width()) / 2,
-                'top': ($(window).height()) / 2 - $(".nav-button").height() - $cont.height() / 2 - TOP_MAGIC
-            });
-            animRepos($cont);
-        }
-    } else {
-        if ($animDayLabel) {
-            $animDayLabel.animate(
-                {
-                    opacity: 1
-                }, {
-                    duration: FINAL_PH_FADEOUT,
-                    complete: function () {
-                        if (!once) {
-                            $('.animate-div').hide();
-                            initWindowSizeChange();
-                            once = true;
-                        }
-                    }
-                });
-        }
-
-        $cont.fadeOut({
-            duration: FINAL_PH_FADEOUT,
-            easing: 'linear',
-            complete: function () {
-            }
-        });
-    }
-}
+var once = false;
 
 function fadeOutMax2($cont) {
-    //$cont.css({
-    //    'left': ($(window).width() - $cont.width()) / 2,
-    //    'top': ($(window).height()) / 2 - $(".nav-button").height() - $cont.height() / 2 - TOP_MAGIC
-    //});
-
     animRepos($cont);
     var $thisLetters = $(".anim-letter.fade", $cont);
     $thisLetters.delay(STARTING_DELAY).animate({

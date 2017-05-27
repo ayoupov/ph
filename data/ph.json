@@ -3,18 +3,23 @@
     "en": {
       "projects": "PROJECTS",
       "about": "<i>Simple Stories</i>",
-      "about_desc": "'<i>Simple Stories</i>' is a research project about sociological and spatial aspects of allotments’ gardens in Poland from 19th to 21st century. The conclusions of the study were presented in the form of an exhibition under the Polish section of the first Biennale Urbana in Venice in 2016.<br><br>Current contributors to Simple Stories project are:<br><br>PAUL CETNARSKI<br>DOMINIKA DYMEK<br>MIRABELA JURCZENKO<br>WOJCIECH MAZAN<br>RAFAŁ ŚLIWA<br><br>Notable contributors to the project:<br>Maciej Frąckowiak, Marta Kowalczyk, Anna Molenda i Roman Rutkowski."
+      "about_desc": "'<i>Simple Stories</i>' is a research project about sociological and spatial aspects of allotments’ gardens in Poland from 19th to 21st century. The conclusions of the study were presented in the form of an exhibition under the Polish section of the first Biennale Urbana in Venice in 2016.<br><br>Current contributors to Simple Stories project are:<br><br>PAUL CETNARSKI<br>DOMINIKA DYMEK<br>MIRABELA JURCZENKO<br>WOJCIECH MAZAN<br>RAFAŁ ŚLIWA<br><br>Notable contributors to the project:<br>Maciej Frąckowiak, Marta Kowalczyk, Anna Molenda i Roman Rutkowski.",
+      "team": "Team: ",
+      "author": "Author: "
     },
     "pl": {
       "projects": "PROJECTS",
       "about": "<i>Proste Historie</i>",
-      "about_desc": "„<i>Proste Historie</i>” to projekt badający społeczne i przestrzenne aspekty ogrodów działkowych w Polsce w okresie od XIX do XXI wieku. Wnioski z badania zostały pokazane w formie wystawy w ramach polskiej sekcji pierwszego Biennale Urbana w Wenecji w 2016 roku.<br><br>W ramach projektu Proste Historie obecnie pracują:<br><br>PAUL CETNARSKI<br>DOMINIKA DYMEK<br>MIRABELA JURCZENKO<br>WOJCIECH MAZAN<br>RAFAŁ ŚLIWA<br><br>W projekcie Proste Historie do tej pory uczestniczyli:<br>Maciej Frąckowiak, Marta Kowalczyk, Anna Molenda i Roman Rutkowski."
+      "about_desc": "„<i>Proste Historie</i>” to projekt badający społeczne i przestrzenne aspekty ogrodów działkowych w Polsce w okresie od XIX do XXI wieku. Wnioski z badania zostały pokazane w formie wystawy w ramach polskiej sekcji pierwszego Biennale Urbana w Wenecji w 2016 roku.<br><br>W ramach projektu Proste Historie obecnie pracują:<br><br>PAUL CETNARSKI<br>DOMINIKA DYMEK<br>MIRABELA JURCZENKO<br>WOJCIECH MAZAN<br>RAFAŁ ŚLIWA<br><br>W projekcie Proste Historie do tej pory uczestniczyli:<br>Maciej Frąckowiak, Marta Kowalczyk, Anna Molenda i Roman Rutkowski.",
+      "team": "Zespół: ",
+      "author": "Autor: "
     }
   },
   "projects": [
     {
       "from": "2015-11-01",
       "to": "2015-11-01",
+      "team": "Paul Cetnarki, Marta Kowalczyk, Wojciech Mazan, Rafał Śliwa, Roman Rutkowski",
       "en": {
         "title": "Concept",
         "location": "Venice",
@@ -40,30 +45,32 @@
         "location": "NOTES.NA.6.TYGODNI ",
         "description": "Zapowiedź wystawy będącej kontynuacją propozycji kuratorskiej w Pawilonie Polskim na 15. Międzynarodowej Wystawie Architektury - La Biennale di Venezia pojawiła się w Notesie na 6 Tygodni."
       },
-      "position": "right",
-      "background" : {
-        "type" : "image",
-        "url" : "/ph/assets/bg/04/Ivan_Erofeev-2365.jpg"
-      }
+      "position": "right"
     },
     {
       "from": "2016-05-29",
       "to": "2016-10-30",
+      "team": "Paul Cetnarki, Marta Kowalczyk, Wojciech Mazan, Rafał Śliwa",
       "en": {
         "title": "Biennale Urbana",
         "location": "Venice",
-        "description": "Within the Polish section at Biennale Urbana we presented the project '<i>Simple Stories</i>'. We have talked about the gardens in five chapters, covering: the stories of people who live in allotment gardens, allotments’ architecture, garden planning, relationships to the surrounding, and the city's relationship to the gardens. The conclusion is that the gardens are autonomous spaces in the city that we should protect and try to transform so that they would remain in cities"
+        "description": "Within the Polish section at Biennale Urbana we presented the project '<i>Simple Stories</i>'. We have talked about the gardens in five chapters, covering: the stories of people who live in allotment gardens, allotments’ architecture, garden planning, relationships to the surrounding, and the city's relationship to the gardens. The conclusion is that the gardens are autonomous spaces in the city that we should protect and try to transform so that they would remain in cities."
       },
       "pl": {
         "title": "Biennale Urbana",
         "location": "Wenecja",
         "description": "W ramach polskiej sekcji Biennale Urbana zaprezentowaliśmy rozwinięcie projektu „<i>Proste Historie</i>”. Opowiedzieliśmy o ogrodach w pięciu rozdziałach, mówiąc o: historiach ludzi, które dzieją się na działkach, architekturze altan, zagospodarowaniu działek, relacji ogrodu do otaczającego kontekstu oraz o relacji miasta do ogrodów. Doszliśmy do wniosku, że ogrody są przestrzeniami autonomicznymi, które powinniśmy chronić i starać się przekształcać tak, aby mogły nadal funkcjonować w miastach."
       },
-      "position": "right"
+      "position": "right",
+      "background" : {
+        "type" : "image",
+        "url" : "/ph/assets/bg/04/Ivan_Erofeev-2365_2.jpg"
+      }
     },
     {
       "from": "2016-05-29",
       "to": "2016-10-30",
+      "team" : "Paul Cetnarki, Marta Kowalczyk, Wojciech Mazan, Rafał Śliwa",
       "en": {
         "title": "Panta Rhei",
         "location": "Venice",
@@ -109,6 +116,7 @@
     {
       "from": "2016-10-03",
       "to": "2016-10-03",
+      "team": "Paul Cetnarski",
       "en": {
         "title": "Yes, we can",
         "location": "Warsaw",
@@ -124,6 +132,7 @@
     {
       "from": "2016-10-12",
       "to": "2016-11-12",
+      "team": "Wojciech Mazan",
       "en": {
         "title": "A story of Kazimierz Domański",
         "location": "WeekendGazeta.pl",
@@ -154,6 +163,7 @@
     {
       "from": "2016-06-20",
       "to": "2016-09-21",
+      "team" : "Marta Kowalczyk",
       "en": {
         "title": "Cover",
         "location": "DESIGN ALIVE",
@@ -172,6 +182,7 @@
     },
     {
       "from": "2017-11-18",
+      "team": "Wojciech Mazan, Maciej Mazan",
       "pl": {
         "title": "Atlas Altan",
         "location": "Instagram",
@@ -187,6 +198,7 @@
     {
       "from": "2017-01-01",
       "to": "2017-02-01",
+      "team": "Paul Cetnarski, Dominika Dymek, Mirabela Jurczenko, Wojciech Mazan, Rafał Śliwa",
       "pl": {
         "title": "„Proste Historie”",
         "location": "Synchronizacja",
@@ -202,6 +214,7 @@
     {
       "from": "2017-01-21",
       "to": "2017-02-21",
+      "team": "Paul Cetnarski<br><br>Ilustracje:<br><br>Olga Demidova, Joanna Gniady, Anna Halarewicz, Diana Karpowicz, Kamila Kozłowska, Paweł Mildner, Katarzyna Olbromska, Jaga Słowińska, Kalina Szymkiewicz",
       "pl": {
         "title": "Pocztówki ogrodów działkowych Wrocławia",
         "location": "Wrocław",
@@ -221,6 +234,7 @@
     {
       "from": "2017-04-26",
       "to": "2017-05-26",
+      "team": "Wojciech Mazan",
       "pl": {
         "title": "Atlas Altan",
         "location": "Aktivist",
@@ -236,6 +250,7 @@
     {
       "from": "2017-05-02",
       "to": "2017-06-02",
+      "team": "Wojciech Mazan",
       "pl": {
         "title": "Atlas Altan",
         "location": "Zwykłe Życie",
@@ -251,6 +266,7 @@
     {
       "from": "2017-05-19",
       "to": "2017-08-30",
+      "team": "Paul Cetnarski",
       "pl": {
         "title": "„Proste Historie”. Ogrody i Miasta.",
         "location": "Magazyn Miasta",
@@ -266,6 +282,7 @@
     {
       "from": "2017-05-26",
       "to": "2017-05-26",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "Między kulturą a naturą",
         "location": "Rzut + 13 EKOLOGIA",
@@ -281,6 +298,7 @@
     {
       "from": "2017-06-21",
       "to": "2017-06-21",
+      "team": "Paul Cetnarski",
       "pl": {
         "title": "Allotments for everyone",
         "location": "Magazyn Miasta, wydanie anglojęzyczne",
@@ -291,11 +309,12 @@
         "location": "Magazyn Miasta, English-language edition",
         "description": "Each allotment garden colony, each garden and each shed is a personal or communal self-expression. Comparison of post-socialist Europe like Poland, Czech Republic or Slovakia with the countries like Germany or France only proves that despite any original differences, gardens became a common urban language for the whole of Europe. An article that investigates current and possible forthcoming trends in allotment gardening in Europe."
       },
-      "position": "left"
+      "position": "right"
     },
     {
       "from": "2017-05-26",
       "to": "2017-05-26",
+      "team": "Paul Cetnarski, Dominika Dymek, Mirabela Jurczenko, Wojciech Mazan, Rafał Śliwa",
       "pl": {
         "title": "Atlas Altan – Wystawa",
         "location": "Warszawa",
@@ -311,21 +330,23 @@
     {
       "from": "2017-05-26",
       "to": "2017-05-26",
+      "team": "Mirabela Jurczenko",
       "pl": {
         "title": "„Proste Historie”  – strona www",
-        "location": "Warszawa",
-        "description": "Projekt „Proste Historie” i wszystkie poboczne przedsięwzięcia z nim związane zebrane na osi czasu."
+        "location": "online",
+        "description": "Projekt „<i>Proste Historie</i>” i wszystkie poboczne przedsięwzięcia z nim związane zebrane na osi czasu."
       },
       "en": {
-        "title": "Simple Stories' website",
-        "location": "Warsaw",
-        "description": "<i>Simple Stories'</i> and all the side projects associated with it gathered on the timeline."
+        "title": "'Simple Stories' website",
+        "location": "online",
+        "description": "'<i>Simple Stories</i>' and all the side projects associated with it gathered on the timeline."
       },
       "position": "left"
     },
     {
       "from": "2017-10-01",
       "to": "2017-10-01",
+      "team": "Paul Cetnarski, Dominika Dymek, Mirabela Jurczenko, Wojciech Mazan, Rafał Śliwa",
       "pl": {
         "title": "Działka Dla Każdego",
         "location": "Wroclaw",
@@ -341,6 +362,7 @@
     {
       "from": "2014-10-04",
       "to": "2014-10-04",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "Ogrody działkowe w świetle nowej ustawy",
         "location": "Konferencja Zieleń miejska - naturalne bogactwo miasta, Toruń",
@@ -356,6 +378,7 @@
     {
       "from": "2014-10-12",
       "to": "2014-10-12",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "Ogrody społeczne a jakość życia w mieśćie",
         "location": "Konferencja HABITATY 2014, Reaktywacja małych społeczności lokalnych, Wrocław",
@@ -371,6 +394,7 @@
     {
       "from": "2015-10-02",
       "to": "2015-10-02",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "Ogrodnictwo działkowe a jakość życia w mieście",
         "location": "Konferencja Biocity, Warszawa",
@@ -386,6 +410,7 @@
     {
       "from": "2015-10-08",
       "to": "2015-10-08",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "Znaczenie ogrodów działkowych a rewitalizacji miast",
         "location": "Konferencja Zieleń miejska - naturalne bogactwo miasta, Toruń",
@@ -401,6 +426,7 @@
     {
       "from": "2015-10-04",
       "to": "2015-10-04",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "ROD im. Obrońców Pokoju w Warszawie",
         "location": "Seminarium: Przyszłość ogrodów działkowych w miastach",
@@ -416,6 +442,7 @@
     {
       "from": "2015-10-15",
       "to": "2015-10-15",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "Ogrody działkowe - między kulturą a naturą",
         "location": "International Biennale of Architecture Kraków 2015",
@@ -431,6 +458,7 @@
     {
       "from": "2015-12-12",
       "to": "2015-12-12",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "Fenomen \"sztucznie\" użytkowanych działek",
         "location": "Prace Komisji Krajobrazu Kulturowego Polskiego Towarzystwa Geograficznego",
@@ -446,6 +474,7 @@
     {
       "from": "2016-02-26",
       "to": "2016-02-26",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "Ogrody działkowe ̶ nadzieja czy koszmar współczesnych miast?",
         "location": "Seminarium Miejska Sztuka Ogrodowa w ramach Targów Gardenia w Poznaniu",
@@ -461,6 +490,7 @@
     {
       "from": "2016-12-03",
       "to": "2016-12-03",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "Ceramiczne zdobnictwo architektoniczne",
         "location": "Prace Komisji Krajobrazu Kulturowego Polskiego Towarzystwa Geograficznego",
@@ -476,6 +506,7 @@
     {
       "from": "2017-06-30",
       "to": "2017-06-30",
+      "team": "Dominika Dymek",
       "pl": {
         "title": "ROD im. Józefa Chociszewskiego w Poznaniu",
         "location": "Studia Miejskie",
@@ -486,7 +517,7 @@
         "location": "Urban studies",
         "description": "Nowadays, there is the distinct disappearance of the traditional cultivation function of allotment gardens. The increasing importance of recreation in urban allotment gardens is related to the still insufficient number of green areas and deteriorating living conditions in the city. Thanks to their greenery, but also the blossoming of neighborhood life, the allotment gardens are a kind of green enclave set in the \"urban jungle\"."
       },
-      "position": "left"
+      "position": "right"
     }
   ]
 }
