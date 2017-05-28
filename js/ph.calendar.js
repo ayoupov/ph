@@ -28,14 +28,14 @@ function getMonthName(idx) {
 function dayIdFromDate(date) {
     return "" +
         monthIdFromDate(date) + '-' +
-        ((date.getDate() < 10 ? "0" : "") + date.getDate());
+        ((date.getUTCDate() < 10 ? "0" : "") + date.getUTCDate());
 
 }
 
 function monthIdFromDate(date) {
     return "" +
-        date.getFullYear() + '-' +
-        ((date.getMonth() < 9 ? "0" : "") + (date.getMonth() + 1));
+        date.getUTCFullYear() + '-' +
+        ((date.getUTCMonth() < 9 ? "0" : "") + (date.getUTCMonth() + 1));
 }
 
 function dateFromDayId(dayId) {
@@ -43,9 +43,9 @@ function dateFromDayId(dayId) {
 }
 
 function dateToPrjListStr(date) {
-    return "" + date.getDate() + " " +
-        monthToRoman(date.getMonth()) + " " +
-        date.getFullYear();
+    return "" + date.getUTCDate() + " " +
+        monthToRoman(date.getUTCMonth()) + " " +
+        date.getUTCFullYear();
 }
 
 function populateCalendar(prjs) {
@@ -435,8 +435,8 @@ function scrollDayList(delta) {
                 repositionMobilePrjDescs();
             }
         }
-
-        Cookies.set('date', selectedDayId);
+        // unnecessary as we don't need to store it anymore
+        //Cookies.set('date', selectedDayId);
     }
     //}
 }

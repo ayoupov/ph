@@ -15,14 +15,16 @@ video {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: -100;
-    background: url('/ph/assets/bg/bg_placeholder.png') no-repeat;
-    background-size: cover;
+    /*background: url('/assets/bg/bg_placeholder.png') no-repeat;*/
+    /*background-size: cover;*/
     transition: 1s opacity;
 }
 
 @media screen and (max-device-width: 767px) {
-    html {
-        background: url(/ph/assets/bg/bg_placeholder.png) #000 no-repeat center center fixed;
+    body {
+        background: url(/assets/bg/bg_mobile.jpg) #000 no-repeat center center fixed;
+        -webkit-background-size:cover;
+        background-size:cover;
     }
 
     #bgvid {
@@ -124,12 +126,12 @@ video {
 }
 
 .nav-button.button-up{
-    background: url("/ph/assets/arrow_up.png") center center no-repeat;
+    background: url("../assets/arrow_up.png") center center no-repeat;
     background-size: 20px;
 }
 
 .nav-button.button-down{
-    background: url("/ph/assets/arrow_down.png")  center center no-repeat;
+    background: url("../assets/arrow_down.png")  center center no-repeat;
     background-size: 20px;
 }
 

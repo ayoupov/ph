@@ -27,7 +27,7 @@ $(function () {
     // load data
 
     var prjs;
-    $.ajax('/ph/data/ph.json', {
+    $.ajax('/data/ph.json', {
         error: function(xhr, status, error) {
             //var err = eval("(" + xhr.responseText + ")");
             //console.log(err.Message);

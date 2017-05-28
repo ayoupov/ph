@@ -3,10 +3,24 @@ function initUI() {
     initAbout();
     initContacts();
     initSubscribe();
-    if (PH.isMobile)
+    if (PH.isMobile) {
         initSlick();
+    } else {
+        initVideo();
+    }
     $('.hidden-first').removeClass('hidden-first');
     $('.animate-div').hide();
+}
+
+function initVideo(){
+    var $s1 = $('<source src="/assets/bg/bg.webm" type="video/webm">');
+    var $s2 = $('<source src="/assets/bg/bg.mp4" type="video/mp4">');
+    $("#bgvid").attr("poster","/assets/bg/bg_placeholder.png")
+        .css({
+            "background": "url('/assets/bg/bg_placeholder.png') no-repeat",
+            "background-size": "cover"
+        })
+        .append($s1).append($s2);
 }
 
 function initSlick(){
