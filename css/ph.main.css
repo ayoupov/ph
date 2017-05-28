@@ -508,3 +508,8 @@ video {
     -ms-transform: rotate(270deg);
     transform: rotate(270deg);
 }
+
+/*  slick fix  */
+.slick-slide {
+    outline: none
+}
