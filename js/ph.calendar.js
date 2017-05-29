@@ -459,8 +459,8 @@ function emulateScroll() {
     if (PH.isMobile) {
         var hm = new Hammer(PH.$daylist[0]);
         hm.get('pan').set({
-            direction: Hammer.DIRECTION_VERTICAL,
-            threshold: 5
+            direction: Hammer.DIRECTION_VERTICAL
+            //, threshold: 5
         });
         hm.on('pan', hammerPanHandler);
     }
