@@ -2,6 +2,9 @@
  * Created by ayoupov on 02.05.2017.
  */
 
+var debugPrint = function () {
+};
+
 $(function () {
     // video fixes
     var vid = $("#bgvid")[0];
@@ -19,43 +22,40 @@ $(function () {
     PH.$contacts = $("#contacts");
     PH.$subscribe = $("#subscribe");
     initUI();
-
+    debugPrint("UI");
     // init lang settings
     langInit();
     initLangEvents();
-
+    debugPrint("L");
     // load data
 
     var prjs;
     $.ajax('/data/ph.json', {
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             //var err = eval("(" + xhr.responseText + ")");
             //console.log(err.Message);
             console.log(error);
+            debugPrint(error);
         },
         success: function (res) {
+            debugPrint("S");
             // init labels
             PH.labels = res.labels;
             // init prjs
             prjs = res.projects;
             prjs.forEach(datify);
-
+            debugPrint("D");
             // sort by beginning
             prjs.sort(sortPrjByStart);
             populateCalendar(prjs);
+            debugPrint("P");
             emulateScroll();
+            debugPrint("Sc");
             PH.is_scrolling = false;
-            var savedDayId = Cookies.get('date');
-            //if (savedDayId && savedDayId != 'undefined')
-            //    scrollDayListTo(savedDayId, true);
-            //else {
-                var today = "day" + dayIdFromDate(new Date());
-                if ($("#" + today).length > 0)
-                    scrollDayListTo(today, true);
-            //}
-            // initWindowSizeChange goes to animation
-            //initWindowSizeChange(); // also reselects central element and therefore starts bg if needed
-            // init langs (have to have prjs inited already)
+            var today = "day" + dayIdFromDate(new Date());
+            if ($("#" + today).length > 0)
+                scrollDayListTo(today, true);
+            debugPrint("T");
             changeLang(PH.lang, true);
         }
     })

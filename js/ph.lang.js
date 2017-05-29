@@ -9,19 +9,27 @@ function firstSupportedLang(langarr) {
 
 function langInit() {
 // lang works
+    debugPrint("L0");
     var cookiesetlang;
     var lang = cookiesetlang = Cookies.get('lang');
+    debugPrint("L1");
     if (!lang)
         lang = navigator.languages
             ? firstSupportedLang(navigator.languages)
-            : (navigator.language || navigator.userLanguage);
+            : (window.navigator.language || navigator.language || navigator.userLanguage);
+    debugPrint("L2");
+    debugPrint(lang);
+    if (!lang)
+        lang = 'en';
     if (lang.length > 2)
         lang = lang.substr(0, 2);
+    debugPrint(lang);
     if (lang.toLowerCase() != 'en' && lang.toLowerCase() != 'pl')
         lang = 'en';
     PH.lang = lang; // main lang selector
     if (cookiesetlang != lang)
         Cookies.set('lang', lang);
+    debugPrint("L3");
 }
 
 function changeLang(lang, firstTime) {
@@ -59,6 +67,7 @@ function changeLang(lang, firstTime) {
 }
 
 function initLangEvents() {
+    debugPrint("iL");
     $(".lang-select a").on('click', function () {
         var newLang = PH.lang == 'en' ? 'pl' : 'en';
         changeLang(newLang);

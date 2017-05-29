@@ -101,6 +101,9 @@ function populateCalendar(prjs) {
             }
         });
 
+        if (PH.isMobile)
+            repositionMobilePrjDescs();
+
         // preinit prj_desc
 
         PH.$prj_desc = $("#prj_desc");
@@ -255,8 +258,8 @@ function onPrjHoverEndEvent($elem, prj) {
     PH.$prj_desc.fadeOut(COMMON_FADE_TIMEOUT);
 }
 
-function repositionMobilePrjDescs() {
-    var $central = getCentralLabel();
+function repositionMobilePrjDescs($centralLabel) {
+    var $central = $centralLabel || getCentralLabel();
     //console.log($central);
     $(".mobile-prj-desc:visible").each(function () {
         var h = $(this).width(); // rotated
@@ -269,9 +272,7 @@ function attachMobilePrj($stripe, prj, prjid) {
     //$(".mobile-prj-desc").hide();
     var $mobilePrjDesc = $("<div data-prjid='" + prjid + "'>")
         .html(prj[PH.lang].title + " / " + prj[PH.lang].location)
-        .addClass("mobile-prj-desc")
-        .addClass((prj.position == 'right') ? 'rotated-cw' : 'rotated-ccw')
-        .addClass("hidden-first");
+        .addClass("mobile-prj-desc hidden-first " + ((prj.position == 'right') ? 'rotated-cw' : 'rotated-ccw'));
 
     PH.$daylist.append($mobilePrjDesc);
 
@@ -304,7 +305,7 @@ function addStripe(prj, prjid, posObj) {
         });
     } else {
         attachMobilePrj($stripe, prj, prjid);
-        repositionMobilePrjDescs();
+        //repositionMobilePrjDescs();
     }
     PH.$daylist.append($stripe);
 }
@@ -392,15 +393,6 @@ function addCentral($li, date) {
 function scrollDayList(delta) {
     //clear central
     PH.$daylist.scrollTop(PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE);
-    //PH.$daylist.animate({scrollTop: PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE}, 100, function(){});
-    // update central selection
-    //var $preli = getCentralLabel(), $li;
-    //if ($preli) {
-    //    while ($preli.hasClass('calendar-year-label') || $preli.hasClass('calendar-month-label')) {
-    //        PH.$daylist.scrollTop(PH.$daylist.scrollTop() + delta * DAY_ITEM_SIZE);
-    //        $li = getCentralLabel();
-    //    }
-    //    $li = $li || $preli;
     var $li = getCentralLabel();
     if ($li && $li.length) {
         var selectedDayId = $li.attr('id');
@@ -425,14 +417,15 @@ function scrollDayList(delta) {
             }
             else
                 hideBackground();
-        } else {
+        } else
+        {
             $(".mobile-prj-desc").hide();
             // mobile show projects
             $(prjsOnThisDay).each(function () {
                 $(".mobile-prj-desc[data-prjid=" + this.id + "]").show();
             });
             if (prjsOnThisDay.length) {
-                repositionMobilePrjDescs();
+                repositionMobilePrjDescs($li);
             }
         }
         // unnecessary as we don't need to store it anymore
@@ -465,7 +458,10 @@ function emulateScroll() {
     });
     if (PH.isMobile) {
         var hm = new Hammer(PH.$daylist[0]);
-        hm.get('pan').set({direction: Hammer.DIRECTION_VERTICAL});
+        hm.get('pan').set({
+            direction: Hammer.DIRECTION_VERTICAL,
+            threshold: 5
+        });
         hm.on('pan', hammerPanHandler);
     }
 
