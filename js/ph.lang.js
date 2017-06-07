@@ -13,6 +13,10 @@ function langInit() {
     var cookiesetlang;
     var lang = cookiesetlang = Cookies.get('lang');
     debugPrint("L1");
+    if (!lang) {
+        var host = location.host;
+        lang = host.indexOf("proste") >= 0 ? ("pl") : (host.indexOf("simple") >= 0 ? "en" : null);
+    }
     if (!lang)
         lang = navigator.languages
             ? firstSupportedLang(navigator.languages)
@@ -37,6 +41,7 @@ function changeLang(lang, firstTime) {
     $("#projects_menu .project-menu-title").html(PH.labels[lang].projects);
     $("#about .about-title").html(PH.labels[lang].about);
     $("#about .about-desc").html(PH.labels[lang].about_desc);
+    $(".overall-container").html(PH.labels[lang].about_desc);
     $("#projects_desc").html(PH.labels[lang].projects_desc);
 
     $(".calendar-month-label").each(function () {

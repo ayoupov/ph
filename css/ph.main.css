@@ -179,8 +179,8 @@ video {
     height: 32px;
     cursor: default;
     vertical-align: middle;
-    /*text-shadow: 0 0 2px black, 0 0 0.5em black;*/
-    text-shadow: 0 0 1px black, 0 0 8px #dbdbdb;
+    text-shadow: 0 0 2px black, 0 0 0.5em black;
+    /*text-shadow: 0 0 1px black, 0 0 8px #dbdbdb;*/
 
 }
 
@@ -211,8 +211,8 @@ video {
     transition: opacity 0.4s linear,
     transform 0.4s ease-in-out,
     box-shadow 0.4s ease-in-out;
-    /*box-shadow: 1px 0 1px black;*/
-    box-shadow: 0 0 8px #dbdbdb;
+    box-shadow: 0 0 1px black;
+    /*box-shadow: 0 0 8px #dbdbdb;*/
     z-index: 500;
 }
 
@@ -290,6 +290,11 @@ video {
     right: 0;
     bottom: 20px;
     /*margin-bottom: 20px;*/
+}
+
+.mobile.only.lang-select {
+    bottom: 0;
+    padding-bottom: 20px;
 }
 
 .lang-select a {
@@ -413,7 +418,7 @@ video {
     }
 
     .lang-select {
-        margin-right: 20px;
+        padding: 20px;
         z-index: 5000;
     }
 }
