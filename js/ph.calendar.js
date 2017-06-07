@@ -190,9 +190,11 @@ function attachPrjDesc($elem, prj, position, team) {
     });
 
     if (position == 'left') {
-        PH.$prj_desc.css('left', $elem.offset().left - PH.$prj_desc.width() - PRJ_STRIPE_MARGIN)
+        PH.$prj_desc.css('left', $elem.offset().left - PH.$prj_desc.width() - PRJ_STRIPE_MARGIN);
+        PH.$prj_desc.removeClass('right');
     } else {
-        PH.$prj_desc.css('left', $elem.offset().left + PRJ_STRIPE_MARGIN)
+        PH.$prj_desc.css('left', $elem.offset().left + PRJ_STRIPE_MARGIN);
+        PH.$prj_desc.addClass('right');
     }
 }
 

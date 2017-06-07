@@ -225,8 +225,9 @@ video {
     /*border: 2px snow solid;*/
 }
 
-/*.project-desc {*/
-/*}*/
+#prj_desc.right {
+    text-align: right;
+}
 
 .project-description {
     font-size: 10pt;
@@ -237,6 +238,10 @@ video {
 .project-description .title {
     font-weight: 700;
     font-family: 'Lato', sans-serif;
+}
+
+.project-description .description {
+    margin-top: 1em;
 }
 
 #subscribe_container {
