@@ -38,6 +38,8 @@ $(function () {
             debugPrint(error);
         },
         success: function (res) {
+            if (!PH.isMobile)
+                preloadImages(res);
             debugPrint("S");
             // init labels
             PH.labels = res.labels;

@@ -1,5 +1,5 @@
 function initUI() {
-    window.scrollTo(0,1);
+    window.scrollTo(0, 1);
     initAbout();
     initContacts();
     initSubscribe();
@@ -12,10 +12,27 @@ function initUI() {
     $('.animate-div').hide();
 }
 
-function initVideo(){
+function bgImages(cv){
+    if (cv.background && cv.background.type == 'image')
+        return cv.background.url;
+}
+
+var preloadedImages = [];
+
+function preloadImages(data) {
+    var bgs = data.projects.map(bgImages);
+    for (var i = 0; i < bgs.length; i++) {
+        if (bgs[i]) {
+            preloadedImages[i] = new Image();
+            preloadedImages[i].src = bgs[i];
+        }
+    }
+}
+
+function initVideo() {
     var $s1 = $('<source src="/assets/bg/bg.webm" type="video/webm">');
     var $s2 = $('<source src="/assets/bg/bg.mp4" type="video/mp4">');
-    $("#bgvid").attr("poster","/assets/bg/bg_placeholder.png")
+    $("#bgvid").attr("poster", "/assets/bg/bg_placeholder.png")
         .css({
             "background": "url('/assets/bg/bg_placeholder.png') no-repeat",
             "background-size": "cover"
@@ -23,7 +40,7 @@ function initVideo(){
         .append($s1).append($s2);
 }
 
-function initSlick(){
+function initSlick() {
     var $viewport = $('.viewport');
     $viewport.slick({
         arrows: false,
@@ -35,15 +52,15 @@ function initSlick(){
         slidesToScroll: 1
     });
     $viewport.slick('slickGoTo', 1, true);
-    $(".overall-title.swiper").on('click tap', function(){
+    $(".overall-title.swiper").on('click tap', function () {
         //$viewport.slick('slickGoTo', 2, false);
         $viewport.slick('slickNext');
     });
-    $(".credits-footer.swiper").on('click tap', function(){
+    $(".credits-footer.swiper").on('click tap', function () {
         //$viewport.slick('slickGoTo', 0, false);
         $viewport.slick('slickPrev');
     });
-    $viewport.on('afterChange', function(slick, currentSlide){
+    $viewport.on('afterChange', function (slick, currentSlide) {
         if (currentSlide.currentSlide == 1)
             scrollDayList(0);
     });
@@ -68,13 +85,12 @@ function initSubscribe() {
             $desc.fadeIn(COMMON_FADE_TIMEOUT);
         }).on('mouseleave', function () {
         var $descinput = $desc.find('input');
-        if ($descinput.is(':focus'))
-        {
-            $descinput.one('blur', function(){
+        if ($descinput.is(':focus')) {
+            $descinput.one('blur', function () {
                 $desc.fadeOut(COMMON_FADE_TIMEOUT);
             });
         } else
-        $desc.fadeOut(COMMON_FADE_TIMEOUT);
+            $desc.fadeOut(COMMON_FADE_TIMEOUT);
     });
 
 }
@@ -104,8 +120,8 @@ function initProjectMenu() {
     PH.$prj_menu.append($ul);
     PH.prjs.forEach(function (prj) {
         var html = prj[PH.lang].title;
-        if (prj.from.getTime() == prj.to.getTime())
-            html += " (" + dateToPrjListStr(prj.from) + ")";
+        //if (prj.from.getTime() == prj.to.getTime())
+        //    html += " (" + dateToPrjListStr(prj.from) + ")";
         var $li = $("<li>").addClass("project-list-item").html(html);
         $li.on('click', function () {
             scrollDayListTo("day" + dayIdFromDate(prj.from), false, true);

@@ -164,8 +164,7 @@ function attachPrjDesc($elem, prj, position, team) {
     var desc = "";
     if (prj.description)
         desc += prj.description;
-    if (team)
-    {
+    if (team) {
         var label;
         if (team.split(',').length > 1)
             label = PH.labels[PH.lang].team;
@@ -200,6 +199,8 @@ function attachPrjDesc($elem, prj, position, team) {
 
 function showBackground(prj) {
     if (!PH.is_scrolling) {
+        var $prjBg = $("#prj_bg");
+        var $bgvid = $("#bgvid");
         if (prj.background.type == 'video') {
             var src = null;
             if (prj.background.from == 'youtube' || !prj.background.from) {
@@ -211,19 +212,28 @@ function showBackground(prj) {
             }
             if (src && $("#prj_bg iframe").attr('src') != src) {
                 var iframe = $("<iframe src='" + src + "' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen>");
-                $("#prj_bg").empty();
-                $("#prj_bg").append(iframe);
-                $("#bgvid").fadeOut(COMMON_FADE_TIMEOUT);
-                $("#prj_bg").fadeIn(COMMON_FADE_TIMEOUT);
+                $prjBg.empty();
+                $prjBg.append(iframe);
+                $bgvid.fadeOut(COMMON_FADE_TIMEOUT);
+                $prjBg.fadeIn(COMMON_FADE_TIMEOUT);
             }
         } else if (prj.background.type == 'image') {
             var src = prj.background.url;
-            var img = $("<img src='" + src + "'>");
+            var $bg = $("<div class='prj_bg_div'>");
             if (src && $("#prj_bg iframe").attr('src') != src) {
-                $("#prj_bg").empty();
-                $("#prj_bg").append(img);
-                $("#bgvid").fadeOut(COMMON_FADE_TIMEOUT);
-                $("#prj_bg").fadeIn(COMMON_FADE_TIMEOUT);
+                $prjBg.empty();
+                $bg.css({
+                    "background-image": "url(" + src + ")",
+                    "background-position-x": "center",
+                    "background-position-y": "center",
+                    "-webkit-background-size": "cover",
+                    "-moz-background-size": "cover",
+                    "-o-background-size": "cover",
+                    "background-size": "cover"
+                });
+                $prjBg.append($bg);
+                $bgvid.fadeOut(COMMON_FADE_TIMEOUT);
+                $prjBg.fadeIn(COMMON_FADE_TIMEOUT);
             }
         }
     }
@@ -419,8 +429,7 @@ function scrollDayList(delta) {
             }
             else
                 hideBackground();
-        } else
-        {
+        } else {
             $(".mobile-prj-desc").hide();
             // mobile show projects
             $(prjsOnThisDay).each(function () {
@@ -477,7 +486,7 @@ function emulateScroll() {
 
 var SCROLL_DAYLIST_TO_ANIM = 600;
 
-function approachGoalDay(dayId, firstTimeAnimation){
+function approachGoalDay(dayId, firstTimeAnimation) {
     var i = 0;
     while (getCentralLabel().attr('id') != dayId && i < PH.total_days) {
         i++;
@@ -500,12 +509,12 @@ function scrollDayListTo(dayId, firstTimeAnimation, tryToAnimate) {
         var speed = (!tryToAnimate) ? 0 : SCROLL_DAYLIST_TO_ANIM;
         //    PH.$daylist.scrollTop(quickFindTop);
         //else
-            PH.$daylist.animate({scrollTop: quickFindTop}, speed, function(){
-                // approach
-                approachGoalDay(dayId, firstTimeAnimation);
-                if (!firstTimeAnimation)
-                    scrollDayList(0); // start bg
-            });
+        PH.$daylist.animate({scrollTop: quickFindTop}, speed, function () {
+            // approach
+            approachGoalDay(dayId, firstTimeAnimation);
+            if (!firstTimeAnimation)
+                scrollDayList(0); // start bg
+        });
     }
     else {
         PH.$daylist.scrollTop(0);

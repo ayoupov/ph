@@ -23,8 +23,8 @@ video {
 @media screen and (max-device-width: 767px) {
     body {
         background: url(/assets/bg/bg_mobile.jpg) #000 no-repeat center center fixed;
-        -webkit-background-size:cover;
-        background-size:cover;
+        -webkit-background-size: cover;
+        background-size: cover;
     }
 
     #bgvid {
@@ -32,7 +32,11 @@ video {
     }
 }
 
-#prj_bg iframe, #prj_bg img {
+#prj_bg div.prj_bg_div {
+    background: no-repeat fixed;
+}
+
+#prj_bg iframe, #prj_bg div.prj_bg_div {
     position: absolute;
     top: 0;
     left: 0;
@@ -62,7 +66,6 @@ video {
     text-align: left;
     text-shadow: 0 0 1px black, 0 0 8px #dbdbdb;
 }
-
 
 /* main container */
 
@@ -125,13 +128,13 @@ video {
     cursor: pointer;
 }
 
-.nav-button.button-up{
+.nav-button.button-up {
     background: url("../assets/arrow_up.png") center center no-repeat;
     background-size: 20px;
 }
 
-.nav-button.button-down{
-    background: url("../assets/arrow_down.png")  center center no-repeat;
+.nav-button.button-down {
+    background: url("../assets/arrow_down.png") center center no-repeat;
     background-size: 20px;
 }
 
@@ -142,7 +145,6 @@ video {
     height: 100vh;
     position: relative;
 }
-
 
 #calendar .nav-button {
     height: 20px;
@@ -362,7 +364,7 @@ video {
 
 .animate-div .anim-letter {
     float: left;
-    font-size:42pt;
+    font-size: 42pt;
     font-weight: 400;
     text-shadow: 0 0 0.5em black;
     font-style: italic;
@@ -389,7 +391,6 @@ video {
     body {
         font-size: 8pt;
     }
-
 
     #calendar {
         margin: 0 auto;
@@ -426,6 +427,11 @@ video {
         padding: 20px;
         z-index: 5000;
     }
+
+    .animate-div .anim-letter {
+        font-size: 32pt;
+    }
+
 }
 
 /* Not mobile */
@@ -447,12 +453,12 @@ video {
     float: left;
 }
 
-.credits-container{
+.credits-container {
     left: 50%;
     top: 50%;
     text-align: center;
     position: relative;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
 .credits-footer {
@@ -480,12 +486,13 @@ video {
     text-align: right;
     margin-right: 100vw;
     right: 20px;
-    position: absolute;}
+    position: absolute;
+}
 
 .overall-container {
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     text-align: justify;
     position: relative;
     width: 80vw;
@@ -498,10 +505,9 @@ video {
     color: snow;
 }
 
-.credits-container .parerga-link, .credits-container .subscribe-link{
+.credits-container .parerga-link, .credits-container .subscribe-link {
     font-family: 'Lato', sans-serif;
 }
-
 
 .mobile-prj-desc {
     position: absolute;
