@@ -5,14 +5,12 @@ function initUI() {
     initSubscribe();
     if (PH.isMobile) {
         initSlick();
-    } else {
-        initVideo();
     }
     $('.hidden-first').removeClass('hidden-first');
     $('.animate-div').hide();
 }
 
-function bgImages(cv){
+function bgImages(cv) {
     if (cv.background && cv.background.type == 'image')
         return cv.background.url;
 }
@@ -29,15 +27,33 @@ function preloadImages(data) {
     }
 }
 
-function initVideo() {
-    var $s1 = $('<source src="/assets/bg/bg.webm" type="video/webm">');
-    var $s2 = $('<source src="/assets/bg/bg.mp4" type="video/mp4">');
-    $("#bgvid").attr("poster", "/assets/bg/bg_placeholder.png")
-        .css({
-            "background": "url('/assets/bg/bg_placeholder.png') no-repeat",
-            "background-size": "cover"
-        })
-        .append($s1).append($s2);
+function initVideo(data) {
+    if (data.video && data.video.from == "vimeo") {
+        var vmid = extractVimeoId(data.video.url);
+        var src = "https://player.vimeo.com/video/" + vmid + "?loop=1&byline=0&title=0";
+        var $container = $("#vimeo_video_bg");
+        var $iframe = $("<iframe src='" + src + "' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen>");
+        //var $iframe = $("<iframe frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen>");
+        $iframe.hide();
+        $container.empty();
+        $container.append($iframe);
+        PH.vimeoPlayer = new Vimeo.Player($iframe);
+        PH.vimeoPlayer.setVolume(0);
+        PH.vimeoPlayer.loadVideo(vmid).then(function (id) {
+            PH.vimeoPlayer.play();
+            $iframe.show();
+        });
+        //PH.vimeoPlayer.play();
+    } else {
+        var $s1 = $('<source src="/assets/bg/bg.webm" type="video/webm">');
+        var $s2 = $('<source src="/assets/bg/bg.mp4" type="video/mp4">');
+        $("#bgvid").attr("poster", "/assets/bg/bg_placeholder.png")
+            .css({
+                "background": "url('/assets/bg/bg_placeholder.png') no-repeat",
+                "background-size": "cover"
+            })
+            .append($s1).append($s2);
+    }
 }
 
 function initSlick() {

@@ -46,7 +46,7 @@ video {
     background: no-repeat fixed;
 }
 
-#prj_bg iframe, #prj_bg div.prj_bg_div {
+#prj_bg iframe, #prj_bg div.prj_bg_div, #vimeo_video_bg iframe {
     position: absolute;
     top: 0;
     left: 0;
