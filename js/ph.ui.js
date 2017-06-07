@@ -32,7 +32,7 @@ function initVideo(data) {
         var vmid = extractVimeoId(data.video.url);
         var src = "https://player.vimeo.com/video/" + vmid + "?loop=1&byline=0&title=0";
         var $container = $("#vimeo_video_bg");
-        var $iframe = $("<iframe src='" + src + "' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen>");
+        var $iframe = $("<iframe class='vimeo' src='" + src + "' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen>");
         //var $iframe = $("<iframe frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen>");
         $iframe.hide();
         $container.empty();
@@ -140,7 +140,7 @@ function initProjectMenu() {
         //    html += " (" + dateToPrjListStr(prj.from) + ")";
         var $li = $("<li>").addClass("project-list-item").html(html);
         $li.on('click', function () {
-            scrollDayListTo("day" + dayIdFromDate(prj.from), false, true);
+            scrollDayListTo("day" + dayIdFromDate(prj.from), false, true, prj);
             //scrollDayList(0);
         });
         $ul.append($li);

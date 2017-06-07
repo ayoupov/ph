@@ -109,6 +109,18 @@ function populateCalendar(prjs) {
         PH.$prj_desc = $("#prj_desc");
         PH.$prj_desc.hide();
 
+        // add prjdesc clear event
+        if (!PH.isMobile)
+            $(document).on('click', function (e) {
+                //console.log(e);
+                var $target = $(e.target);
+                var $clickedStripe = $(".project-stripe.clicked");
+                if ($clickedStripe.length) {
+                    var sameStripe = $clickedStripe.is($target);
+                    if (!sameStripe)
+                        clearPrjDesc(PH.prjs[$clickedStripe.data('prjid')]);
+                }
+            });
         // init project-menu
         initProjectMenu();
     }
@@ -199,6 +211,8 @@ function attachPrjDesc($elem, prj, position, team) {
 
 function showBackground(prj) {
     if (!PH.is_scrolling) {
+        //if (PH.vimeoPlayer)
+        //    PH.vimeoPlayer.pause();
         var $prjBg = $("#prj_bg");
         var $bgvid = $("#bgvid");
         if (prj.background.type == 'video') {
@@ -241,6 +255,8 @@ function showBackground(prj) {
 
 function hideBackground(prj) {
     if (!PH.is_scrolling) {
+        //if (PH.vimeoPlayer)
+        //    PH.vimeoPlayer.play();
         $("#bgvid").fadeIn(COMMON_FADE_TIMEOUT);
         $("#prj_bg").fadeOut(COMMON_FADE_TIMEOUT, function () {
             if ($("#prj_bg iframe").length) $("#prj_bg iframe").attr('src', '');      // not working anyway :-\
@@ -249,25 +265,40 @@ function hideBackground(prj) {
     }
 }
 
-function onPrjHoverStartEvent($elem, prj) {
-    // blur project stripes
-    $(".project-stripe").not($elem).addClass("blur");
-    //if we need to change bg change it
-    //if (prj.background && prj.background.type && (!prj.background.when || prj.background.when == 'hover')) {
-    if (prj.background && prj.background.type) {
-        showBackground(prj);
+function onPrjHoverStartEvent($stripe, prj, clicked) {
+    var $clickedStripe = $(".project-stripe.clicked");
+    if (!$clickedStripe.length) {
+        // blur project stripes
+        $(".project-stripe").not($stripe).addClass("blur");
+        //if we need to change bg change it
+        //if (prj.background && prj.background.type && (!prj.background.when || prj.background.when == 'hover')) {
+        if (prj.background && prj.background.type) {
+            showBackground(prj);
+        }
+        // position project description
+        attachPrjDesc($stripe, prj[PH.lang], prj.position, prj.team);
+        if (clicked)
+            $stripe.addClass('clicked');
+        PH.$prj_desc.fadeIn(COMMON_FADE_TIMEOUT);
     }
-    // position project description
-    attachPrjDesc($elem, prj[PH.lang], prj.position, prj.team);
-    PH.$prj_desc.fadeIn(COMMON_FADE_TIMEOUT);
 }
 
-function onPrjHoverEndEvent($elem, prj) {
-    $(".project-stripe").removeClass("blur");
+function clearPrjDesc(prj) {
+    $(".project-stripe").removeClass("blur").removeClass('clicked');
     var cond = prj.background && prj.background.type && prj.background.when == 'scroll';
     if (!cond)
         hideBackground(prj);
     PH.$prj_desc.fadeOut(COMMON_FADE_TIMEOUT);
+}
+
+function onPrjHoverEndEvent($stripe, prj) {
+    //if (!$stripe.is('.clicked')) {
+    //    clearPrjDesc(prj);
+    //}
+    var $clickedStripe = $(".project-stripe.clicked");
+    if (!$clickedStripe.length) {
+        clearPrjDesc(prj);
+    }
 }
 
 function repositionMobilePrjDescs($centralLabel) {
@@ -314,6 +345,9 @@ function addStripe(prj, prjid, posObj) {
         });
         $stripe.on('mouseleave', function () {
             onPrjHoverEndEvent($stripe, prj);
+        });
+        $stripe.on('click', function () {
+            onPrjHoverStartEvent($stripe, prj, true);
         });
     } else {
         attachMobilePrj($stripe, prj, prjid);
@@ -424,8 +458,8 @@ function scrollDayList(delta) {
                     prjBgToShow = prjsOnThisDay[prjsOnThisDay.length - 1];
                     showBackground(prjBgToShow);
                 }
-                else
-                    hideBackground();
+                //else
+                //    hideBackground();
             }
             else
                 hideBackground();
@@ -462,9 +496,19 @@ var hammerPanHandler = function (event) {
     }
 };
 
+function clearFixedStripe(){
+    // clear fixed stripe
+    var $clickedStripe = $(".project-stripe.clicked");
+    if ($clickedStripe.length) {
+        clearPrjDesc(PH.prjs[$clickedStripe.data('prjid')]);
+    }
+
+}
+
 function emulateScroll() {
     PH.$daylist.on('mousewheel DOMMouseScroll', function (event) {
         var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail))) * -1;
+        clearFixedStripe();
         scrollDayList(delta);
     });
     if (PH.isMobile) {
@@ -478,9 +522,13 @@ function emulateScroll() {
 
     PH.$down.on('click', function () {
         scrollDayList(1);
+        if (!PH.isMobile)
+            clearFixedStripe();
     });
     PH.$up.on('click', function () {
         scrollDayList(-1);
+        if (!PH.isMobile)
+            clearFixedStripe();
     });
 }
 
@@ -502,7 +550,14 @@ function approachGoalDay(dayId, firstTimeAnimation) {
     }
 }
 
-function scrollDayListTo(dayId, firstTimeAnimation, tryToAnimate) {
+function scrollProjectSelect(prj) {
+    scrollDayList(0);
+    $(".project-stripe[data-prjid=" + prj.id + "]").click();
+    //if (prj.background)
+    //    showBackground(prj);
+}
+
+function scrollDayListTo(dayId, firstTimeAnimation, tryToAnimate, prj) {
     PH.is_scrolling = true;
     var quickFindTop = $("#" + dayId)[0].offsetTop - $(window).height() / 2 - $('.nav-button').height() / 2;
     if (quickFindTop) {
@@ -514,11 +569,17 @@ function scrollDayListTo(dayId, firstTimeAnimation, tryToAnimate) {
             approachGoalDay(dayId, firstTimeAnimation);
             if (!firstTimeAnimation)
                 scrollDayList(0); // start bg
+            if (prj && !firstTimeAnimation) {
+                scrollProjectSelect(prj);
+            }
         });
     }
     else {
         PH.$daylist.scrollTop(0);
         approachGoalDay(dayId, firstTimeAnimation);
+        if (prj && !firstTimeAnimation) {
+            scrollProjectSelect(prj);
+        }
     }
 }
 
