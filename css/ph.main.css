@@ -73,8 +73,14 @@ video {
     position: absolute;
     /*display: none;*/
     max-width: 250px;
-    text-align: left;
+    text-align: right;
+    /*text-align: left;*/
     text-shadow: 0 0 1px black, 0 0 8px #dbdbdb;
+}
+
+#prj_desc.right {
+    /*text-align: right;*/
+    text-align: left;
 }
 
 /* main container */
@@ -235,10 +241,6 @@ video {
 .project-stripe:hover {
     background-color: transparent;
     /*border: 2px snow solid;*/
-}
-
-#prj_desc.right {
-    text-align: right;
 }
 
 .project-description {

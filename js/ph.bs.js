@@ -31,6 +31,7 @@ $(function () {
 
     var prjs;
     $.ajax('/data/ph.json', {
+        dataType: "json",
         error: function (xhr, status, error) {
             //var err = eval("(" + xhr.responseText + ")");
             //console.log(err.Message);
