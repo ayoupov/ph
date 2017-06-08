@@ -27,6 +27,30 @@ function preloadImages(data) {
     }
 }
 
+function initAudio(data) {
+    var src = [];
+    if (data.audio && data.audio.url)
+        src.push(data.audio.url);
+    else {
+        var pre = "/assets/sound/";
+        src = [pre + "bumblebees.mp3", pre + "bumblebees.webm"]
+    }
+    PH.sound = new Howl({
+        src: src,
+        loop: true,
+        volume: 1
+    });
+    PH.sound_id = PH.sound.play();
+    var $mutebtn = $("#mutebtn");
+    $mutebtn.on('click', function(){
+        if (PH.sound.playing(PH.sound_id))
+            PH.sound.pause(PH.sound_id);
+        else
+            PH.sound.play(PH.sound_id);
+        $("a", $mutebtn).toggleClass("active");
+    })
+}
+
 function initVideo(data) {
     if (data.video && data.video.from == "vimeo") {
         var vmid = extractVimeoId(data.video.url);

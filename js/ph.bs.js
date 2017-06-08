@@ -42,6 +42,7 @@ $(function () {
             if (!PH.isMobile) {
                 preloadImages(res);
                 initVideo(res);
+                initAudio(res);
             }
             debugPrint("S");
             // init labels

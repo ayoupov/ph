@@ -26,9 +26,13 @@
 </head>
 <body>
 <div id="background">
+    <!--<video poster="/assets/bg/bg_placeholder.png" id="bgvid" playsinline autoplay muted loop>-->
+    <div id="vimeo_video_bg"></div>
     <video id="bgvid" playsinline autoplay muted loop>
+        <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
     </video>
     <div id="prj_bg" class="desktop only"></div>
+    <div id="prj_bg_filter" class="desktop only"></div>
 </div>
 <div class="viewport">
     <div class="mobile only lang-select">
@@ -75,6 +79,9 @@
                     <input placeholder="your@email.com" type="email">
                 </div>
                 <div class="subscribe-title">SUBSCRIBE!</div>
+            </div>
+            <div id="mutebtn">
+                <a>||</a>
             </div>
             <div class="lang-select">
                 <a class="active">PL</a>

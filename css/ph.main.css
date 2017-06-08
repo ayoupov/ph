@@ -311,6 +311,20 @@ video {
     /*margin-bottom: 20px;*/
 }
 
+#mutebtn {
+    position: absolute;
+    left: 115px;
+    bottom: 20px;
+}
+
+#mutebtn a {
+    cursor: pointer;
+}
+
+#mutebtn a.active {
+    font-weight: 700;
+}
+
 .mobile.only.lang-select {
     bottom: 0;
     padding-bottom: 20px;
