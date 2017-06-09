@@ -229,9 +229,18 @@ video {
     transition: opacity 0.4s linear,
     transform 0.4s ease-in-out,
     box-shadow 0.4s ease-in-out;
-    box-shadow: 0 0 1px black;
+    /*box-shadow: 0 0 1px black;*/
+    -webkit-box-shadow: -0.5em 0 6px 0 rgba(0,0,0,0.5);
+    -moz-box-shadow: -0.5em 0 6px 0 rgba(0,0,0,0.5);
+    box-shadow: -0.5em 0 6px 0 rgba(0,0,0,0.5);
     /*box-shadow: 0 0 8px #dbdbdb;*/
     z-index: 500;
+}
+
+.project-stripe.right {
+    -webkit-box-shadow: 0.5em 0 6px 0 rgba(0,0,0,0.5);
+    -moz-box-shadow: 0.5em 0 6px 0 rgba(0,0,0,0.5);
+    box-shadow: 0.5em 0 6px 0 rgba(0,0,0,0.5);
 }
 
 .project-stripe.blur {

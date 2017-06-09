@@ -43,6 +43,7 @@ function changeLang(lang, firstTime) {
     $("#about .about-desc").html(PH.labels[lang].about_desc);
     $(".overall-container").html(PH.labels[lang].about_desc);
     $("#projects_desc").html(PH.labels[lang].projects_desc);
+    document.title = PH.labels[lang].title;
 
     $(".calendar-month-label").each(function () {
         var $m = $(this);

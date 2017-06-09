@@ -334,9 +334,11 @@ function attachMobilePrj($stripe, prj, prjid) {
 
 var TOP_MAGIC = 7;
 
-function addStripe(prj, prjid, posObj) {
+function addStripe(prj, prjid, posObj, isRight) {
     var $stripe = $("<div class='project-stripe' data-prjid='" + prjid + "'>");
     $stripe.css(posObj);
+    if (isRight)
+        $stripe.addClass('right');
     // append events and data
     $stripe.data('prjid', prjid);  // to extract the project
     if (!PH.isMobile) {
@@ -401,7 +403,7 @@ function addToRight(prj, prjid, before) {
         width: w,
         top: t,
         height: h
-    });
+    }, true);
 }
 
 
