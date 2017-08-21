@@ -75,7 +75,7 @@ video {
     max-width: 250px;
     text-align: right;
     /*text-align: left;*/
-    text-shadow: 0 0 1px black, 0 0 8px #dbdbdb;
+    /*text-shadow: 0 0 1px black, 0 0 8px #dbdbdb;*/
 }
 
 #prj_desc.right {
@@ -255,7 +255,7 @@ video {
 .project-description {
     font-size: 10pt;
     font-family: "Times New Roman", sans-serif;
-    text-shadow: 0 0 8px #dbdbdb;
+    /*text-shadow: 0 0 8px #dbdbdb;*/
 }
 
 .project-description .title {

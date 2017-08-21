@@ -26,7 +26,7 @@ $(function () {
     // init lang settings
     langInit();
     initLangEvents();
-    debugPrint("L");
+    //debugPrint("L");
     // load data
 
     var prjs;
@@ -36,7 +36,7 @@ $(function () {
             //var err = eval("(" + xhr.responseText + ")");
             //console.log(err.Message);
             console.log(error);
-            debugPrint(error);
+            //debugPrint(error);
         },
         success: function (res) {
             if (!PH.isMobile) {
@@ -44,24 +44,24 @@ $(function () {
                 initVideo(res);
                 initAudio(res);
             }
-            debugPrint("S");
+            //debugPrint("S");
             // init labels
             PH.labels = res.labels;
             // init prjs
             prjs = res.projects;
             prjs.forEach(datify);
-            debugPrint("D");
+            //debugPrint("D");
             // sort by beginning
             prjs.sort(sortPrjByStart);
             populateCalendar(prjs);
-            debugPrint("P");
+            //debugPrint("P");
             emulateScroll();
-            debugPrint("Sc");
+            //debugPrint("Sc");
             PH.is_scrolling = false;
             var today = "day" + dayIdFromDate(new Date());
             if ($("#" + today).length > 0)
                 scrollDayListTo(today, true);
-            debugPrint("T");
+            //debugPrint("T");
             changeLang(PH.lang, true);
         }
     })

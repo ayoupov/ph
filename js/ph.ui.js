@@ -47,7 +47,12 @@ function initAudio(data) {
             PH.sound.pause(PH.sound_id);
         else
             PH.sound.play(PH.sound_id);
-        $("a", $mutebtn).toggleClass("active");
+        var $mblink = $("a", $mutebtn);
+        if ($mblink.hasClass('active'))
+            $mblink.html("||");
+        else
+            $mblink.html("|>");
+        $mblink.toggleClass("active");
     })
 }
 
@@ -66,6 +71,7 @@ function initVideo(data) {
         PH.vimeoPlayer.loadVideo(vmid).then(function (id) {
             PH.vimeoPlayer.play();
             $iframe.show();
+            //vidfluid();
         });
         //PH.vimeoPlayer.play();
     } else {

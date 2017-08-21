@@ -612,6 +612,9 @@ function initWindowSizeChange() {
 
 var $animDayLabel = null;
 function animatePH2() {
+    // hide stripes
+    $(".project-stripe").hide();
+
     var $animDiv = $("#animatePH2Div_" + PH.lang);
     //animRepos($animDiv);
     $animDiv.removeClass('hidden');
@@ -656,6 +659,7 @@ function fadeOutMax2($cont) {
                             }
                         }
                     });
+                $(".project-stripe").show(FINAL_PH_FADEOUT);
             }
 
             $cont.fadeOut({
