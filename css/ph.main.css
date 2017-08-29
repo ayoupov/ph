@@ -33,13 +33,14 @@ video {
 }
 
 #prj_bg_filter {
-    background: url(/assets/bg/filter.png);
+    background: url(/assets/bg/filter2.png);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
+    opacity: 0.5;
 }
 
 #prj_bg div.prj_bg_div {
@@ -230,17 +231,17 @@ video {
     transform 0.4s ease-in-out,
     box-shadow 0.4s ease-in-out;
     /*box-shadow: 0 0 1px black;*/
-    -webkit-box-shadow: -0.5em 0 6px 0 rgba(0,0,0,0.5);
-    -moz-box-shadow: -0.5em 0 6px 0 rgba(0,0,0,0.5);
-    box-shadow: -0.5em 0 6px 0 rgba(0,0,0,0.5);
+    -webkit-box-shadow: -0.25em 0 3px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: -0.25em 0 3px 0 rgba(0,0,0,0.25);
+    box-shadow: -0.25em 0 3px 0 rgba(0,0,0,0.25);
     /*box-shadow: 0 0 8px #dbdbdb;*/
     z-index: 500;
 }
 
 .project-stripe.right {
-    -webkit-box-shadow: 0.5em 0 6px 0 rgba(0,0,0,0.5);
-    -moz-box-shadow: 0.5em 0 6px 0 rgba(0,0,0,0.5);
-    box-shadow: 0.5em 0 6px 0 rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0.25em 0 3px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 0.25em 0 3px 0 rgba(0,0,0,0.25);
+    box-shadow: 0.25em 0 3px 0 rgba(0,0,0,0.25);
 }
 
 .project-stripe.blur {
@@ -548,6 +549,8 @@ video {
     position: absolute;
     /*max-width: 200px;*/
     white-space: nowrap;
+    font-size: 10pt;
+    padding-bottom: 1px;
 }
 
 .rotated-cw {
