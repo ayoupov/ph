@@ -9,8 +9,8 @@ body {
 /* video settings */
 video {
     position: fixed;
-    min-width: 100vw;
-    min-height: 100vh;
+    min-width: 120vw;
+    min-height: 120vh;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -33,7 +33,7 @@ video {
 }
 
 #prj_bg_filter {
-    background: url(/assets/bg/filter2.png);
+    /*background: url(/assets/bg/filter2.png);*/
     position: absolute;
     top: 0;
     left: 0;
@@ -41,6 +41,7 @@ video {
     height: 100%;
     pointer-events: none;
     opacity: 0.5;
+    background-color: black;
 }
 
 #prj_bg div.prj_bg_div {
@@ -48,12 +49,14 @@ video {
 }
 
 #prj_bg iframe, #prj_bg div.prj_bg_div, #vimeo_video_bg iframe {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
+    overflow: hidden;
+    transform: scale(1.2);
 }
 
 /* utilities */
@@ -465,7 +468,8 @@ video {
     }
 
     .animate-div .anim-letter {
-        font-size: 32pt;
+        font-size: 40pt;
+        /*font-size: 32pt;*/
     }
 
 }

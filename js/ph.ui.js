@@ -138,7 +138,10 @@ function initSubscribe() {
         } else
             $desc.fadeOut(COMMON_FADE_TIMEOUT);
     });
-
+    PH.$subscribe.on('click', function(){
+        var lastPrj = PH.prjs[PH.prjs.length - 1];
+        scrollDayListTo("day" + dayIdFromDate(lastPrj.from), false, true, lastPrj);
+    });
 }
 
 

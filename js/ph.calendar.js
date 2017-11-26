@@ -166,6 +166,7 @@ function extractVimeoId(url) {
     return split[split.length - 1].split("?")[0];
 }
 
+var positionPrjDescTweakLeft = PRJ_STRIPE_MARGIN;
 function attachPrjDesc($elem, prj, position, team) {
     PH.$prj_desc.empty();
     var $desc = $("<div class='project-description'/>");
@@ -201,10 +202,10 @@ function attachPrjDesc($elem, prj, position, team) {
     });
 
     if (position == 'left') {
-        PH.$prj_desc.css('left', $elem.offset().left - PH.$prj_desc.width() - PRJ_STRIPE_MARGIN);
+        PH.$prj_desc.css('left', $elem.offset().left - PH.$prj_desc.width() - PRJ_STRIPE_MARGIN - PRJ_STRIPE_WIDTH * 2);
         PH.$prj_desc.removeClass('right');
     } else {
-        PH.$prj_desc.css('left', $elem.offset().left + PRJ_STRIPE_MARGIN);
+        PH.$prj_desc.css('left', $elem.offset().left + PRJ_STRIPE_MARGIN + PRJ_STRIPE_WIDTH * 5);
         PH.$prj_desc.addClass('right');
     }
 }
@@ -498,7 +499,7 @@ var hammerPanHandler = function (event) {
     }
 };
 
-function clearFixedStripe(){
+function clearFixedStripe() {
     // clear fixed stripe
     var $clickedStripe = $(".project-stripe.clicked");
     if ($clickedStripe.length) {
@@ -611,6 +612,8 @@ function initWindowSizeChange() {
 }
 
 var $animDayLabel = null;
+var positionTweakLeft = 8;
+var positionTweakTop = -4;
 function animatePH2() {
     // hide stripes
     $(".project-stripe").hide();
@@ -619,8 +622,8 @@ function animatePH2() {
     //animRepos($animDiv);
     $animDiv.removeClass('hidden');
     $animDiv.css({
-        'left': ($(window).width() - $animDiv.width()) / 2,
-        'top': ($(window).height()) / 2 - $(".nav-button").height() - $animDiv.height() / 2 - TOP_MAGIC
+        'left': ($(window).width() - $animDiv.width()) / 2 + positionTweakLeft,
+        'top': ($(window).height()) / 2 - $(".nav-button").height() - $animDiv.height() / 2 - TOP_MAGIC + positionTweakTop
     });
     $animDayLabel = getCentralLabel();
     $animDayLabel.css({opacity: 0});
